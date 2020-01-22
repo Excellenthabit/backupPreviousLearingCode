@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13-翻转的文字</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #eee;
+        }
+        .box{
+            width: 500px;
+            margin: 100px auto;
+        }
+        .box>span{
+            float: left;
+            width: 100px;
+            height: 100px;
+            font-size: 80px;
+            line-height: 100px;
+            text-align: center;
+            font-family: "microsoft yahei";
+            position: relative;
+        }
+        span::before,span::after{
+            /*通过伪元素来获取自定义属性的值*/
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            font-size: 80px;
+            line-height: 100px;
+            text-align: center;
+            font-family: "microsoft yahei";
+            color: #fff;
+            transform:scale(0.95,1);
+            transform-origin: left;
+            transition: all 0.5s;
+        }
+        .box::before{
+            color: rgba(0,0,0,0.3);
+        }
+        .box:hover span::before{
+            transform:skew(0,15deg);
+        }
+        .box:hover span::after{
+            transform:rotateY(25deg) skew(0deg,5deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span data-text="全">全</span>
+        <span data-text="力">力</span>
+        <span data-text="以">以</span>
+        <span data-text="赴">赴</span>
+    </div>
+</body>
+</html>

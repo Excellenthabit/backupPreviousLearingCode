@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17-数组的添加和删除</title>
+</head>
+<body>
+<script>
+    //注意：下面为数组添加或者删除操作，都修改了原数组，长度也有所改变
+    var arr = ["Jack","Jason","Nico","Rachel","Lisa"];
+    console.log(arr);//打印原数组
+    var arr1= arr.push("Nicolas");//在原数组最后面插入新元素，返回修改后的数组长度。
+    // 需要注意的是，原数组已被修改成为["Jack","Jason","Nico","Rachel","Lisa","Nicholas"]
+    console.log(arr1);
+    console.log(arr1); //打印的是修改后数组的长度
+    var arr2 = arr.pop(); //取出数组最后一个元素并且返回最后一项，可以说是删除了数组的最后一项，并且返回被删除的那一项
+    console.log(arr2);  // 打印结果为数组最后一项 Nicholas
+    console.log(arr); //打印的是一开始定义的数组["Jack","Jason","Nico","Rachel","Lisa"]
+    // push添加的新元素Nicholas已被pop删除
+    var arr3= arr.unshift("Hello");
+    console.log(arr3); //在数组最前面插入新元素，返回新数组的长度
+    console.log(arr); //    打印的是["Hello", "Jack", "Jason", "Nico", "Rachel", "Lisa"]
+    var arr4 =arr.shift(); //取出数组第一项元素，且返回第一项元素，也可以说是删除数组的第一项元素，且返回被删除的元素
+    console.log(arr); // shift 删除了数组的第一项元素，数组变回["Jack", "Jason", "Nico", "Rachel", "Lisa"]
+    console.log(arr4);  // 打印结果是 Hello
+    var arr5 = arr.reverse();//翻转数组
+    console.log(arr5);   //   ["Lisa", "Rachel", "Nico", "Jason", "Jack"]
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-音频和视频</title>
+</head>
+<body>
+    <!--在HTML5之前，在网页上播放音频/视频的通用方法是利用Flash来播放，-->
+    <!--但是大多情况下，并非所有用户的浏览器都安装了Flash插件，由此使得-->
+    <!--处理音频/视频播放变的非常复杂，并且移动设备的浏览器并不支持Flash插件。-->
+    <!--HTML5通过<audio>标签来解决音频播放的问题。-->
+    <!--并且可以通过附加属性可以更友好控制音频的播放，如：-->
+    <!--autoplay 自动播放-->
+    <!--controls 是否显示默认播放控件-->
+    <!--loop 循环播放-->
+    <!--preload 预加载 同时设置autoplay时此属性失效-->
+    <audio controls autoplay>
+        <source src="music/Wasted-Brandi%20Carlile.mp3">
+        <source src="music/Wasted-Brandi%20Carlile.ogg">
+        <source src="music/Wasted-Brandi%20Carlile.wav">
+        你的浏览器不支持音频标签！
+    </audio>
+
+    <br>
+
+    <!--HTML5通过<video>标签来解决视频播放的问题。 同音频播放一样，<video>使用也相当简单，-->
+    <!--同样，通过附加属性可以更友好的控制视频的播放-->
+    <!--autoplay 自动播放-->
+    <!--controls 是否显示默认播放控件-->
+    <!--loop 循环播放-->
+    <!--preload 预加载，同时设置了autoplay，此属性将失效-->
+    <!--width 设置播放窗口宽度-->
+    <!--height 设置播放窗口的高度-->
+
+    <video src="video/movie.mp4" controls autoplay></video>
+
+</body>
+</html>

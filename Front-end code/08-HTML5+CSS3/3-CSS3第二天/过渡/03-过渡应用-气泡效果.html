@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-过渡应用-气泡效果</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: #f7f7f7;
+        }
+        .paopao{
+            width: 300px;
+            height: 120px;
+            margin: 30px auto;
+            background: url("images/paopao.png") no-repeat left bottom,
+                        url("images/paopao.png") no-repeat right top;
+            background-color: lightskyblue;
+            border-radius: 6px;
+            transition: all 1s linear;
+        }
+
+        .paopao:hover{
+            background-position: left top,right bottom;
+        }
+    </style>
+</head>
+<body>
+    <div class="paopao"></div>
+</body>
+</html>

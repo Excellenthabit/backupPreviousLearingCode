@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>表格练习</title>
+</head>
+<body>
+<table border="2" align="center" width="1080" height="500" cellspacing="0" bgcolor="yellow">
+    <!-- 表格,tr是行，td是列,align="center"表格居中，
+	默认是left，tr和td的align也是可取left、right、center，
+	默认都是left。 cellspacing属性是单元格与单元格之间的距离
+	cellpadding属性是内容距边框的距离 --> 
+		<caption>表格一</caption>  <!-- 表头 -->
+	<tr align="center"><!-- 行 -->
+		<td rowspan="3">姓名</td><!--列 -->   <!-- rowspan合并同一列上的单元格 -->
+		<td>性别</td><!--列 -->   <!-- colspan合并同一行上的单元格 -->
+		<td>年龄</td><!--列 -->
+		<td>身高</td><!--列 -->
+		<td>体重</td><!--列 -->
+	</tr>
+		<tr align="center">
+<!-- 		<td>姓名</td>
+ -->		<td>性别</td>
+		<td>年龄</td>
+		<td>身高</td>
+		<td>体重</td>
+	</tr>
+
+		<tr align="center">
+<!-- 		<td>姓名</td>
+ -->		<td>性别</td>
+		<td>年龄</td>
+		<td>身高</td>
+		<td>体重</td>
+	</tr>
+</table>
+
+<hr>
+
+<table border="2" bgcolor="red" bordercolor="black" width="1080" height="500" align="center" cellspacing="0">
+	<caption>表格二</caption>
+
+	<tr>
+		<th>自由</th>   <!-- th标签是表格标题 -->
+		<th>民主</th>
+		<th>和谐</th>
+		<th>法制</th>
+	</tr>
+
+	<tr align="center">  <!-- align是内容水平对齐方式，默认是left，其值可以是left、center、right-->
+		<td valign="top">自由</td>  
+		<!-- valign是内容垂直对齐方式，默认是middle，其值可以是top、bottom、middle -->
+		<td>民主</td>
+		<td>和谐</td>
+		<td>法制</td>
+	</tr>
+
+	<tr align="center">
+		<td>诚实</td>
+		<td>守信</td>
+		<td>自强</td>
+		<td>自爱</td>
+	</tr>
+
+</table>
+</body>
+</html>

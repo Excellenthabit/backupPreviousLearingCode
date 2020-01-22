@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-数组练习之冒泡排序</title>
+</head>
+<body>
+<script>
+    // //冒泡排序，从小到大
+    // //需求：冒泡排序
+    // //理论：1、比较轮数为n-1次，n为数组的长度（元素个数）；
+    // // 2、比较次数也是n-1次；
+    // // 3、符合某个条件交换位置；
+    // // 核心：双重for循环。
+    // // 步骤：1、双重for循环
+    // // 2、指定比较轮数和次数
+    // // 3、判断是否符合标准，如果符合标准则交换位置
+    // //简单版(可以实现目的，每一轮比较的次数都一样，实际上比不需要每一次都比较那么多次，可以优化）
+
+    // var arr=[1,2,3,4,5,9,8,19,11,13];
+    // console.log("原来的排序："+arr);
+    // var m=0;
+    // var n=0;
+    // for (var i=0;i<arr.length-1;i++){
+    //     for (var j=0;j<arr.length-1;j++){
+    //         if (arr[j]>arr[j+1]){
+    //             var temp=arr[j];
+    //             arr[j]=arr[j+1];
+    //             arr[j+1]=temp;
+    //         }
+    //         m++;
+    //     }
+    //     n++;
+    // }
+    // console.log("冒泡排序后（从小到大）："+arr);
+    // console.log("比较轮数："+n); //9
+    // console.log("比较次数："+m); //81
+
+    // //中级版（实际上每比较一轮都可以确定一个最大值，之后下一轮就没必要多比较一次，
+    // // 所以每比较一轮，就少比较一次，这个是简单版的优化）
+    // //然鹅，还可以继续优化的，因为其实比如要比较n次，但是第n次比较没有交换位置，
+    // //那么说明实际上第n-1次已经全部比较好了!
+    // var arr=[1,2,3,4,5,9,8,19,11,13];
+    // console.log("原来的排序："+arr);
+    // var m=0;
+    // var n=0;
+    // for (var i=0;i<arr.length-1;i++){
+    //     //画重点： j<arr.length-1-i;每次减i是因为每比较完i轮，就少比较i次！
+    //     for (var j=0;j<arr.length-1-i;j++){
+    //         if (arr[j]>arr[j+1]){
+    //             var temp=arr[j];
+    //             arr[j]=arr[j+1];
+    //             arr[j+1]=temp;
+    //         }
+    //         m++;
+    //     }
+    //     n++;
+    // }
+    // console.log("冒泡排序后（从小到大）："+arr);
+    // console.log("比较轮数："+n); //9
+    // console.log("比较次数："+m); //45
+
+    // //终级版
+    // //如果比较完备提前结束比较。（判断，如果本次比较没有移动任何元素，那么说明已经比较完成）
+    var arr=[7,9,8,7,1,7,5,30,68,16];
+    console.log("原来的排序："+arr);
+    var m=0;
+    var n=0;
+    for (var i=0;i<arr.length-1;i++){
+        //开闭原则（写在第一个for循环里面，为了每轮比较初始化bool变量为true）。
+        var bool=true;
+        //画重点： j<arr.length-1-i;每次减i是因为每比较完i轮，就少比较i次！
+        for (var j=0;j<arr.length-1-i;j++){
+            if (arr[j]>arr[j+1]){
+                var temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+                bool=false;
+            }
+            m++;
+        }
+        n++;
+        //bool这个变量默认值为true，如果本轮比较有一对元素相互交换位置，那么也不能跳出循环。
+        //但是，如果本轮比较没有任何元素相互交换位置，那么说明已经比较完成，可以跳出循环。
+        if(bool){
+            break;
+        }
+    }
+    // console.log("冒泡排序后（从小到大）："+arr);
+    // console.log("比较轮数："+n); //2
+    // console.log("比较次数："+m); //17
+
+
+    function bubbleSort(arr) {
+        for (var i=0;i<arr.length-1;i++){
+            var flag = 1;
+            for (var j=0;j<arr.length-1-i;j++){
+                if (arr[j]>arr[j+1]){
+                    var tmp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = tmp;
+                    flag = 0;
+                }
+            }
+            if (flag){
+                break;
+            }
+        }
+        return arr;
+    }
+
+    console.log(bubbleSort(arr));
+
+
+</script>
+</body>
+</html>

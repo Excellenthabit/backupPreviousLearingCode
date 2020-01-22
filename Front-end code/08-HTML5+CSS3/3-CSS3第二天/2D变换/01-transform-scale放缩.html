@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-transform-scale放缩</title>
+    <style>
+        .box{
+            width: 1000px;
+            margin:100px auto;
+        }
+
+        .box>div{
+            width: 300px;
+            height:150px;
+            border: 1px solid #000;
+            background-color: red;
+            float: left;
+            margin-right: 30px;
+        }
+        div:nth-child(2){
+            background-color: pink;
+            transition: all 1s;
+        }
+
+        /*转换是CSS3中具有颠覆性的特征之一，可以实现元素的位移、旋转、变形、缩放，甚至支持矩阵方式，*/
+        /*配合即将学习的过渡和动画知识，可以取代大量之前只能靠Flash才可以实现的效果。*/
+        /*在css3 当中，通过transform(变形) 来实现2d 或者3d 转换,其中2d 有，缩放，移动，旋转。*/
+
+        /*缩放 scale(x, y) 可以对元素进行水平和垂直方向的缩放，x、y的取值可为小数，不可为负值；*/
+
+        /*移动 translate(x, y) 可以改变元素的位置，x、y可为负值；*/
+        /*x 在水平方向移动。*/
+        /*y 在垂直方向移动。 */
+
+        /*旋转 rotate(deg) 可以对元素进行旋转，正值为顺时针，负值为逆时针；*/
+
+        div:nth-child(2):hover{
+            /*
+             scale: 缩放
+             scale(水平放缩比例，垂直放缩比例)；
+             大于1：放大
+             小于1：缩小
+             如果只写一个值等比例缩放
+         */
+            transform: scale(2,4);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">1</div>
+        <div class="box2">2</div>
+        <div class="box3">3</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-节点的访问关系和操作</title>
+</head>
+<body>
+
+<div class="box1">
+    <div class="box2"></div>
+    <div class="box3"></div>
+</div>
+
+<script>
+    // //节点的访问关系是以属性形式存在的
+
+    // //nextSibling：调用者是节点。IE678中指下一个元素节点（标签）。
+    // // 在火狐谷歌IE9+以后都指的是下一个节点（包括空文档和换行节点）。
+    // // nextElementSibling：在火狐谷歌IE9都指的是下一个元素节点。
+    // // 总结：在IE678中用nextSibling，在火狐谷歌IE9+以后用nextElementSibling
+
+    // // previousSibling：调用者是节点。IE678中指前一个元素节点（标签）。
+    // //在火狐谷歌IE9+以后都指的是前一个节点（包括空文档和换行节点）。
+    // //previousElementSibling：在火狐谷歌IE9都指的是前一个元素节点。
+    // //总结：在IE678中用previousSibling，在火狐谷歌IE9+以后用previousElementSibling。
+
+    // // firstChild：调用者是父节点。IE678中指第一个子元素节点（标签）。
+    // //在火狐谷歌IE9+以后都指的是第一个节点（包括空文档和换行节点）。
+    // //firstElementChild:在火狐谷歌IE9都指的第一个元素节点。
+
+    // //lastChild:调用者是父节点。IE678中指最后一个子元素节点（标签）。
+    // //在火狐谷歌IE9+以后都指的是最后一个节点（包括空文档和换行节点）。
+    // //lastElementChild：在火狐谷歌IE9都指的最后一个元素节点。
+
+    //childNodes：它是标准属性，它返回指定元素的子元素集合，包括HTML节点，所有属性，文本节点   （他还是W3C的亲儿子
+    // 火狐 谷歌等高本版会把换行也看做是子节点
+
+
+    //children：非标准属性，它返回指定元素的子元素集合。
+    // 但它只返回HTML节点，甚至不返回文本节点，虽然不是标准的DOM属性，但它和innerHTML方法一样，得到了几乎所有浏览器的支持。
+    // children在IE6/7/8中包含注释节点
+    // 在IE678中，注释节点不要写在里面。
+
+    //节点自己.parentNode.children[index];随意得到兄弟节点。
+
+
+
+
+
+    // //box1 是box2的父节点
+    // var box2=document.getElementsByClassName("box2")[0];
+    // console.log(box2.parentNode);   //box2的父节点
+    // console.log(box2.nextElementSibling);  // box2的下一个兄弟节点
+    // console.log(box2.parentElement.firstChild); //box2的父节点的第一个子节点
+    // console.log(box2.parentNode.childNodes);  //所有子节点
+    // console.log(box2.parentNode.children);  //所有子节点
+
+    //节点的创建
+    //新的标签（节点） = document.createElement(“标签名”);
+    var aaa=document.createElement("li");
+    var bbb=document.createElement("abcdefg");
+    console.log(aaa);
+    console.log(bbb);
+
+    //添加
+    var box1 = document.getElementsByClassName("box1")[0];
+    //父节点.appendChild(新节点); 父节点的最后插入一个新节点
+    box1.appendChild(aaa);  //把aaa 中的 li 添加到box1中
+
+    //父节点.insertBefore(新节点,参考节点)在参考节点前插入;
+    box1.insertBefore(bbb,aaa); //在bbb前插入aaa
+
+
+    //删除
+    //父节点.removeChild（子节点）；必须制定要删除的子节点
+    //不知道父级的情况下，可以这么写：node.parentNode.removeChild(node)
+    box1.removeChild(bbb);
+    aaa.parentNode.removeChild(aaa); //自己删除自己（自杀）
+
+
+    //克隆节点
+    //想要复制的节点调用这个函数cloneNode()，得到一个新节点。
+    // 方法内部可以传参，如果是true，深层复制，如果是false，只复制节点本身。
+    // 新节点=要复制的节点.cloneNode(参数) ; 参数可选复制节点
+    // 用于复制节点， 接受一个布尔值参数， true 表示深复制（复制节点及其所有子节点），
+    // false 表示浅复制（复制节点本身，不复制子节点）
+    var ccc=box1.cloneNode();  //浅复制
+    console.log(ccc);
+
+    var ddd=box1.cloneNode("ture"); //深复制
+    console.log(ddd);
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-steps()应用</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            border: 20px solid orangered;
+            margin: 100px auto;
+            border-radius: 50%;
+            position: relative;
+        }
+        .box .second{
+            width: 3px;
+            height: 145px;
+            background-color: #000000;
+            position: absolute;
+            left:50%;
+            top:5px;
+            transform-origin: bottom;
+            /*steps(60)==此动画分60段走完*/
+            animation: move 60s steps(60) infinite;
+        }
+
+        @keyframes move {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box">
+        <div class="second">
+        </div>
+
+    </div>
+</body>
+</html>

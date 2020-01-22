@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-continue & break 练习</title>
+</head>
+<body>
+ <script>
+     //1、计算出1到1000之间所有不能被7整除的整数之和（用continue）
+     // var sum=0;
+     // for (var i=1;i<=100;i++){
+     //     if (i%7===0){
+     //         continue;
+     //     }
+     //     sum +=i;
+     // }
+     // alert(sum);
+
+
+     //2、计算出1到100之间所有不能被3整除的整数的和（用continue）
+     // var sum=0;
+     // for (var i=1;i<=100;i++){
+     //     if(i%3===0){
+     //         continue;
+     //     }
+     //     sum+=i;
+     // }
+     // alert(sum);
+
+
+     //3、求1到100之间所有不能被3整除的整数的第一个大于2000的和
+     // var sum=0;
+     // for (var i=1;i<=100;i++){
+     //     if (i%3===0){
+     //         continue;
+     //     }
+     //     sum+=i;
+     //     if (sum>2000){
+     //         alert(sum);
+     //         break;
+     //     }
+     // }
+
+
+     //4、求200-300之间所有的奇数的和
+     // var oddsum=0;
+     // for (var i=200;i<=300;i++){
+     //     if (i%2===0){
+     //         continue;
+     //     }
+     //     oddsum += i;
+     // }
+     // alert(oddsum);
+
+
+     //5、求200-300之间第一个能被7整数的数
+     for (var i=200;i<=300;i++){
+         if (i%7===0){
+             alert(i);
+             break;
+         }
+     }
+
+ </script>
+</body>
+</html>

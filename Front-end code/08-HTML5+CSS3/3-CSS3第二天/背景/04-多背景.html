@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-多背景</title>
+    <style>
+        .box{
+            width: 623px;
+            height: 416px;
+            margin: 100px auto;
+            border: 1px solid #000;
+            /*以逗号分隔可以设置多背景，可用于自适应局*/
+            background: url("images/bg1.png") no-repeat left top,
+                        url("images/bg2.png") no-repeat right top,
+                        url("images/bg3.png") no-repeat right bottom,
+                        url("images/bg4.png") no-repeat left bottom,
+                        url("images/bg5.png") no-repeat center;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box">
+    </div>
+</body>
+</html>

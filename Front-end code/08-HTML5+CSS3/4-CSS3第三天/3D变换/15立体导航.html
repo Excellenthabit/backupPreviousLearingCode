@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15-立体导航</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+        body{
+            background-color: #999;
+        }
+
+        ul{
+            width: 900px;
+            height: 80px;
+            margin: 100px auto;
+            position: relative;
+        }
+        ul::before,ul::after{
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 80px;
+            background-color: #ccc;
+            left: -100px;
+        }
+        ul::after{
+            /*left设置auto，左边的left属性不再控制right的left值*/
+            /*前面设置了left:-100px,这里要释放这个属性，*/
+            /*才能设置right:-100px,否则无法覆盖掉left: -100px;*/
+            left: auto;
+            right: -100px;
+        }
+        ul li{
+            float: left;
+            width: 180px;
+            height: 80px;
+        }
+        ul li span{
+            float: left;
+            height: 80px;
+        }
+        ul li .left,ul li .right{
+            width: 30px;
+            height: 100%;
+            background-color: #ccc;
+        }
+        ul li .center{
+            width: 120px;
+            height: 80px;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 80px;
+            font-size: 24px;
+            font-family: "microsoft yahei";
+        }
+        ul li:hover .left{
+            transform-origin: left;
+            transform: skew(0deg,-30deg);
+            background-color: #c1c1c1;
+            box-shadow: 10px 20px 20px -10px #666;
+        }
+        ul li:hover .center{
+            transform: translateY(-17px);
+            text-shadow: 5px 5px 3px #666;
+            box-shadow: 0 20px 20px -10px #666;
+        }
+        ul li:hover .right{
+            transform-origin: right;
+            /*skew()倾斜*/
+            transform: skew(0deg,30deg);
+            background-color: #c1c1c1;
+            box-shadow: -10px 20px 20px -10px #666;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <span class="left"></span>
+        <span class="center">前端开发</span>
+        <span class="right"></span>
+    </li>
+    <li>
+        <span class="left"></span>
+        <span class="center">前端开发</span>
+        <span class="right"></span>
+    </li>
+    <li>
+        <span class="left"></span>
+        <span class="center">前端开发</span>
+        <span class="right"></span>
+    </li>
+    <li>
+        <span class="left"></span>
+        <span class="center">前端开发</span>
+        <span class="right"></span>
+    </li>
+    <li>
+        <span class="left"></span>
+        <span class="center">前端开发</span>
+        <span class="right"></span>
+    </li>
+</ul>
+</body>
+</html>

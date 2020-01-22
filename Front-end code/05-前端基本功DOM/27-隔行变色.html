@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>27-隔行变色</title>
+    <style>
+        ul{
+            width: 1210px;
+            margin: 100px auto;
+            list-style: circle;
+        }
+        ul li{
+            height: 40px;
+            font: 700 30px/40px "simsun";
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>股市信息 - 上证指数(000001) _ 股票行情 _ 东方财富网</li>
+    <li>沪深股市 - 股票首页_新浪财经_新浪网</li>
+    <li>股市信息 - 上证指数(000001) _ 股票行情 _ 东方财富网</li>
+    <li>沪深股市 - 股票首页_新浪财经_新浪网</li>
+    <li>股市信息 - 上证指数(000001) _ 股票行情 _ 东方财富网</li>
+    <li>沪深股市 - 股票首页_新浪财经_新浪网</li>
+</ul>
+<script>
+    // //简单版
+    // var liArr=document.getElementsByTagName("li");
+    // for (var i=0;i<liArr.length;i++){
+    //     if (i%2===0){
+    //         liArr[i].style.backgroundColor="yellow";
+    //     }
+    // }
+
+    //复杂版
+    //利用childNodes实现隔行变色
+    //获取ul
+    var ul=document.getElementsByTagName("ul")[0];
+    var arr=ul.childNodes;  //实际上是就是获取ul下面的li元素节点
+
+    //把元素节点重新放入新数组
+    var newArr=[]; //创建一个新数组
+    for (var i=0;i<arr.length;i++){
+        //nodeType  ==  1时才是元素节点(标签)
+        //nodeType  ==  1  表示的是元素节点   记住   元素就是标签
+        //nodeType  ==  2  表示是属性节点   了解
+        //nodeType  ==  3  是文本节点   了解
+        if (arr[i].nodeType===1){
+            newArr.push(arr[i]);
+        }
+    }
+
+    //隔行变色
+    for (var i=0;i<newArr.length;i++){
+        if (i%2!==0){
+            newArr[i].style.backgroundColor="red";
+        }
+    }
+</script>
+</body>
+</html>

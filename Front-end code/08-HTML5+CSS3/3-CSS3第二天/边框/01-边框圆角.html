@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-边框圆角</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            background-color: darkorange;
+            margin: 100px auto;
+
+            /*border-radius: 60px;*/
+            /*border-radius: 50%;*/
+
+            /*单个属性：水平半径 垂直半径*/
+            /*border-top-left-radius: 60px 80px;*/
+            /*border-top-right-radius: 60px 80px;*/
+            /*border-bottom-left-radius: 60px 80px;*/
+            /*border-bottom-right-radius: 60px 80px;*/
+
+          /*  复合写法
+            border-radius:水平半径/垂直半径*/
+            /*border-radius: 60px 60px 60px 60px/120px 120px 120px 120px;*/
+            /*简化写法*/
+            /*border-radius: 60px/120px;*/
+            /*如果四个角的水平半径 垂直半径都相同，可以直接写成 border-radius:60px;*/
+
+            /*赋值顺序：从左上开始，顺时针赋值，如果当前角没有值，取对角的值*/
+            border-radius: 20px 40px 60px 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

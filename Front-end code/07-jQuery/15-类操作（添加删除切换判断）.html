@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15-类操作（添加删除切换判断）</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+            margin: 10px;
+        }
+        .current{
+            background-color: yellow;
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            //注意点：操作类样式的时候，所有的类名，都不带点（.）
+
+
+
+            //添加类  addClass() 为指定元素添加类className,注意不带.
+            $("button").eq(0).click(function () {
+                $("div").addClass("current");
+                alert($("div").hasClass("current"));
+            });
+            //删除类  removeClass(className) 为指定元素移除类 className,操作的类名同样不带.
+            //不指定参数，表示移除被选中元素的所有类
+            $("button").eq(1).click(function () {
+                $("div").removeClass("current");
+                alert($("div").hasClass("current"));
+            });
+
+            //来回切换
+            //切换类样式：toggleClass(className) 为指定元素切换类 className，
+            // 该元素有类则移除，没有指定类则添加。
+
+            $("button").eq(2).click(function () {
+                $("div").toggleClass("current");
+                alert($("div").hasClass("current"));
+            });
+
+            //判断有没有类样式：hasClass(calssName) 判断指定元素是否包含类 className,
+            // 返回值是布尔类型，有返回true，否则返回false
+            alert($("div").hasClass("current"));
+
+
+            // 经验：
+            //1 操作的样式非常少，那么可以通过.css()这个 方法来操作
+            //2 操作的样式很多，那么要通过使用类的方式来操作
+            //3 如果考虑以后维护方便（把CSS从js中分离出来）的话，推荐使用类的方式来操作。
+            //  类比CSS书写位置（把css从html中分离出来）
+
+
+        })
+    </script>
+</head>
+<body>
+    <button>添加</button>
+    <button>删除</button>
+    <button>来回切换</button>
+    <div>
+        好好学习，天天编程，时间不等人！！！
+    </div>
+</body>
+</html>

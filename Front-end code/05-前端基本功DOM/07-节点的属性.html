@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07-节点的属性</title>
+    <script>
+        window.onload = function () {
+            var eleNode = document.getElementsByTagName("img")[0];
+
+            //属性、赋值获取两种方式
+            //1、元素节点.属性 或者 元素节点[属性]
+            console.log(eleNode.src);
+            console.log(eleNode.id);
+            console.log(eleNode.title);
+            console.log(eleNode.alt);
+            console.log(eleNode["title"]);
+
+            //2、元素节点.方法
+
+            //获取：getAttribute(名称)
+            // 设置：setAttribute(名称, 值)
+            // 删除：removeAttribute(名称)
+            // 注意：IE6、7不支持。
+            // 调用者：节点。   有参数。   没有返回值。
+            // 每一个方法意义不同。
+
+            console.log(eleNode.getAttribute("id"));
+            eleNode.setAttribute("id", "hello"); // 设置id属性为“hello”
+            eleNode.removeAttribute("id");  //移除id这个属性
+
+
+        }
+    </script>
+</head>
+<body>
+<img src="image/1.jpg" alt="beauty" title="unknow person" claas="box" id="abc">
+</body>
+</html>

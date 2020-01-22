@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-全屏</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: dodgerblue;
+            margin: 100px auto;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">full screen test</div>
+    <script>
+     // HTML5规范允许用户自定义网页上任一元素全屏显示。
+     // requestFullscreen() 开启全屏显示
+     // cancleFullscreen() 关闭全屏显示
+
+     // 不同浏览器需要添加前缀如：
+     // webkitRequestFullScreen、mozRequestFullScreen
+     //    webkitCancleFullScreen、mozCancleFullScreen
+     //    通过document.fullScreen检测当前是否处于全屏
+     //    不同浏览器需要添加前缀
+     //    document.webkitIsFullScreen、document.mozFullScreen
+     //    全屏伪类
+     //        :full-screen .box {}、:-webkit-full-screen {}、:moz-full-screen {}
+
+        var box = document.querySelector('.box');
+        document.querySelector('.box').onclick=function () {
+            // 全屏的兼容写法
+            if (box.requestFullscreen){
+                box.requestFullscreen();
+            } else if (box.webkitRequestFullScreen){
+                box.webkitRequestFullscreen();
+            } else if (box.mozRequsetFullScreen){
+                box.mozRequsetFullScreen();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-背景裁剪</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 30px solid rgba(0,0,255,0.3);
+            padding: 30px;
+
+            background: url("images/baby0.jpg") no-repeat;
+            /*设置背景原点*/
+            background-origin: border-box;
+
+            /*背景裁剪*/
+            /*background-clip设置背景区域clip(裁切)*/
+            /*border-box裁切边框以内为背景区域；*/
+            /*padding-box裁切内边距以内为背景区域；*/
+            /*content-box裁切内容区做为背景区域；*/
+            /*background-clip: border-box;*/
+            /*background-clip: padding-box;*/
+            background-clip: content-box;
+
+            /*被裁剪的部分不显示*/
+
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

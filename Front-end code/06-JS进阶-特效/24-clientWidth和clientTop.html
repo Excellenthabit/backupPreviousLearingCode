@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>24-clientWidth和clientTop</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 10px solid #000;
+            background: burlywood;
+            padding: 100px;
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+
+        //clientX   鼠标距离可视区域左侧距离（event调用）
+        //clientY   鼠标距离可视区域上侧距离（event调用）
+
+        //clientWidth	获取网页可视区域宽度（两种用法）
+        //clientHeight	获取网页可视区域高度（两种用法）
+	    //调用者不同，意义不同：
+        //盒子调用：	 		指盒子本身。
+        //body/html调用：	可视区域大小。
+
+        var box =document.getElementsByTagName("div")[0];
+        //下面都是盒子调用
+        console.log(box.clientWidth);  //400 不包括margin和border
+        console.log(box.clientHeight); //400 不包括margin和border
+        console.log(box.clientTop);  //10  获取的是borderTop
+        console.log(box.clientLeft); //10 获取的是borderLeft
+    </script>
+</body>
+</html>

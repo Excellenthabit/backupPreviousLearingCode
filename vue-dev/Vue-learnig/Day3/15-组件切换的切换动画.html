@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件切换的切换动画</title>
+    <style>
+        .v-enter,.v-leave-to{
+            opacity:0;
+            transform: translateX(200px);
+        }
+
+        .v-enter-active,.v-leave-active{
+            transition:all 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div id='app'>
+        <a @click.prevent="componentName='login'">登录</a>
+        <a @click.prevent="componentName='register'">注册</a>
+        <a @click.prevent="componentName='hello'">hello</a>
+        <!-- 通过mode属性，设置组件切换时的模式 -->
+        <!-- mode - string，控制离开/进入的过渡时间序列。有效的模式有 "out-in" 和 "in-out"；默认同时生效。 -->
+        <transition mode='out-in'>
+            <!-- Vue提供了component，用来展示对应名称的组件 -->
+            <!-- component是一个占位符， :is 属性可以用来指定要展示的组件的名称 -->
+            <!-- 解决了v-if和v-else只能在两个组件之间切换的短板 -->
+            <component :is="componentName"></component>
+        </transition>
+    </div>
+
+</body>
+</html>
+<script src="./lib/vue.js"></script>
+<script>
+
+    Vue.component('login',{
+        template:'<h3>登录组件</h3>'
+    })
+
+    Vue.component('register',{
+        template:'<h3>注册组件</h3>'
+    })
+
+    Vue.component('hello',{
+        template:'<h2>Hello Vue.js</h2>'
+    })
+
+    var vm = new Vue({
+         el:'#app',
+         data:{
+             componentName:'login'  //当前component中的 :is 绑定的组件的名称
+         },
+         methods:{}
+    })
+
+</script>

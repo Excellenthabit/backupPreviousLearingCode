@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-offsetLeft和offsetTop和offsetParent</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box1{
+            width: 300px;
+            height: 300px;
+            padding: 300px;
+            margin: 100px;
+            /*position: relative;*/
+            border: 100px solid #000;
+            background-color: pink;
+        }
+
+        .box3{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /*position: absolute;*/
+            /*left: 10px;*/
+            /*top: 10px;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2">
+            <div class="box3" style="left: 10px;"></div>
+        </div>
+    </div>
+
+    <script>
+        var box3 = document.getElementsByClassName("box3")[0];
+        //返回距离上级盒子（带有定位）左边的位置
+        //如果父级都没有定位则以body为准
+        //offsetLeft 从父亲的padding 开始算,父亲的border不算。
+        //在父盒子有定位的情况下，offsetLeft == style.left(去掉px)
+        //调用这两个属性要特别注意的是父盒子和自身盒子有没有使用定位，
+        // 而且还要注意css代码初始化有没有*{padding：0；margin：0；} 如果没有的话要注意是否要加上默认margin的8px
+
+        console.log(box3.offsetLeft);
+        console.log(typeof box3.offsetLeft);  //number
+        console.log(box3.offsetTop);
+        console.log(typeof box3.offsetTop);  //number
+        console.log(box3.style.left);
+
+        //offsetLeft和style.left的区别
+        //1.最大的区别在于offsetLeft可以返回没有定位盒子的距离左侧的位置，而style.left不可以，
+        //  因为它只能读取行内验样式的style
+        //2.offersetLeft返回的是数字，而style.left返回的是字符串，出除了数字外还带有单位px
+        //3.offsetLeft 只读，而style.left可读可写（只读是获取值，可写是赋值）
+        //4.如果没有给HTML元素指定过left样式，style.left返回的是空字符串。
+        //5. style.left 在=的左边和右边还不一样（在左边的时候是属性，在右边的时候是值）
+
+        //offsetTop和style.top的区别与上述的类似，不再过多赘述
+
+
+
+
+        console.log(box3.offsetParent);
+
+        //1、返回改对象的父级（带有定位）如果当前元素的父级元素没有进行
+        // CSS定位（position为absolute或relative，fixed），offsetParent为body。
+        //2、如果当前元素的父级元素中有CSS定位（position为absolute或relative，fixed），
+        // offsetParent取最近的那个父级元素。
+
+
+
+    </script>
+
+</body>
+</html>

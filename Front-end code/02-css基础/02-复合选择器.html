@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>02复合选择器练习</title>
+	<style type="text/css">
+		/*交集选择器,写法：标签+类（ID）选择器{属性:值;}*/
+		.box{
+			width: 1000px;height: 500px;
+			font-size: 50px;
+			background-color: pink;    
+			 /*交集选择器的特点就是既要满足使用了某个标签，还要满足使用了类（Id）选择器，如果把类（ID）选择器屏蔽了，那么就不起作用了*/
+		}
+		div.box{
+			text-align: center;
+			color: yellow;
+			font-family: microsoft yahei;
+		}
+
+	    #miss{
+	    	width: 1500px;height: 500px;
+			font-size: 50px;
+			background-color: #666;
+	    }
+	    div#miss{
+	    	text-align: center;
+			color: yellow;
+			font-family: microsoft yahei;
+	    }
+        
+
+        /*后代选择器，写法：选择器+空格+选择器{属性:值;}
+        其特点是无限制隔代，只要能代表标签，标签、类选择器、ID选择器自由组合，很方便*/
+	    div span p{
+	    	font-family: microsoft yahei;
+	    	color:blue;
+	    	font-size: 100px;
+	    }
+        
+
+        /*子代选择器,写法：选择器>选择器{属性:值;}
+        选中直接下一代元素*/
+        div>h1{
+        	color: blue;
+        	font-family: microsoft yahei;
+        }
+
+        /*并集选择器*/
+        div,p,ul,li{font:italic 520 60px/30px simsun;}
+	</style>
+</head>
+<body>
+       <div class="box">为了心中的美好，不妥协直到变老</div>
+       <hr>
+
+       <div id="miss">向前跑，迎着冷眼和嘲笑，生命的广阔不历经磨难怎能看到？</div>
+       <hr>
+
+       <div class="box">
+       	    <span>
+       	    	<p>Google</p>
+       	    </span>
+       	</div>
+       	<hr>
+
+       	<div><h1>HELLO WORLD</h1></div>
+       	<hr>
+
+       	<div><p><ul><li>奔跑起来像是一道春天的闪电</li></ul></p></div>       	
+</body>
+</html>

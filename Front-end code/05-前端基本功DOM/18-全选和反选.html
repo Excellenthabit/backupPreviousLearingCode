@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18-全选和反选</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap {
+            width: 300px;
+            margin: 100px auto 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #c0c0c0;
+            width: 300px;
+        }
+
+        th,
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #09c;
+            font: bold 16px "微软雅黑";
+            color: #fff;
+        }
+
+        td {
+            font: 14px "微软雅黑";
+        }
+
+        tbody tr {
+            background-color: #f0f0f0;
+        }
+
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+    </style>
+
+    <script>
+        window.onload=function () {
+
+            //获取事件以及相关元素
+            var topInp=document.getElementById("theadInp");
+            var tbody=document.getElementById("tbody");
+            var tbodyinpArr=tbody.getElementsByTagName("input");
+            //绑定事件
+            //需求1：点击上面的的input，下面全选或者反选。
+            //思路：获取了上面的input按钮，只需要判断，checked属性是true还是false，如果是true，下面的全部变成true；false同理。
+
+            //方法1
+            // topInp.onclick=function () {
+            //     for (var i=0;i<tbodyinpArr.length;i++){
+            //         if (topInp.checked===true){
+            //             tbodyinpArr[i].checked=true;
+            //         } else{
+            //             tbodyinpArr[i].checked=false;
+            //         }
+            //     }
+            // }
+
+            //方法2  不推荐使用，太啰嗦
+            // topInp.onclick=function () {
+            //     if (topInp.checked){
+            //         for (var i=0;i<tbodyinpArr.length;i++){
+            //             tbodyinpArr[i].checked=true;
+            //         }
+            //     }else{
+            //         for (var i=0;i<tbodyinpArr.length;i++){
+            //             tbodyinpArr[i].checked=false;
+            //         }
+            //     }
+            // }
+            
+            //方法3(优化版)
+            topInp.onclick=function () {
+                for (var i=0;i<tbodyinpArr.length;i++) {
+                    tbodyinpArr[i].checked=this.checked;
+                }
+
+            }
+
+            //需求2：点击下面的input，当全部选上时，上面的input也被选上，否则不选上。
+            //思路：只需判断下面所有input的checked属性全是true即选上上面的input，否则不选上
+            //双重for循环
+            for (var i=0;i<tbodyinpArr.length;i++){
+                tbodyinpArr[i].onclick=function () {
+                    //开闭原则
+                    var flag=true;
+                    //检查每一个input的checked的属性值
+                    for (var j=0;j<tbodyinpArr.length;j++) {
+                       if (tbodyinpArr[j].checked===false){
+                           flag=false;
+                       }
+                       topInp.checked=flag;
+                    }
+                }
+
+            }
+
+
+        }
+    </script>
+
+</head>
+<body>
+<div class="wrap">
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <input type="checkbox" id="theadInp" />
+            </th>
+            <th>菜名</th>
+            <th>厨师</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        <tr>
+            <td>
+                <input type="checkbox" />
+            </td>
+            <td>大盘鸡</td>
+            <td>中华小当家</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" />
+            </td>
+            <td>西红柿鸡蛋</td>
+            <td>中华小当家</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" />
+            </td>
+            <td>酸辣白菜</td>
+            <td>中华小当家</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" />
+            </td>
+            <td>剁椒鱼头</td>
+            <td>中华小当家</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

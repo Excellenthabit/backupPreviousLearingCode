@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>32-事件委托</title>
+    <style>
+        li{
+            height: 30px;
+            line-height: 30px;
+            margin: 3px auto;
+            background-color: orange;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button>创建4个li标签</button>
+    <ul>
+        <li>我是原生li标签 1</li>
+        <li>我是原生li标签 2</li>
+        <li>我是原生li标签 3</li>
+        <li>我是原生li标签 4</li>
+    </ul>
+
+    <script>
+        var liArr = document.getElementsByTagName("li");
+        var ul = document.getElementsByTagName("ul")[0];
+        var btn = document.getElementsByTagName("button")[0];
+        btn.onclick = function () {
+            //for ()里面不能写 var i=1;i<=liArr.length;i++
+            // 因为每点击一次创建按钮，ul中的li的长度都会增加，停不下来了
+            for (var i=1;i<=4;i++){
+                var newLi = document.createElement("li");
+                newLi.innerHTML = "我是后来被创建出来的li标签";
+                ul.appendChild(newLi);
+            }
+        }
+
+        //普通的事件绑定，没有办法为新创建的元素绑定事件，所以我们要用冒泡的特性，事件委托！
+        //事件委托（这里是让新创建的元素被点击时弹窗）
+        ul.onclick = function (event) {
+            //获取事件触发的时候传递过来的值
+            event = event || window.event;
+            var aaa = event.target?event.target:event.srcElement;
+            //判断标签名，如果是li标签弹窗
+            if (aaa.tagName === "LI"){
+                alert("自由 民主 诚信 友善");
+            }
+        }
+
+    </script>
+</body>
+</html>

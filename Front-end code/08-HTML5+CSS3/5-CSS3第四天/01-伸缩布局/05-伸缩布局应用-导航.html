@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-伸缩布局应用-导航</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul{
+            width: 600px;
+            margin: 100px auto;
+            display: flex;
+            border: 1px solid #000;
+            background-color: lightblue;
+        }
+
+        li{
+            flex: 1;
+            text-align: center;
+            line-height: 60px;
+            background-color: #2B81AF;
+            margin: 0 5px;
+        }
+
+        .layout{
+            width: 600px;
+            height: 800px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            display:flex;
+            flex-direction: column;
+        }
+
+        .header{
+            background-color: dodgerblue;
+            flex: 1;
+        }
+
+        .section{
+            background-color:orange;
+            flex:5;
+            display:flex;
+        }
+
+        .left{
+            flex:1;
+            background-color: lightskyblue;
+        }
+
+        .right{
+            flex: 3;
+            background-color: #ff4400;
+        }
+
+        .footer{
+            background-color: #222;
+            flex: 1;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <ul>
+        <li>消息</li>
+        <li>通讯录</li>
+        <li>发现</li>
+        <li>我的</li>
+        <li>设置</li>
+    </ul>
+
+    <div class="layout">
+        <div class="header"></div>
+        <div class="section">
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+        <div class="footer"></div>
+    </div>
+
+</body>
+</html>

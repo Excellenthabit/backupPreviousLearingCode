@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>42-选择水果（终极版）</title>
+    <style>
+        select {
+            width: 180px;
+            height: 240px;
+            font-size: 16px;
+            background-color: burlywood;
+        }
+    </style>
+</head>
+<body>
+
+    <select name="left-side" id="slt1" size="10" multiple>
+        <option value="0">1苹果</option>
+        <option value="1">2香蕉</option>
+        <option value="2">3草莓</option>
+        <option value="3">4西瓜</option>
+        <option value="4">5雪梨</option>
+        <option value="5">6大青枣</option>
+        <option value="6">7百香果</option>
+    </select>
+
+    <input type="button" value=">>>">
+    <input type="button" value="<<<">
+    <input type="button" value=">">
+    <input type="button" value="<">
+
+    <select name="right-side" id="slt2" size="10" multiple></select>
+
+    <script>
+        //需求：点击>>>左边的所有选项全部进入右边，
+        //点击<<<右边的所有选项全部进入左边。
+        //思路：获取所有的子元素，然后直接添加到另一侧。
+        var inpArr = document.getElementsByTagName("input");
+        var slt1 = document.getElementById("slt1");
+        var slt2 = document.getElementById("slt2");
+
+        //点击第一个(第二个)按钮，左边（右边）所有元素进入到右边（左边）
+        //要用匿名函数调用，直接调用的话会出问题，同时还要注意的是调用是元素前后问题
+        inpArr[0].onclick = function () {
+            fn1(slt1,slt2);
+        }
+
+        inpArr[1].onclick = function () {
+            fn1(slt2,slt1);
+        }
+        //点击第三个（第四个）按钮，左边（右边）所有被选元素进入到右边（左边）
+        inpArr[2].onclick = function () {
+            fn2(slt1,slt2);
+        }
+        inpArr[3].onclick = function () {
+            fn2(slt2,slt1);
+        }
+
+        //函数封装
+        //把slt1、slt2设置成两个形参，通过调用的时候的先后传递不一样达到不一样的效果
+        function fn1(elm1,elm2) {
+            var optArr = elm1.children;
+            for (var i=0;i<optArr.length;){
+                elm2.appendChild(optArr[i]);
+            }
+        }
+        function fn2(elm1,elm2) {
+            var optArr = elm1.children;
+            for (var i=optArr.length-1;i>=0;i--){
+                if (optArr[i].selected === true) {
+                    optArr[i].selected = false; //进入到另一边后取消被选中状态
+                    elm2.appendChild(optArr[i]);
+                }
+            }
+            //解决排序问题的关键在于把原来的数组获取之后重新排序好在放入到另一边
+
+            // Array.from() 方法从一个类似数组或可迭代对象中创建一个新的数组实例,返回值是一个新数组。
+            // 语法：Array.from(arrayLike[, mapFn[, thisArg]])
+            //  arrayLike 想要转换成数组的伪数组对象或可迭代对象。
+            //  mapFn (可选参数)如果指定了该参数，新数组中的每个元素会执行该回调函数。
+            //  thisArg (可选参数)执行回调函数 mapFn 时 this 对象。
+
+            //获取elm2中的子元素变成真数组，然后排序
+            //将上面获取到这一边到另一边的元素根据value值重新升序排列
+            var newArr = Array.from(elm2.children).sort(function (a,b) {
+                return a.value-b.value;   //根据value值升序排列
+            });
+
+            //把初次获取到的这一边到另一边的元素全部删除，然后再把上面根据value值重新排序好的放回去
+            //移除所有元素，在这里需要注意的是for循环里面的条件
+            for (var i=0;i<elm2.children.length;i++){
+                elm2.removeChild(elm2.children[i]);
+            }
+
+            //把排序好的放回去，在这里需要注意的是for循环里面的条件
+            for (var i=0;i<newArr.length;i++){
+                elm2.appendChild(newArr[i]);
+            }
+        }
+
+    </script>
+</body>
+</html>

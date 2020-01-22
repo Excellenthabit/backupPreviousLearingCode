@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-拖拽-目标元素事件</title>
+    <style>
+        .one{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            background-color: lightskyblue;
+        }
+
+        .two{
+            position: relative;
+            width: 400px;
+            height: 400px;
+            left:500px;
+            top:100px;
+            border: 1px solid #000;
+            background-color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="one" draggable="true">one</div>
+    <div class="two">two</div>
+
+    <script>
+        // 拖拽元素
+        // ondrag 		应用于拖拽元素，整个拖拽过程都会调用
+        // ondragstart	应用于拖拽元素，当拖拽开始时调用
+        // ondragleave	应用于拖拽元素，当鼠标离开拖拽元素时调用
+        // ondragend	应用于拖拽元素，当拖拽结束时调用
+        // 目标元素
+        // ondragenter	应用于目标元素，当拖拽元素进入时调用
+        // ondragover	应用于目标元素，当停留在目标元素上时调用
+        // ondrop		应用于目标元素，当在目标元素上松开鼠标时调用
+        // ondragleave	应用于目标元素，当鼠标离开目标元素时调用
+
+        var two = document.querySelector('.two');
+
+        // ondragenter 当被拖拽元素进入时触发
+        two.ondragenter =  function () {
+            console.log('有元素被拖拽进来了');
+        }
+
+        // ondragleave 当被拖拽元素离开时触发
+        two.ondragleave =  function () {
+            console.log('被拖拽元素进离开了此范围');
+        }
+
+        // ondragover 当拖拽元素在目标元素上时连续触发
+        two.ondragover =  function (e) {
+            // 组织拖拽事件的默认行为
+            e.preventDefault();
+            console.log('ondragover');
+        }
+
+        //当在目标元素上松开鼠标时触发
+        two.ondrop =  function () {
+            console.log('鼠标松开了');
+        }
+
+
+    </script>
+</body>
+</html>

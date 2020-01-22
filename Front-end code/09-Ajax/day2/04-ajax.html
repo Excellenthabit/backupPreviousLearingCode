@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04-ajax</title>
+	<style>
+		p{
+			width: 500px;
+			height: 100px;
+			text-align: center;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h2 style="text-align: center">Ajax概念</h2>
+	<p>
+		Asynchronous Javascript And XML（异步JavaScript和XML）,
+		他并不是凭空出现的新技术,而是对于现有技术的结合:
+		核心是js对象XMLHttpRequest</p>
+
+	<p>
+		ajax使用的依旧是HTTP请求<br>
+		1.请求的网址,方法get/post <br>
+	   	2.提交请求内容数据,请求主体等<br>
+	   	3.接收响应回来的内容<br>
+	</p>
+
+	<p>
+		<h3>AJAX五步使用法:</h3>
+		1.建立XMLHTTPRequest对象
+		<br>
+		2.注册回调函数 <br>
+		  &nbsp;&nbsp;当服务器回应我们了,我们想要执行什么逻辑
+		<br>
+		3.使用open方法设置和服务器端交互的基本信息 <br>
+		  &nbsp;&nbsp;设置提交的网址,数据,post提交的一些额外内容
+		<br>
+		4.设置发送的数据，开始和服务器端交互 <br>
+		  &nbsp;&nbsp;发送数据
+		<br>
+		5.更新界面 <br>
+		  &nbsp;&nbsp;在注册的回调函数中,获取返回的数据,更新界面
+	</p>
+	
+</body>
+</html>

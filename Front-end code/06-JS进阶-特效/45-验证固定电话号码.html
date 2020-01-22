@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>45-验证固定电话号码</title>
+</head>
+<body>
+    <div class="box">
+        <input type="text" name="" id="">
+        <span>请输入固定电话号码</span>
+    </div>
+
+    <script>
+        //需求：验证座机号！
+        //直辖市：三位-八位（010-82935150）
+        //普通市：四位-七位（0314-3160186）
+
+        //步骤
+        //1老三步
+        //2判断input里面的值，是否符合正则标准
+        //3符合就给一个样式，否则就给另外一个样式
+        var inp = document.getElementsByTagName("input")[0];
+        var span = inp.nextElementSibling||inp.nextSibling;
+        //onblur 事件会在对象失去焦点时发生。
+        inp.onblur = function () {
+            // var reg1 = /^0\d{2}-8\d{7}$/; //直辖市正则标准
+            // var reg2 = /^0\d{3}-3\d{6}$/; //普通市正则标准
+            //两个都要执行
+            var reg = /(^0\d{2}-8\d{7}$)|(^0\d{3}-3\d{6}$)/;
+            if (reg.test(inp.value)){
+                //符合正则标准给一个样式，否则给另外一个样式
+                span.style.color = "green";
+                span.innerHTML = "√";
+            } else {
+                span.style.color = "red";
+                span.innerHTML = "×，请重新输入";
+            }
+        }
+
+    </script>
+</body>
+</html>

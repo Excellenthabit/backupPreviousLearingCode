@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05自增自减</title>
+	<script>
+		// 在没有参与运算的情况下
+		// var n1=123;
+		// //n1++相当于n1=n1+1=123+1=124，n1++和++n1都是在变量的基础上加1
+		// // n1++;
+  //       ++n1;//++n1相当于n1=n1+1=123+1=124
+		// alert(n1);
+
+
+		// 在参与运算的情况下(要注意两者的区别)
+		var i=123;
+		// var j=i++;         //先将i的值赋给j，然后i自增1，即j=i=123, i=i+1=124
+
+		var j=++i;            //先将i自增1再赋给j，即i=i+1=123+1=124, j=i=124
+		alert("j的值为："+j);
+		alert("i的值为："+i);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

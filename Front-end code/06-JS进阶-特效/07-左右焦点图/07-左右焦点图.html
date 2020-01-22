@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07-左右焦点图</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #box{
+            width: 520px;
+            height: 280px;
+            padding:5px;
+            position: relative;
+            border:6px solid darkorange;
+            margin:100px auto;
+            overflow:hidden;
+        }
+        .ad{
+            width: 520px;
+            height: 280px;
+            overflow:hidden;
+            position:relative;
+        }
+        #box img{
+            width: 520px;
+            height: 280px;
+        }
+
+        .ad ul li{
+            float:left;
+        }
+
+        .ad ul{
+            list-style:none;
+            position:absolute;
+            top:0;
+            width:2940px;
+        }
+
+        #arr {
+            display: none;
+        }
+
+        #arr span{
+            width:40px;
+            height:40px;
+            position:absolute;
+            left:5px; top:50%;
+            margin-top:-20px;
+            background:#000;
+            cursor:pointer;
+            line-height:40px;
+            text-align:center;
+            font-weight:bold;
+            font-family:'黑体';
+            font-size:30px;
+            color:#fff;
+            opacity:0.3;
+            border:1px solid #fff;
+        }
+
+        #arr #right{
+            right:5px;
+            left:auto;
+        }
+    </style>
+</head>
+<body>
+    <<div id="box" class="all">
+        <div class="ad">
+            <ul>
+                <li><img src="images/1.jpg" /></li>
+                <li><img src="images/2.jpg" /></li>
+                <li><img src="images/3.jpg" /></li>
+                <li><img src="images/4.jpg" /></li>
+                <li><img src="images/5.jpg" /></li>
+            </ul>
+        </div>
+        <div id="arr">
+            <span id="left"><</span>
+            <span id="right">></span>
+        </div>
+    </div>
+
+    <script>
+        //需求：鼠标放到盒子上，显示左右切换的图片。点击左则按钮图片(ul)向右移动，相反的按钮向左移动。
+        //思路：获取两个按钮，点击左侧按钮移动ul向右走(每次只走一张)(计数器从0开始)。
+        //如何移动盒子。利用计数器模拟index值，点右侧自增，点左侧自减。
+        //步骤：
+        //1.鼠标放上去显示移开以藏
+        //2.点击右侧盒子图片向做移动并用计数器模拟index值。
+        //3，点击左侧盒子，同理。
+
+        // 1.鼠标放上去显示移开以藏
+        //获取事件源以及相关元素
+        var box = document.getElementById("box");
+        var imgWidth = box.children[0].offsetWidth;
+        var ul = box.children[0].children[0];
+        var boxLeftRight = box.children[1];
+        var btn = boxLeftRight.children;
+        //绑定事件
+        box.onmouseover = function () {
+            boxLeftRight.style.display = "block";
+        }
+        box.onmouseout = function () {
+            boxLeftRight.style.display = "none";
+        }
+
+        //2.点击右侧盒子图片向做移动并用计数器模拟index值。
+        //定义计数器
+        var index = 0;
+        btn[1].onclick = function () {
+           index++;
+           //要对index的值进行约束，index的值要在0-4之间
+            if (index>ul.children.length-1){
+                index = ul.children.length-1;
+                alert("Last images！")
+            }
+            //点击盒子移动图片（ul，目标位置）
+            animate(ul,-index*imgWidth);
+        }
+
+
+        //3，点击左侧盒子，同理。
+        btn[0].onclick = function () {
+            index--;
+            //这里的index值不能小于0
+            if (index<0){
+                index = 0;
+                alert("First images！")
+            }
+            //点击盒子移动图片（ul，目标位置）
+            animate(ul,-index*imgWidth);
+        }
+
+
+
+        //动画函数封装（一定要记住还要懂原理）
+        function animate(elm,target) {
+            clearInterval(elm.timer);
+            var step = target>elm.offsetLeft?10:-10;
+            elm.timer = setInterval(function () {
+                var differ = target - elm.offsetLeft;
+                elm.style.left = elm.offsetLeft + step + "px";
+                if (Math.abs(differ)<Math.abs(step)){
+                    elm.style.left = target + "px";
+                    clearInterval(elm.timer);
+                }
+            },10)
+        }
+    </script>
+
+</body>
+</html>

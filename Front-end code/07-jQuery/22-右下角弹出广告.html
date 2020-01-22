@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>22-右下角弹出广告</title>
+    <style>
+        .ad {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            width: 230px;
+            height: 120px;
+            background-image: url(images/右下角弹出广告案例/ad.jpg);
+            display: none;
+        }
+
+        .ad span {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40px;
+            height: 18px;
+            background-image: url(images/右下角弹出广告案例/h.jpg);
+            cursor: pointer;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        //需求：让广告ad部分，先滑入，在滑出，在淡入。然后绑定事件，点击span弹出
+        $(window).ready(function () {
+            $(".ad").slideDown(1000).slideUp(1000).fadeIn(2000).children("span").click(function () {
+                $(this).parent(".ad").fadeOut(2000);
+            });
+        })
+
+    </script>
+</head>
+<body>
+
+    <div class="ani">我手机还剩98%的电量了，先不聊了...</div>
+    <div class="ad">
+        <span></span>
+    </div>
+
+</body>
+</html>

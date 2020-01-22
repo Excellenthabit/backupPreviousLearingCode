@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-offsetWidth和offsetHeight</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            border: 10px solid #000;
+            margin: 100px;
+            background-color: burlywood;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script>
+        var  div = document.getElementsByTagName("div")[0];
+        //offsetWidth和offsetHeight可以检测盒子的宽高，包括宽高本身，padding，border，不包括margin
+        //offsetWidth=width+padding*2+border*2
+        //offsetHeight=height+padding*2+border*2
+
+        console.log(div.offsetHeight); //140
+        console.log(div.offsetWidth);  //140
+        console.log(typeof div.offsetWidth);  // number
+        console.log(typeof div.offsetHeight);  // number
+
+    </script>
+</body>
+</html>

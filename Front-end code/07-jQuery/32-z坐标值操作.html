@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>32-z坐标值操作</title>
+    <style>
+        body {
+            height: 5000px;
+        }
+        .box1 {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            margin: 10px;
+            overflow: auto; /*如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。*/
+            background-color: pink;
+        }
+        .box2 {
+            width: 200px;
+            height: 400px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background-color: yellow;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+
+        $(function () {
+            //offset()   作用：获取或设置元素相对于文档的位置
+            //无参数表示获取，返回值为：{left:num, top:num}，值是相对于document的位置
+
+            //距离页面最顶端或者最左侧的距离和有没有定位没有关系
+            console.log($(".box1").offset()); //{top: 10, left: 18}
+            console.log($(".box2").offset()); //{top: 60, left: 68}
+
+            //有参数表示设置，参数推荐使用数值类型  $(selector).offset({left:100, top: 150});
+            //注意点：设置offset后，如果元素没有定位(默认值：static)，则被修改为relative!!!
+            // $(".box2").offset({left:1000,top:1000});
+            // console.log($(".box2").offset());  //{top: 1000, left: 1000}
+
+            //position()  作用：获取相对于其最近的具有定位的父元素的位置。
+            //注意：只能获取值，不能设置值！！！
+            // $(selector).position();    获取，返回值为对象：{left:num, top:num}
+            //距离父系盒子中带有定位的盒子的距离(获取的就是定位值，和margin/padding无关)
+            //console.log($(".box2").position());  //{top: 50, left: 50}
+
+            // scrollTop() 作用：获取或者设置元素垂直方向滚动的位置
+            // 无参数表示获取偏移
+            // 有参数表示设置偏移，参数为数值类型
+            // $(selector).scrollTop(100);
+
+            // scrollTop：垂直滚动条位置 是可滚动区域 在 可视区域上方的 被隐藏区域的高度。
+            // 如果滚动条在最上方没有滚动 或者 当前元素没有出现滚动条，那么这个距离为0
+            // scrollLeft同理
+
+
+            $("button").click(function () {
+                alert($(document).scrollTop());
+            });
+
+
+
+
+        })
+
+    </script>
+
+</head>
+<body>
+        <div class="box1">
+            <div class="box2"></div>
+        </div>
+        <button>test</button>
+</body>
+</html>

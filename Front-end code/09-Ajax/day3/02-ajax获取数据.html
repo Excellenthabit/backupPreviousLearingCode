@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02-ajax获取数据</title>
+</head>
+<body>
+	<h1>02-ajax获取数据</h1>
+	<input type="button"  value="ajax获取数据" id="getInfo">
+
+	<script type="text/javascript">
+		//event事件 浏览器在调用dom元素的事件时会传入一个参数，这里面还有一些浏览器信息，比如宽高，鼠标位置等。
+		document.querySelector('#getInfo').onclick=function(event) {
+			var ajax=new XMLHttpRequest();
+			ajax.open('get','02-getaAjax.php');
+			ajax.send();
+			ajax.onreadystatechange = function() {
+				if (ajax.readyState==4 && ajax.status==200) {
+					//使用返回的数据修改页面的内容
+					//responseText返回的是一个字符串
+					//在ajax中如果通过ajax.responseText获取到的统统都是字符串
+					console.log(ajax.responseText);
+					document.body.innerHTML = ajax.responseText;
+				}
+			}
+		}
+	</script>	
+</body>
+</html>

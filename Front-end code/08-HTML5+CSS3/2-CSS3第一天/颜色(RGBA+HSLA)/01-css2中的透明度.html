@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css2中的透明度</title>
+    <style>
+        .out{
+            margin: 100px auto;
+            width: 400px;
+            height: 400px;
+            background-color: pink;
+            border: 1px solid #000;
+            opacity: 0.3;
+        }
+        .in{
+            margin: 100px auto;
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            opacity: 1;
+        }
+        /*opacity 可以给盒子设置半透明，但是会影响里面子盒子的透明度，*/
+        /*并且子盒子无法改变透明度，直接继承了父盒子的透明度*/
+
+    </style>
+</head>
+<body>
+    <div class="out">
+        <div class="in"></div>
+    </div>
+</body>
+</html>

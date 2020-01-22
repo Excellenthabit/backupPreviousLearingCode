@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>33-jq事件绑定与解绑</title>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            //	简单事件绑定：
+            // click(handler) 				单击事件
+            // blur(handler) 				失去焦点事件
+            // mouseenter(handler) 		鼠标进入事件
+            // mouseleave(handler)			鼠标离开事件
+            // dbclick(handler) 			双击事件
+            // change(handler) 改变事件，如：文本框值改变，下来列表值改变等
+            // focus(handler) 				获得焦点事件
+            // keydown(handler) 			键盘按下事件
+
+
+
+
+            //事件解绑
+            // unbind() 方式
+            // 作用：解绑 bind方式绑定的事件
+            // $(selector).unbind(); //解绑所有的事件
+            // $(selector).unbind(“click”); //解绑指定的事件
+
+            // undelegate() 方式
+            // 作用：解绑delegate方式绑定的事件
+            // $( selector ).undelegate(); //解绑所有的delegate事件
+            // $( selector).undelegate( “click” ); //解绑所有的click事件
+
+
+            // off解绑on方式绑定的事件（重点）
+            // $(selector).off();          解绑匹配元素的所有事件
+            // $(selector).off(“click”);   解绑匹配元素的所有click事件
+            // $(selector).off( “click”, “**” );  解绑所有代理的click事件，元素本身的事件不会被解绑
+
+
+            // 第一种绑定事件方式  这种绑定事件的方法是不会层叠的。
+            // $(document).click(function () {
+            //     alert(1);
+            // });
+            // $(document).click(function () {
+            //     alert(2);
+            // });
+
+            // //解绑事件
+            // $(document).unbind("click");
+
+
+
+            //第二种绑定事件方式
+            // bind方式（不推荐，1.7以后的jQuery版本被on取代） 作用：给匹配到的元素直接绑定事件
+            // 优点：可以同时绑定多个事件    缺点：要绑定事件的元素必须存在文档中
+            //$("p").bind("click mouseenter", function(e){
+                //事件响应方法
+            //});  第一个参数：事件类型  第二个参数：事件处理程序
+            //同时绑定了两个事件
+
+            // $(document).bind("click mouseenter",function () {
+            //     alert("bind绑定事件方法");
+            //
+            // });
+            // //解绑事件
+            // // unbind() 方式
+            // // 作用：解绑 bind方式绑定的事件
+            // // $(selector).unbind(); //解绑所有的事件
+            // // $(selector).unbind(“click”); //解绑指定的事件
+            // $(document).unbind("");
+
+
+            //第三种绑定方式
+            // delegate方式（特点：性能高，支持动态创建的元素）
+            // 作用：给匹配到的元素绑定事件，对支持动态创建的元素有效
+            //举个例子
+            // $(".parentBox").delegate("p", "click", function(){
+            //     //为 .parentBox下面的所有的p标签绑定事件
+            // });
+            // 第一个参数：selector，要绑定事件的元素
+            // 第二个参数：事件类型
+            // 第三个参数：事件处理函数
+            // $(document).delegate("button","click mouseenter",function () {
+            //     alert("delegate方式绑定事件");
+            // });
+            //
+            // //事件解绑
+            // // undelegate() 方式
+            // // 作用：解绑delegate方式绑定的事件
+            // // $( selector ).undelegate(); //解绑所有的delegate事件
+            // // $( selector).undelegate( “click” ); //解绑所有的click事件
+            // $(document).undelegate();
+
+
+
+            //第四种绑定事件方式
+            // on方式（最现代的方式，兼容zepto(移动端类似jQuery的一个库)，强烈建议使用的方式）（重点）
+            // $(selector).on(events,[selector],[data],handler);
+            // 第一个参数：events，绑定事件的名称可以是由空格分隔的多个事件（标准事件或者自定义事件）
+            // 第二个参数：selector, 执行事件的后代元素
+            // 第三个参数：data，传递给处理函数的数据，事件触发的时候通过event.data来使用
+            // 第四个参数：handler，事件处理函数
+            // 举个例子
+            // 表示给$(selector)绑定事件，当必须是它的内部元素span才能执行这个事件
+            // $(selector).on( "click",“span”, function() {});
+            // // 绑定多个事件
+            // // 表示给$(selector)匹配的元素绑定单击和鼠标进入事件
+            // $(selector).on(“click mouseenter”, function(){});
+            
+            // $(document).on("click mouseenter","button",function () {
+            //     alert("on方式绑定事件");
+            // })
+            $(document).on("click mouseenter","button",{"name":"nicholas fung"},function (event) {
+                alert(event.data.name );
+            });
+
+            // off解绑on方式绑定的事件（重点）
+            // $(selector).off();          解绑匹配元素的所有事件
+            // $(selector).off(“click”);   解绑匹配元素的所有click事件
+            // $(selector).off( “click”, “**” );  解绑所有代理的click事件，元素本身的事件不会被解绑
+
+            $(document).off("mouseenter");
+            // $(document).off("click");
+            // $(document).off();
+
+
+
+
+
+
+
+
+        })
+
+    </script>
+
+</head>
+<body>
+    <div>
+        <input type="text">
+        <button>test</button>
+    </div>
+</body>
+</html>

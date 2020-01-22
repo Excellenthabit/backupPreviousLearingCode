@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>33-获取内嵌式和外链式样式的属性值</title>
+    <style>
+        div{
+            background-color: orange;
+            border: 1px solid #000;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+     <div style="width: 100px; height: 100px"></div>
+     <script>
+         var div = document.getElementsByTagName("div")[0];
+         div.style.width = "1000px"; //赋值
+
+         //获取值(elm.style.xxx  只能获取行内样式的，无法获取外链式和内嵌式的样式属性值)
+         // console.log(div.offsetWidth);
+         // console.log(div.style.width);
+         // console.log(div.style.border);
+
+         //获取行内式和内嵌式
+         // console.log(typeof  window.getComputedStyle(div, null)); //object
+         // console.log(window.getComputedStyle(div,null).border);  //  0.994398px solid rgb(0, 0, 0)
+         // console.log(window.getComputedStyle(div, null)["background-color"]); //rgb(255, 165, 0)
+
+         console.log(getStyle(div, "padding"));  // 10px
+         console.log(getStyle(div, "background-color"));  //rgb(255, 165, 0)
+
+         //兼容方法获取元素样式
+         //attr是指属性(attribute)的缩写
+         function getStyle(elm,attr) {
+             if (window.getComputedStyle){
+                 return window.getComputedStyle(elm,null)[attr];
+             }
+             return elm.currentStyle[attr];
+         }
+
+     </script>
+</body>
+</html>

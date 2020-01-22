@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <!-- v-for循环普通数组 -->
+        <ul>
+            <li v-for='item in list1'>{{ item }}</li>
+        </ul>
+
+        <hr>
+        <!-- v-for循环对象数组 -->
+        <p v-for='(item,i) in objAry'>id：{{ item.id }}--名字：{{ item.name }}--索引值：{{i}}</p>
+
+        <hr>
+        <!-- v-for循环对象 -->
+        <!-- 注意：在遍历对象身上的键值对的时候，除了有val key，在第三个位置还有一个索引 -->
+        <p v-for='(val,key,i) in hero'>
+            值是：{{val}}--键是：{{key}}--索引值：{{i}}
+        </p>
+
+        <hr>
+        <!-- v-for迭代数字 -->
+        <!-- in后面放过普通数组、对象数组、对象，还可以放数字 -->
+        <!-- 注意：如果使用v-for迭代数字的话，前面的count值从1开始 -->
+        <p v-for='count in 10'>这是第{{count}}次循环</p>
+
+
+    </div>
+</body>
+</html>
+<script src='./lib/vue.min.js'></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            list1:[1,2,3,4,5,6],
+            objAry:[
+                {id:1,name:'zs1'},
+                {id:2,name:'zs2'},
+                {id:3,name:'zs3'},
+                {id:4,name:'zs4'},
+                {id:5,name:'zs5'}
+            ],
+            hero:{
+                id:'Iron-Man',
+                name:'托尼.斯塔克',
+                gender:'male',
+                job:'复仇者联盟'
+            }
+        },
+        methods: {
+            
+        }
+    })
+</script>

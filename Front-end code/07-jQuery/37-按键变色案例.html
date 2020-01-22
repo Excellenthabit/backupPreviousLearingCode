@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>37-按键变色案例</title>
+    <style>
+        .wrap {
+            width: 400px;
+            height: 400px;
+            margin: 100px auto 0;
+        }
+
+        .wrap h1 {
+            text-align: center;
+        }
+
+        .wrap div {
+            width: 400px;
+            height: 300px;
+            background: pink;
+            font-size: 30px;
+            text-align: center;
+            line-height: 300px;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            //需求：在页面上，按键.是哪个颜色的首写字母div就改变为该颜色，然后span内容赋值。
+            //步骤：
+            //1.给document绑定keyup事件
+            //2.获取值，根据此值，给div和span上色和更改内容
+            var div = $("#changeBgc");
+            var span = $("#keyCodeSpan");
+            //绑定事件
+            $(document).keyup(function (e) {
+                //alert(e.keyCode); //按哪个键就弹出哪个键的keyCode
+                //获取值，根据此值，给div和span上色和更改内容
+                switch (e.keyCode) {
+                    case 80:    // 按键P
+                        div.css("background","pink");
+                        span.html(e.keyCode);
+                        break;
+                    case 66:    // 按键B
+                        div.css("background","burlywood");
+                        span.html(e.keyCode);
+                        break;
+                    case 87:    // 按键W
+                        div.css("background","white");
+                        span.html(e.keyCode);
+                        break;
+                    case 82:    // 按键R
+                        div.css("background","red");
+                        span.html(e.keyCode);
+                        break;
+                    case 89:     // 按键Y
+                        div.css("background","yellow");
+                        span.html(e.keyCode);
+                        break;
+                    case 71:     // 按键G
+                        div.css("background","green");
+                        span.html(e.keyCode);
+                        break;
+
+                    default :
+                        alert("sorry，我没有设置该颜色,以上的颜色爱看不看！");
+                }
+            });
+
+
+
+        })
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <h1>按键改变颜色</h1>
+        <div id="changeBgc">
+            keyCode为：
+            <span id="keyCodeSpan">80</span>
+        </div>
+    </div>
+</body>
+</html>

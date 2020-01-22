@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>23-tab栏切换（js复杂版）</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box {
+            width: 500px;
+            height: 400px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            overflow: hidden;     /*  overfloat:hidden;内容会被修剪，并且其余内容是不可见的。*/
+        }
+        ul{
+            margin-left: -1px;
+            width: 600px;
+            height: 40px;
+            list-style: none;
+        }
+        ul li{
+            width: 101px;
+            height: 40px;
+            float: left;
+            text-align: center;
+            font:700 18px/40px "simsun";
+            background-color: pink;
+            cursor: pointer;
+        }
+        span{
+            display:none;
+            width: 500px;
+            height: 360px;
+            background-color: yellow;
+            text-align: center;
+            font: 700 150px/360px "simsun";
+        }
+        .show{
+            display:block;
+        }
+        .current{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul >
+        <li class="current">鞋子</li>
+        <li>卫衣</li>
+        <li>工装裤</li>
+        <li>鸭舌帽</li>
+        <li>打底衫</li>
+    </ul>
+    <span class="show">鞋子</span>
+    <span>卫衣</span>
+    <span>工装裤</span>
+    <span>鸭舌帽</span>
+    <span>打底衫</span>
+
+
+</div><div class="box">
+    <ul >
+        <li class="current">鞋子</li>
+        <li>卫衣</li>
+        <li>工装裤</li>
+        <li>鸭舌帽</li>
+        <li>打底衫</li>
+    </ul>
+    <span class="show">鞋子</span>
+    <span>卫衣</span>
+    <span>工装裤</span>
+    <span>鸭舌帽</span>
+    <span>打底衫</span>
+
+
+</div><div class="box">
+    <ul >
+        <li class="current">鞋子</li>
+        <li>卫衣</li>
+        <li>工装裤</li>
+        <li>鸭舌帽</li>
+        <li>打底衫</li>
+    </ul>
+    <span class="show">鞋子</span>
+    <span>卫衣</span>
+    <span>工装裤</span>
+    <span>鸭舌帽</span>
+    <span>打底衫</span>
+</div>
+
+
+<script>
+    //需求：鼠标放到上面的li上，li本身变色(添加类)，对应的span也显示出来(添加类);
+    //思路：1.点亮盒子。   2.利用索引值显示盒子。
+    var boxArr=document.getElementsByClassName("box");
+    for (var i=0;i<boxArr.length;i++){
+        fn(boxArr[i]);
+    }
+
+    //函数封装
+    function fn(elem) {
+        var liArr=elem.getElementsByTagName("li");
+        var  spanArr=elem.getElementsByTagName("span");
+        for (var i=0;i<liArr.length;i++){
+            liArr[i].setAttribute("index",i);
+            liArr[i].onmouseover=function () {
+                //1.点亮盒子。   2.利用索引值显示盒子。(排他思想)
+                for (var j=0;j<liArr.length;j++){
+                    liArr[j].removeAttribute("class");
+                    spanArr[j].removeAttribute("class");
+                }
+                this.getAttribute("class","current");
+                spanArr[this.getAttribute("index")].setAttribute("class","show");
+
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

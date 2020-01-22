@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+
+<!-- 导入模板插件   模板引擎-->
+<script src="template.js"></script>
+<script>
+	var str='我是来自南方的name，我很喜欢玩game，原因是reason,friend是我的朋友，我今年才age岁';
+	var obj={
+		name:'渣渣辉',
+		game:'贪玩蓝月',
+		reason:'点一下玩一年，装备不花一分钱！',
+		friend:"古天乐",
+		age:'二十二'
+	};
+	// 调用模板插件中的方法
+	// 参数一：字符串
+	// 参数二：对象
+
+	var resultStr = template(str,obj);
+	console.log(resultStr);
+</script>
+
+<script>
+	//  挖好坑的 字符串
+	var str ='我是一只{{animal}},我的毛色是{{color}}';
+
+	// 对象
+	var obj = {
+		animal:'taidi',
+		color:'棕色',
+	}
+
+	// 调用方法
+	var resultStr = template_pro(str,obj);
+	console.log(resultStr);
+</script>

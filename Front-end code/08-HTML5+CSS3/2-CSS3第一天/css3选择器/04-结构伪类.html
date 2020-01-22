@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-结构伪类</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        ul{
+            width: 520px;
+            height: auto;
+            margin: 100px auto;
+        }
+        li{
+            float: left;
+            width: 70px;
+            height: 70px;
+            border: 1px solid #cccccc;
+            text-align: center;
+            line-height: 70px;
+            margin-left: -1px;
+            margin-top: -1px;
+        }
+
+        /*符号：冒号（:）*/
+        /*结构伪类：通过结构来进行筛选*/
+
+        /*先找父元素，在父元素里面找指定的那个标签*/
+
+        /*选中第一个*/
+        /*li:first-child{*/
+            /*background-color: pink;*/
+        /*}*/
+
+        /*选中最后一个*/
+        /*li:last-child{*/
+            /*background-color: red;*/
+        /*}*/
+
+        /*注意：编号从1开始！！！*/
+        /*选中第12个li给它更换背景颜色*/
+        /*li:nth-child(12){*/
+            /*background-color: yellow;*/
+        /*}*/
+
+        /*选中编号为奇数的li*/
+        /*li:nth-child(odd){*/
+            /*background-color: burlywood;*/
+        /*}*/
+        /*选中编号为偶数的li*/
+        /*li:nth-child(even){*/
+            /*background-color: yellow;*/
+        /*}*/
+
+        /*n的取值是大于等于0的自然数，0,1,2,3...n  */
+        /*并且，n<1是无效的*/
+
+        /*选中所有的li*/
+        /*li:nth-child(n){*/
+            /*background-color: purple;*/
+        /*}*/
+        /*选中编号为偶数的li*/
+        /*li:nth-child(2n){*/
+            /*background-color: purple;*/
+        /*}*/
+        /*选中编号为奇数的li*/
+        /*li:nth-child(2n-1){*/
+            /*background-color: red;*/
+        /*}*/
+
+        /*选中前5个  利用n小于1无效来实现*/
+        /*li:nth-child(-n+5){*/
+            /*background-color: purple;*/
+        /*}*/
+
+        /*选中后5个  利用n小于1无效来实现*/
+        /*li:nth-last-child(-n+5){*/
+            /*background-color: purple;*/
+        /*}*/
+
+        /*选中倒数第二个*/
+        li:nth-last-child(2){
+            background-color: blue;
+        }
+
+        /*选中7的倍数*/
+        li:nth-child(7n){
+            background-color: pink;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+    <li>11</li>
+    <li>12</li>
+    <li>13</li>
+    <li>14</li>
+    <li>15</li>
+    <li>16</li>
+    <li>17</li>
+    <li>18</li>
+    <li>19</li>
+    <li>20</li>
+    <li>21</li>
+    <li>22</li>
+    <li>23</li>
+    <li>24</li>
+    <li>25</li>
+    <li>26</li>
+    <li>27</li>
+    <li>28</li>
+    <li>29</li>
+    <li>30</li>
+    <li>31</li>
+    <li>32</li>
+    <li>33</li>
+    <li>34</li>
+    <li>35</li>
+</ul>
+</body>
+</html>

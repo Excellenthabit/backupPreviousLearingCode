@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" manifest="01.appcache">
+<head>
+    <meta charset="UTF-8">
+    <title>01-应用程序缓存</title>
+</head>
+<body>
+        <img src="images/img1.jpg" alt="">
+        <img src="images/img2.jpg" alt="">
+        <img src="images/img3.jpg" alt="">
+        <img src="images/img4.jpg" alt="">
+</body>
+        <script>
+            //  应用缓存
+            //HTML5中我们可以轻松的构建一个离线（无网络状态）应用，
+            // 只需要创建一个cache manifest文件。
+
+            // 	优势
+            // 1、可配置需要缓存的资源
+            // 2、网络无连接应用仍可用
+            // 3、本地读取缓存资源，提升访问速度，增强用户体验
+            // 4、减少请求，缓解服务器负担
+
+            // 缓存清单
+            // 一个普通文本文件，其中列出了浏览器应缓存以供离线访问的资源，
+            // 推荐使用.appcache为后缀名，添加MIME类型
+            // AddType text/cache-manifest .appcache
+            // 例如我们创建了一个名为demo.appcache的文件，
+            // 然后在需要应用缓存在页面的根元素(html)
+            // 添加属性manifest="demo.appcache"，路径要保证正确。
+
+            // 	manifest文件格式
+            // 1、顶行写CACHE MANIFEST
+            // 2、CACHE: 换行 指定我们需要缓存的静态资源，如.css、image、js等
+            // 3、NETWORK: 换行 指定需要在线访问的资源，可使用通配符
+            // 4、FALLBACK: 当前页面无法访问时退回的页面(回退;  后退)
+            // 换行 当被缓存的文件找不到时的备用资源 可自行查阅资料
+
+            // 其他
+            // 1、CACHE: 可以省略，这种情况下将需要缓存的资源写在CACHE MANIFEST
+            // 2、可以指定多个CACHE: NETWORK: FALLBACK:，无顺序限制
+            // CACHE:需要缓存那些资源.
+            // NETWORK:不需要缓存那些资源，必须在网络下面才能访问.
+            // FALLBACK:当访问不到某个资源时，自动由另外一个资源替换.
+
+        </script>
+</html>

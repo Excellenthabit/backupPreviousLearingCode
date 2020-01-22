@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>34-事件触发</title>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+
+
+            // $(document).on("click",function () {
+            //     alert("页面被点击了");
+            // });
+
+            // 事件触发1   触发浏览器行为
+            // $(selector).click(); //触发 click事件
+            // $(document).click(); ////浏览器打开，没有点击页面就弹窗了
+            //
+            //
+            // 事件触发2  触发事件，触发浏览器行为
+            // trigger方法
+            // $(selector).trigger(“click”);
+            // $(document).trigger("click"); //浏览器打开，没有点击页面就弹窗了
+            //
+            //
+            //
+            // 事件触发3
+            // triggerHandler 触发事件响应方法，不触发浏览器行为
+            // 比如:文本框获得焦点的默认行为
+            // $(selector).triggerHandler(“focus”);
+            // $(document).triggerHandler("click"); //浏览器打开，没有点击页面就弹窗了
+
+
+
+
+
+            $("input").on("focus",function () {
+                alert("我获取了焦点！");
+            });
+
+            //事件触发2 触发浏览器行为(执行程序，执行事件)
+            // $(document).click(function () {
+            //     $("input").trigger("focus");
+            // });
+
+            //事件触发3 不触发浏览器行为(只执行程序，不触动事件)
+            // $(document).click(function () {
+            //     $("input").triggerHandler("focus");
+            // });
+
+
+
+
+
+
+
+
+
+        })
+    </script>
+
+</head>
+<body>
+<input type="text" name="" id="inp">
+</body>
+</html>

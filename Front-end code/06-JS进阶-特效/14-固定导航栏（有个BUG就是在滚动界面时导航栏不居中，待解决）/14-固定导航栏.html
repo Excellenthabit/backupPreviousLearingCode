@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14-固定导航栏</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .content{
+            width: 1423px;
+            margin: 0 auto;
+        }
+        #nav{
+            width: 1423px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .main{
+            margin: 0 auto;
+            width: 1000px;
+            margin-top:10px;
+        }
+        img{
+            vertical-align: top;
+        }
+        .fixed{
+            position: fixed;
+            left: auto;
+            top: 0;
+        }
+    </style>
+    <script src="../demo.js"></script>
+    <script>
+        //有个BUG就是在滚动界面时导航栏不居中。。。待解决
+        //需求1：当我们滚动界面的时候，被卷曲的头部超过第二个盒子距离顶部的位置，那么直接给第二个盒子加类名.fixed
+        //需求2：当我们滚动界面的时候，被卷曲的头部小于第二个盒子距离顶部的位置，那么直接给第二个盒子取消类名.fixed
+        //步骤：
+        //1.老三步。
+        //2.判断 ，被卷曲的头部的大小
+        //3.满足条件添加类，否则删除类
+        window.onload = function () {
+            //获取事件源以及相关元素
+            var div1 = document.getElementsByTagName("div")[0];
+            var div2 = document.getElementsByTagName("div")[1];
+            var div3 = document.getElementsByTagName("div")[2];
+            var height = div1.offsetHeight;
+
+            //绑定事件
+           window.onscroll = function () {
+               //事件驱动程序
+               //判断被卷曲的top的大小
+               if (scroll().top>height){
+                   //满足条件添加类，否则删除类
+                   div2.className += " fixed";
+                   //第二个盒子不占位置了，所有要给第三个盒子一个上padding占位置，不出现盒子抖动问题
+                   div3.style.paddingTop = div2.offsetHeight + "px";
+               }else{
+                   div2.className="";
+                   //清零
+                   div3.style.paddingTop = 0;
+               }
+           }
+        }
+    </script>
+</head>
+<body>
+        <div class="content">
+            <img src="images/top.png" alt="">
+        </div>
+        <div id="nav">
+            <img src="images/nav.png" alt="">
+        </div>
+        <div class="main">
+            <img src="images/main.png" alt="">
+        </div>
+</body>
+</html>

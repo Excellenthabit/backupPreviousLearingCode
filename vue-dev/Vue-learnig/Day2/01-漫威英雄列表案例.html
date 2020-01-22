@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>漫威英雄列表案例</title>
+    <link rel="stylesheet" href="./lib/bootstrap-3.3.7.css">
+</head>
+<body>
+    <div id="app">
+
+            <!-- 使用panel设置面板 使用panel-primary设置带语境色彩的bootstrap面板  panel-primary是蓝色 -->
+            <div class="panel panel-primary">
+                <!-- 使用 panel-heading可以很简单地向面板添加标题容器 -->
+                <div class="panel-heading">
+                    <!-- 使用panel-title添加预定义样式的标题 -->
+                    <h3 class="panel-title">添加英雄</h3>
+                </div>
+
+                <!-- 使用 panel-body 向表格的顶部添加额外的边框用来分隔 -->
+                <div class="panel-body form-inline">
+                    <label>
+                        ID: 
+                        <input type="text" class="form-control" v-model='id'>
+                    </label>
+
+                    <label>
+                        NAME:
+                        <!-- 自定义按键修饰符的使用，点击f2键调用add（）方法 -->
+                        <input type="text" v-model='name' class="form-control" @keyup.f2 = 'add()' @keyup.enter='add()'>
+                        <!-- 在vue中，使用事件绑定机制，为元素指定处理函数的时候，如果添加了小括号，就可以给函数传递参数 -->
+                        <input type="button" value="添加" class="btn btn-primary" @click='add()'>
+                    </label>
+
+                    <label>
+                        搜索名称关键字:
+                        <input type="text" class="form-control" v-model='keywords' v-focus v-color="'red'">
+                    </label>
+                </div>
+            </div>
+                <table class="table table-bordered table-hover table-striped">
+                        <!-- “.table”主要有三个作用：
+                        1给表格设置了margin-bottom:20px以及设置单元内距
+                        2在thead底部设置了一个2px的浅灰实线
+                        3每个单元格顶部设置了一个1px的浅灰实线 -->
+                        <!-- table-bordered：带边框的表格 -->
+                        <!-- table-hover：鼠标悬停高亮的表格 -->
+                        <!-- table-striped：斑马线表格 -->
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>ADD TIME</th>
+                            <th>OPERATION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 之前 v-for中的数据都是直接从data上的list中直接渲染过来的
+                        现在，定义一个search方法，同时把所有的关键字通过传参的形式，传递给了search方法
+                        在search方法内部，通过执行for循环，把所有符合搜索关键字的数据保存到一个新的数组中返回 -->
+                        <tr v-for="(item in search(keywords)" :key="item.id">
+                            <td>{{ item.id }}</td>
+                            <td v-text='item.name'></td>
+                            <td>{{ item.addTime | dateFormat() }}</td>
+                            <td>
+                                <!-- delete是关键字  这里使用del -->
+                                <a href=""  @click.prevent="del(item.id)">删除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+            <h3 v-fontsize="'30'" v-color="'blue'">许多年前，你有一双清澈的双眼，奔跑起来像是一道春天的闪电！</h3>
+        </div>
+</body>
+</html>
+<script src="./lib/vue.min.js"></script>
+<script>
+
+    // 自定义指令(同样也有全局的和局部的)
+    // 使用Vue.directive()定义全局的指令 v-focus
+    // 其中：参数1是指令的名称，在定义的时候，不需要加 v- 前缀，但是在调用的时候必须在指令名称前加上v-前缀来进行调用
+    // 参数2是一个对象，这个对象身上必须有一些指令相关的函数，这些函数可以在待定的阶段，执行相关的操作
+    Vue.directive('focus',{ 
+        bind:function(el){// 每当指令绑定到元素上的时候，会立即执行这个bind函数，只执行一次
+            // 注意：在每个钩子函数中，第一个参数永远是el,表示被绑定了指令的那个元素，这个el参数是一个原生js对象
+            // 在元素刚绑定了指令的时候，还没有插入到DOM中去，这时候，调用focus方法没有作用，因为一个元素只有插入DOM之后才能获取焦点
+            // el.focus();
+        },
+        inserted:function(el){ // inserted 表示元素插入到DOM中的时候，会执行inserted函数（执行一次）
+            // 和js行为有关的操作，最好放在inserted中执行，放置js行为不生效
+            el.focus();
+        },
+        update:function(el){ //当VNode更新的时候，会执行updated，可能会触发多次
+
+        }
+    })
+
+    // 自定义一个设置字体颜色的指令
+    Vue.directive('color',{
+        // 样式，只要通过指令绑定给了元素，不管这个元素有没有被插入到页面中去，这个元素肯定有了一个内联样式
+        // 将来元素肯定会显示到页面中，这时候，浏览器的渲染引擎必然会解析样式，应用给这个元素
+        bind:function(el,binding){
+            // 和样式相关的操作，一般都可以在bind阶段执行
+            el.style.color = binding.value;
+        }
+    })
+
+
+    // 自定义按键修饰符
+    // Vue.config.keyCodes.按键名 = 与按键名对应的按键值
+    Vue.config.keyCodes.f2 = 113;
+
+    // 全局过滤器，进行实践的格式化
+    // 所谓全局的过滤器，就是所有的Vue实例都共享的
+    // 创建一个Vue全局过滤器，名字叫做dateFormat
+    Vue.filter('dateFormat',function(dateStr,pattren = ""){
+        var dt = new Date(dateStr);
+
+        //时间格式  yyyy-mm-dd
+        //使用toString()方法转换成字符串，再用padStrart()方法填充
+        // padStart(2,'0')表示当字符长度不够两位时，在字符串前填充0，如果字符串够两位就不填充0
+        var y = dt.getFullYear(); //获取当前年份
+        var m = (dt.getMonth() + 1).toString().padStart(2,'0');   //之所以加一是因为getMonth（）方法获得的月份是0-11
+        var d = dt.getDate().toString().padStart(2,'0');   //getDate（）是获取日期，getDay（）是获取星期
+        // return y + '-' + m + '-' +d;
+
+        if(pattren.toLowerCase() === 'yyy-mm-dd'){
+            return `${y}-${m}-${d}`;
+        }else{
+            var hh = dt.getHours().toString().padStart(2,'0');
+            var mm = dt.getMinutes().toString().padStart(2,'0');
+            var ss= dt.getSeconds().toString().padStart(2,'0');
+            return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+        }
+    })
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            id:'',
+            name:'',
+            keywords:'',
+            list:[
+                { id:1,name:'钢铁侠',addTime:new Date() },
+                { id:2,name:'蜘蛛侠',addTime:new Date() }
+            ]
+        },
+        methods:{
+            add(){//添加方法
+                //把要添加的数据先拼接成对象
+
+                var hero = { id:this.id,name:this.name,addTime:new Date()};
+                // 将拼接好的数据添加到list后
+                this.list.push(hero);
+
+                // 添加数据完毕后清空文本框
+                this.id = this.name = '';
+            },
+
+            del(id){//根据id删除数据
+                // splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+                // arrayObject.splice(index,howmany,item1,.....,itemX)
+                // index	必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+                // howmany	必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+                // item1, ..., itemX	可选。向数组添加的新项目。
+
+                //思路：如何根据id找到要删除这一项的索引，然后找到索引后直接调用数组的splice方法删除即可
+                // this.list.some((item,i) => {
+                //     if(item.id == id){
+                //         this.list.splice(i,1);
+                //         // 在数组的some方法中，如果return true就会立即终止这个数组的后续循环
+                //         return true;
+                //     }
+                // })
+                var index = this.list.findIndex(item => {
+                    if(item.id == id){
+                        return true;
+                    }
+                })
+                this.list.splice(index,1);
+            },
+
+            search(keywords){ //根据关键字，进行数据的搜索
+                // forEach some filter finIndex  这些都属于数组的新方法
+                // 会对数组中的每一项进行遍历，执行相关的操作
+
+                // var newList = [];
+                // this.list.forEach(item => {
+                //     if(item.name.indexOf(keywords) != -1){
+                //         newList.push(item);
+                //     }
+                // })
+                // return newList;
+
+                return this.list.filter(item => {
+                    // 在es6中，为字符串提供了一个新方法，叫做 String.prototype.includes('要包含的字符串')
+                    // 如果包含返回true，否则返回false
+                    if(item.name.includes(keywords)){
+                        return item;
+                    }
+                })
+            }
+        },
+        directives:{ //自定义局部指令（私有指令）
+            'fontweight':{ //设置字体粗细
+                bind:function(el,binding){
+                    el.style.fontWeight = parseInt(binding.value);
+                }
+            },
+            //自定义指令简写
+            'fontsize':function(el,binding){// 注意：这个function等同于把代码写到了bind和update中去
+                el.style.fontSize = parseInt(binding.value) + 'px';
+            }
+
+        }
+    })
+</script>

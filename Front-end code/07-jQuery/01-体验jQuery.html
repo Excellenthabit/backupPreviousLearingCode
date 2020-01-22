@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-体验jQuery</title>
+    <style>
+        div{
+            height: 100px;
+            background-color: burlywood;
+            margin: 15px;
+            display: none;
+        }
+        button{
+            height: 30px;
+            margin: 15px;
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        // //原生js
+        // window.onload = function () {
+        //     var btn = document.getElementsByTagName("button")[0];
+        //     var divArr = document.getElementsByTagName("div");
+        //     btn.onclick = function () {
+        //         for (var i=0;i<divArr.length;i++){
+        //             divArr[i].style.display = "block";
+        //             divArr[i].innerHTML = "Welcome to Web world!"
+        //         }
+        //     }
+        // }
+
+        //jQuery版 (jQuery有两个特点就是：1.链式编程；2.隐式迭代)
+        //隐式 对应的是 显示，隐式迭代的意思是：在方法的内部进行循环遍历，
+        // 而不用我们自己再进行循环，简化我们的操作，方便我们调用。
+        $(window).ready(function () {
+            //获取元素
+            var btn = $("button");
+            var div = $("div");
+            //事件绑定是通过方法绑定的
+            btn.click(function () {
+                // div.show(3000);//显示盒子 show()括号里面加了时间，3000ms
+                // div.html("Welcome to Web world!");//设置内容
+                //上述两句其实可以链式编程一句写完
+                div.show(3000).html("Welcome to Web world!");
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>显示盒子和设置内容</button>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

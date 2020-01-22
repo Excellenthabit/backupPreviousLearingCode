@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-筛选选择器</title>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            var ul = $("ul");
+            //find(selector);查找指定元素的所有后代元素（子子孙孙）
+            ////必须制定参数，如果不指定获取不到元素。length === 0
+            ul.find("li").css("background","burlywood");
+
+            //children(selector); 查找指定元素的直接子元素（亲儿子元素）,不写参数获取所有子元素
+            ul.children("li").css("background","pink");
+
+            //  eq(index);  选择匹配到的元素中索引号为index的一个元素，index从0开始
+            ul.children("li").eq(0).css("background","red");
+
+            // siblings(); 查找所有兄弟元素（不包括自己）
+            ul.children("li").eq(0).siblings().css("background","white");
+
+            // parent();查找父元素（亲的）,和定位没有关系
+            console.log(ul.children("li").eq(0).parent());
+
+
+        })
+    </script>
+</head>
+<body>
+<ul>
+    <li>奔跑起来像是一道春天的闪电</li>
+    <li>奔跑起来像是一道春天的闪电</li>
+    <li>奔跑起来像是一道春天的闪电</li>
+    <li>奔跑起来像是一道春天的闪电</li>
+    <li>奔跑起来像是一道春天的闪电</li>
+    <ol>
+        <li>想看遍这世界，去最遥远的远方</li>
+        <li>感觉有双翅膀，能飞越高山和海洋</li>
+    </ol>
+</ul>
+</body>
+</html>

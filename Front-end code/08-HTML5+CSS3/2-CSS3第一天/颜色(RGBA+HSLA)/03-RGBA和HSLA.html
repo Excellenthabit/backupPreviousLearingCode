@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RGBA和HSLA</title>
+    <style>
+      /*
+        css3中新增了两种颜色模式：rgba、hsla
+        rgba： red green blue(0-255)  alpha:透明度（0-1）
+        hsla:
+        h:色调  0-360
+        s:饱和度 0% - 100%
+        l:亮度  0% - 100%
+        a:alpha 透明度（0-1）
+        */
+
+        .out{
+            margin: 100px auto;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            background: rgba(255,0,3,0.2);
+        }
+
+
+        .in{
+            margin: 100px auto;
+            width: 200px;
+            height: 200px;
+            background:hsla(255,50%,60%,0.9);
+        }
+
+    </style>
+</head>
+<body>
+<div class="out">
+    <div class="in"></div>
+</div>
+</body>
+</html>

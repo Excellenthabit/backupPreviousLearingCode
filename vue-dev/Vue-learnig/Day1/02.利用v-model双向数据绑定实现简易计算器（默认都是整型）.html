@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易计算器（整型数据）</title>
+</head>
+<body>
+	<div id="app">
+		<h2>{{ msg1 }}</h2>
+		<p>{{ msg2 }}</p>
+		<input type="text" v-model='num1'>
+
+		<select v-model='opt'>
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+
+		<input type="text" v-model='num2'>
+
+		<input type="button" value="=" @click='calculate'>
+
+		<input type="text" v-model='result'>
+	</div>
+</body>
+</html>
+<script src="./lib/vue.min.js"></script>
+<script>
+	var app = new Vue({
+		el:'#app',
+		data:{
+			msg1:'简易计算器（整型数据）',
+			msg2:'使用提示：在输入框输入数字，然后点击=按钮即可',
+			num1:0,
+			num2:0,
+			result:0,
+			opt:'+'
+		},
+		methods:{
+			calculate(){
+				//	易错的地方在于调用data中的数据时没有通过this来获取，会导致控制台报错xx is not defined
+				// switch(this.opt){
+				// 	case '+':
+				// 		this.result = parseInt(this.num1) + parseInt(this.num2);
+				// 	break;
+
+				// 	case '-':
+				// 		this.result = parseInt(this.num1) - parseInt(this.num2);
+				// 	break;
+					
+				// 	case '*':
+				// 		this.result = parseInt(this.num1) * parseInt(this.num2);
+				// 	break;
+					
+				// 	case '/':
+				// 		this.result = parseInt(this.num1) / parseInt(this.num2);
+				// 	break;
+				// };
+
+					// 投机取巧法 使用eval()  解析字符串执行
+					// 实际开发中不建议使用此方法，影响性能，还有安全性问题
+
+					//先将表达式拼接成字符串，要注意的是 运算符号不能写死， 也就是 this.opt
+					var calculateStr = 'parseInt(this.num1)'+this.opt+'parseInt(this.num2)';
+					this.result = eval(calculateStr);
+			}
+		}
+	})
+
+</script>

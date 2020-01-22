@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-事件的拓展</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: pink;
+            cursor: pointer;
+        }
+        .abc{
+            width: 1200px;
+            height: 1200px;
+            background: yellow;
+            cursor: zoom-in;
+        }
+    </style>
+</head>
+<body>
+
+<!--3 绑定事件 ，在行内绑定，要注意的是在行内书写的应该是函数名和括号，否则无效-->
+<div id="box" onclick="fn()"></div>
+
+<script>
+    //操作DOM节点，必须先找到该元素
+    //1、通过id找到HTML元素:document.getElementById(); 此方法的返回值是一个标签，可以直接使用，获取属性值，设置属性
+
+    //以下两种方法获取的是数组，特殊情况是数组只有一个元素，只需在最后加上[0]即可获取数组中的第一个元素，
+    // 例如doucment.getElementsByTagName("div")[0];  document.getElementsByClassName("a")[0];
+    //2、通过标签名找到HTML元素：doucment.getElementsByTagName();
+    //3、通过类名找到HTML元素：document.getElementsByClassName();      此方法在IE5 6 7 8 版本无效
+
+    //获取事件源
+    var div= document.getElementById("box");
+
+    
+    // // 1 绑定事件（这里用的是匿名函数方法绑定）
+    // div.onclick=function () {
+    //     div.style.width="300px";
+    //     div.style.height="300px";
+    //     div.style.backgroundColor="red";
+    //
+    // }
+
+
+    // // 2 用函数名绑定,这里需要注意的是直接写函数名，不能写括号，如果写括号的话就成了返回值，运行会报错
+    // div.onclick=fn;
+    //
+
+    // 3 绑定事件 ，在行内绑定，要注意的是在行内书写的应该是函数名和括号，否则无效
+    function fn() {
+        div.style.width="300px";
+        div.style.height="300px";
+        div.style.backgroundColor="yellow";
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>36-DOＭ元素的创建</title>
+</head>
+<body>
+    <ul>
+        hello!
+    </ul>
+    <script>
+        //document.write();不常用，因为容易覆盖原来的页面。
+        //innerHTML;用的比较多。绑定属性和内容比较方便。(节点套节点)
+        //document.createElement;也是比较多的，指定数量的时候一般用它。
+
+
+        //第一种创建方法：document.write（）；
+        document.write("<li>1  document.write（）；方法创建</li>");
+
+
+        //第二种：直接利用元素的innerHTML方法（innerText方法不识别标签）
+        var ul = document.getElementsByTagName("ul")[0];
+        ul.innerHTML += "<li id='li1'>2  innerHTML方法创建</li>";
+
+        //利用DOM的api创建元素
+        var newLi = document.createElement("li");
+        newLi.innerHTML = "3  createElement方法创建";
+        //在父元素后添加元素
+        ul.appendChild(newLi);
+
+        //在指定位置添加元素
+        var li1=document.getElementById("li1");
+        // inserBefore语法： node.insertBefore(newnode,existingnode);
+        ul.insertBefore(newLi,li1); //在li1前添加newLi
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>57-事件添加以及移除的兼容性写法</title>
+</head>
+<body>
+
+    <button>关汉卿-《关大王单刀赴会》</button>
+    <div></div>
+
+
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var div = document.getElementsByTagName("div")[0];
+
+        //火狐谷歌IE9+支持addEventListener
+        //IE6 7 8支持attachEvent
+
+        btn.addEventListener("click",fn1);
+        btn.removeEventListener("click",fn1);
+
+        //兼容写法
+        EventListen = {
+            addEvent: function (elm,fn,str) {
+                //通过判断调用的方式兼容IE678
+                //判断浏览器是否支持该方法，如果支持那么调用，如果不支持换其他方法
+                if(elm.addEventListener){
+                    //直接调用
+                    elm.addEventListener(str,fn);
+                }else if(elm.attachEvent){
+                    elm.attachEvent("on"+str,fn);
+                }else{
+                    //在addEventListener和attachEvent都不存在的情况下，用此代码
+                    elm["on"+str] = fn;
+                }
+            },
+                removeEvent: function (elm,fn,str) {
+                    //通过判断调用的方式兼容IE678
+                    //判断浏览器是否支持该方法，如果支持那么调用，如果不支持换其他方法
+                    if(elm.removeEventListener){
+                        //直接调用
+                        elm.removeEventListener(str,fn);
+                    }else if(elm.detachEvent){
+                        elm.detachEvent("on"+str,fn);
+                    }else{
+                        //在removeEventListener和detachEvent都不存在的情况下，用此代码
+                        elm["on"+str] = fn;
+                    }
+                }
+        }
+
+
+
+
+        function fn1() {
+            div.innerText = "三尺龙泉万卷书,上天生我意何如。不能报国平天下，枉为男儿大丈夫。"
+        }
+
+    </script>
+</body>
+</html>

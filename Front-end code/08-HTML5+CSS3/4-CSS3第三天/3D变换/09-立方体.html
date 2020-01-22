@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-立方体</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            border: 1px dashed #666;
+            margin: 100px auto;
+            position: relative;
+            border-radius: 50%;
+            /*下面这句用于调整盒子上下左右前后时使用*/
+            /*transform:rotateX(30deg) rotateY(-30deg);*/
+            /*让盒子保持3d效果*/
+            transform-style: preserve-3d;
+
+            /*添加动画*/
+            animation: moveUp 5s linear infinite;
+
+        }
+        .box>div{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            text-align: center;
+            line-height: 300px;
+            font-size: 60px;
+            color: #daa520;
+        }
+        .left{
+            background-color:rgba(255,0,0,0.3);
+            /*设置变换中心*/
+            transform-origin: left;
+            transform: rotateY(90deg) translateX(-150px);
+        }
+        .right{
+            background-color: rgba(101, 230, 255, 0.3);
+            /*设置变换中心*/
+            transform-origin: right;
+            transform: rotateY(90deg) translateX(150px);
+        }
+        .forward{
+            background-color: rgba(9, 255, 16, 0.3);
+            transform:translateZ(-150px);
+        }
+        .back{
+            background-color: rgba(126, 85, 195, 0.3);
+            transform:translateZ(150px);
+        }
+        .up{
+            background-color: rgb(255, 255, 66,0.3);
+            transform:rotateX(-90deg) translateZ(-150px);
+        }
+        .down{
+            background-color: rgba(126, 85, 195, 0.3);
+            transform:rotateX(90deg) translateZ(-150px);
+        }
+        /*动画*/
+        @keyframes moveUp{
+            from{
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to{
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="up">上</div>
+        <div class="down">下</div>
+        <div class="left">左</div>
+        <div class="right">右</div>
+        <div class="forward">前</div>
+        <div class="back">后</div>
+    </div>
+</body>
+</html>

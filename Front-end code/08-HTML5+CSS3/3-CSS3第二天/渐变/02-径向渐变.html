@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-径向渐变</title>
+    <style>
+        div{
+            width: 250px;
+            height: 250px;
+            border: 1px solid #000;
+            margin: 20px auto;
+        }
+
+        /*radial-gradient径向渐变指从一个中心点开始沿着四周产生渐变效果*/
+       /* 语法：
+        radial-gradient(辐射半径 中心位置，起始颜色，终止颜色);
+        中心的位置：at left,at right,at center,at bottom,at top
+        at left top...
+        关于辐射范围：其半径可以不等，即可以是椭圆 水平半径，垂直半径
+        */
+        div:nth-child(1){
+            background-image: radial-gradient(at left top,yellow,green);
+        }
+
+        div:nth-child(2){
+            background-image: radial-gradient(at 50px 50px,yellow,green);
+        }
+
+        div:nth-child(3){
+            background-image: radial-gradient(100px at center,yellow,green);
+        }
+
+        div:nth-child(4){
+            background-image: radial-gradient(100px at center,
+            red 0%,
+            green 30%,
+            yellow 60%,
+            blue 100%
+            );
+        }
+
+        div:nth-child(5){
+            background-image: radial-gradient(100px 50px at center,red,blue);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

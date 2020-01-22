@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-transform-style</title>
+    <style>
+        .out{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            background-color: skyblue;
+            margin: 100px auto;
+            transform: rotateY(68deg);
+
+            /*可以让里面的盒子保持3d效果，加给父盒子*/
+            /*preseve-3d:让盒子位于3d空间里面*/
+            /*flat：子盒子被扁平化*/
+            /*transform-style: flat;*/
+            transform-style: preserve-3d;
+        }
+
+        .in{
+            width: 300px;
+            height: 400px;
+            background-color: darkorange;
+            margin: 50px auto;
+            transform:rotateX(132deg);
+            border: 1px solid #000;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="out">
+        <div class="in"></div>
+    </div>
+</body>
+</html>

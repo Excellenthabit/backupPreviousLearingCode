@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15-用户注册高亮显示</title>
+    <style>
+        .wrong{
+            border: 2px solid #ff0014;
+        }
+        .right{
+            border: 2px solid #09ff10;
+        }
+    </style>
+
+</head>
+<body>
+    帐号：<input type="text" onblur="fn(this)"> <br><br>
+    密码：<input type="password" onblur="fn(this)"> <br><br>
+    <script>
+        //需求：失去焦点的时候判断input按钮中的值，如果账号或密码在6-12个字符之间通过，否则报错。
+        //步骤：
+        //1.获取事件源
+        //2.绑定事件
+        //3.书写事件驱动程序
+        var inp1=document.getElementsByTagName("input")[0];
+        var inp2=document.getElementsByTagName("input")[1];
+        function fn(aa) {
+            //HTML标签行内调用function的时候，是先通过window调用的function，所以打印this等于打印window
+            //  console.log(this);
+            //console.log(aa);
+            //console.log(aa.value);
+
+            if (aa.value.length<6 || aa.length>12){
+                aa.className="wrong";
+            }else {
+                aa.className="right";
+            }
+        }
+
+
+    </script>
+</body>
+</html>

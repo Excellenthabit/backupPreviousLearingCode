@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>31-height（）和width（）</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: burlywood;
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #000;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+
+        $(function () {
+            //不带参数为获取值
+            // height()和 width()方法获取的都只是调用者内容的宽高，
+            // 不包括margin、padding、border，与offsetHeight、offsetWidth不一样
+            //offsetWidth和offsetHeight可以检测盒子的宽高，包括宽高本身，padding，border，不包括margin
+            alert("height():"+$("div").height()); //100
+            alert("width():"+$("div").width());   //100
+
+            //带参数为设置值
+            //设置宽高
+            // $("div").height(200);
+            // $("div").width(200);
+            // alert("height():"+$("div").height());
+            // alert("width():"+$("div").width());
+
+
+            //offsetWidth和offsetHeight可以检测盒子的宽高，包括宽高本身，padding，border，不包括margin
+            var div= document.getElementsByTagName("div")[0];
+            alert("offsetHeight："+div.offsetHeight); //124
+            alert("offsetWidth："+div.offsetWidth);  //124
+
+
+            //css()获取高度和height()获取高度的区别？
+            console.log($("div").css("height"));  //100px  字符串 string
+            console.log($("div").height());   // 100   数值  number
+        })
+
+
+    </script>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

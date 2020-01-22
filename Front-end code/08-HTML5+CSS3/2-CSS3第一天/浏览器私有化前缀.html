@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览器私有化前缀</title>
+    <style>
+        .box{
+            width: 1000px;
+            height: 200px;
+            margin: 100px auto;
+            border: 1px solid #000;
+          /*  浏览器私有化前缀：
+            -webkit- ：谷歌chrome、苹果Safari
+            -moz- ：火狐FIreFox
+            -ms- : ie
+            -o-: 欧朋浏览器opera
+            */
+            /*背景渐变色*/
+            background: -webkit-linear-gradient(left,red,yellow);
+            background: -moz-linear-gradient(left,red,yellow);
+            background: -ms-linear-gradient(left,red,yellow);
+            background: -o-linear-gradient(left,red,yellow);
+            background: linear-gradient(left,red,yellow);
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

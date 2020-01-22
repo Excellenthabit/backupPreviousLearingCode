@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-基本选择器</title>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            //三种方法获取jq对象，然后使用css方法操作
+            var b1 = $(".box"); //类选择器
+            var b2 = $("#box"); //id选择器
+            var b3 = $("div");  //标签选择器
+             b3.css({"width":100,"height":100,"margin":10});
+             b3.css("background","pink");
+             b1.css("background","red");
+             b2.css("background","yellow");
+
+        })
+    </script>
+</head>
+<body>
+    <div class="box"></div>
+    <div id="box"></div>
+    <div></div>
+</body>
+</html>

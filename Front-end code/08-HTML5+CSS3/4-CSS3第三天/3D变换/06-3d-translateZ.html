@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-3d-translateZ</title>
+    <style>
+        body{
+            /*透视*/
+            perspective: 600px;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            transition: all 1s;
+            margin: 100px auto;
+        }
+        .box:hover{
+            /*Z轴移动，必须配合透视来使用！！！ 取值可正可负*/
+            /*transform:translateZ(-100px);*/
+            transform:translateZ(300px);
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

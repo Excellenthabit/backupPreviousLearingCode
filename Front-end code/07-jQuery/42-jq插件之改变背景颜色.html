@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>42-jq插件之改变背景颜色</title>
+    <style>
+        div{
+            height: 100px;
+            width: 100px;
+            background-color: pink;
+            position: absolute;
+            left: 10px;
+            top: 60px;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script src="jquery-plugins/jquery-color-master/jquery-color-master/jquery.color.js"></script>
+    <script>
+        //jq插件，站在jq巨人的肩膀上。难在逻辑。插件依赖于jq包，在引用插件之前必须先引入jq包！
+        $(function () {
+            $("button").on("click",function () {
+               $("div").animate({"height":200,"left":500,"top":300,"backgroundColor":"#666"},2000,function () {
+                   alert("Done.");
+               })
+            })
+        })
+    </script>
+</head>
+<body>
+    <button>点击让盒子移动并且更换背景颜色</button>
+    <div>for jquery plugins testing</div>
+</body>
+</html>

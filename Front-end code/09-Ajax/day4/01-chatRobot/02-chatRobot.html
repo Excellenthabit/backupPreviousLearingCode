@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02-chatRobot</title>
+	<style type="text/css">
+		html,body{
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container{
+			height: 100%;
+			width: 600px;
+			margin: 0 auto;
+			border: 1px solid #0094ff;	
+		}
+
+		.message{
+			width: 100%;
+			height: 80%;
+			background-color: pink;
+			overflow: scroll;
+		}
+
+		.inputBox{
+			width: 100%;
+			height: 20%;
+			background-color: pink;
+			display: flex;
+		}
+
+		.inputBox input{
+			height: 100%;
+			border: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.inputBox input:first-child{
+			width: 80%;
+		}
+
+		.inputBox input:nth-child(2){
+			width: 20%;
+		}
+
+		.my{
+			height: 30px;
+			line-height: 30px;
+			text-align: left;
+			font-size: 25px;
+			color: red;
+			background-color: lightgreen;
+			border: 1px solid #0094ff;
+		}
+
+		.robot{
+			height: 30px;
+			line-height: 30px;
+			text-align: right;
+			font-size: 25px;
+			color: black;
+			background-color: lightyellow;
+			border: 1px solid #0094ff;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="message"></div>
+		<div class="inputBox">
+			<input type="text" id="myMessage">
+			<input type="button" id="sendBtn" value="发送">
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="ajax_tool_pro.js"></script>
+<script type="text/javascript">
+	document.querySelector('#sendBtn').onclick=function () {
+		//获取输入的内容
+		var inputValue = document.querySelector('#myMessage').value;
+		// 创建对话框
+		var sessionBox = document.createElement('div');
+		sessionBox.innerHTML = inputValue;
+		sessionBox.classList.add('my');
+		// 添加到界面上
+		document.querySelector('.message').appendChild(sessionBox);
+
+		ajax_tool_pro({
+			url:"02-chatRobot.php",
+			data:'message='+inputValue,
+			method:'post',
+			success:function (data) {
+				console.log(data);
+				var robotBox = document.createElement('div');
+				robotBox.innerHTML = data;
+				robotBox.classList.add('robot');
+				document.querySelector('.message').appendChild(robotBox);
+			}
+		})
+		// 清空输入内容
+		document.querySelector('#myMessage').value = '';
+		
+	}
+</script>

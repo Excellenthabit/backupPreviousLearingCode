@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular js指令</title>
+    <style>
+        .red{
+            color:red;
+        }
+
+        .blue{
+            color:blue;
+        }
+    </style>
+</head>
+<body ng-app="App">
+<ul ng-controller="demoController">
+    <li ng-bind="name"></li>
+    <li>{{name}}</li>
+    <li ng-show="1">ng-show用来显示或者隐藏内容的，当值为true时显示</li>
+    <li ng-hide="0">ng-show用来显示或者隐藏内容的，当值为true时隐藏</li>
+    <li ng-if="1">ng-if用来控制元素是否存在，当值为true时存在</li>
+    <li><img ng-src="{{path}}"></li>
+    <li ng-class="{red:true，blue:true}">ng-class指令</li>
+    <li><input type="text" ng-disabled="0"></li>
+    <li><input type="text" ng-readonly="1" value="angular"></li>
+    <li><input type="checkbox" ng-checked="1">男</li>
+    <li>
+        <select >
+            <option ng-selectde="1">广州</option>
+            <option>深圳</option>
+            <option>珠海</option>
+        </select>
+    </li>
+</ul>
+
+
+</body>
+</html>
+<script src=" ./libs/angular.min.js"></script>
+<script>
+    //创建模块
+    var App = angular.module('App',[]);
+
+    App.controller('demoController',['$scope',function ($scope) {
+        $scope.name = 'AngularJS';
+        $scope.path = './images/author.jpg';
+        $scope.link = './main.css';
+    }]);
+</script>

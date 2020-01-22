@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05-json</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	// json是字符串
+	// 如果是对象使用{}包裹
+	// 如果是数组使用[]包裹
+	// 属性名必须使用双引号包裹
+	// 属性值也必须使用双引号包裹，如果是数字，可以不用双引号包裹
+	
+
+	//类型是字符串
+	var str = '{"name":"nicholas","age":22,"info":"handsome boy"}';
+	console.log(str);
+	console.log( typeof str);//string
+	// 如果把它变为js对象，必须调用一个方法
+	// 调用json对象的parse方法。可以将json格式的字符串转化为对应的js对象
+	var jsObj = JSON.parse(str);
+	console.log(jsObj);
+	console.log(typeof jsObj);//object
+	console.log(jsObj.name);
+	console.log(jsObj.age);
+	console.log(jsObj.info);
+
+</script>

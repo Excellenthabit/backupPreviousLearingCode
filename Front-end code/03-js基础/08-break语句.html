@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08break循环语句</title>
+	<script>
+		//输出1到10之间第一个2的倍数
+		// for(var n1=1;n1<=10;n1++){
+		// 	if(n1%2==0){
+		// 		console.log(n1);
+		// 		break;  //在循环体内，只要代码遇到break，程序马上结束当前循环。当前循环是指break语句所在的循环体
+		// 	}
+		// }
+		
+		//输出找到1-100之间的所有质数
+		
+          var flag=0;//标识符
+          for(var j=1;j<=100;j++){
+          	for(var i=2;i<j;i++){
+          		if(j%i==0){
+          			flag=1;
+          			break;
+         
+          		}
+          		else{
+          			flag=0;
+          		}
+          	}
+          	if(flag==0 && j!=1){
+          		console.log(j);
+          	}
+          }
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

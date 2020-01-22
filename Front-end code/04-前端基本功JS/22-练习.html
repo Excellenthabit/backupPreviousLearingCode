@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>22-练习</title>
+</head>
+<body>
+<script>
+   // // 1.将一个字符串数组输出为|分割的形式，比如“刘备|张飞|关羽”。使用两种方式实现
+   // //方法一：
+   // var arr1=["刘备","关羽","张飞","诸葛亮"];
+   //    var sperator="|";
+   // var str=arr1[0];
+   // for (var i=1;i<arr1.length;i++){
+   //     str += sperator+arr1[i];
+   // }
+   // console.log(str);
+   //
+   // //方法二：
+   // var arr2= arr1.join("|");
+   // console.log(arr2);
+   //
+
+   // 2.将一个字符串数组的元素的顺序进行反转。["a","b","c","d"] ["d","c","b","a"]。
+   // 使用两种种方式实现。提示：第i个和第length-i-1个进行交换
+   // //方法一：
+   // var str=["a","b","c","d"];
+   // function reverseArray(str) {
+   //     var newArray=[];
+   //     for (var i=0;i<str.length;i++){
+   //         newArray[i]=str[str.length-1-i];
+   //     }
+   //     return newArray;
+   // }
+   // console.log(reverseArray(str));
+   //
+   // // //方法二：
+   // var newStr=str.reverse();
+   // console.log(newStr);
+   //
+   // // //方法三：操作原数组
+   // function reverseArray1(str) {
+   //     for (var i=0;i<str.length/2;i++){
+   //         var temp=str[i];
+   //         str[i]=str[str.length-1-i];
+   //         str[str.length-1-i]=temp;
+   //     }
+   //     return  str;
+   // }
+   // console.log(reverseArray1(str));
+
+
+   // 3.找到数组中每个字母出现的次数["c","a","z","a","a"]
+   //利用对象来做。我们想知道，a出现了几次，c出现了几次，x出现了几次。
+   //k:v ..  k:v使用键值对比较方便，而使用数组，不太方便了。
+   //思路：创建一个对象，判断数组中的元素，在对象中是否存在，如果存在，值+1；否则创建一个数组元素的属性，然后给值赋值为1；
+   var arr=["c","a","z","a","a"];
+   var json={};
+   console.log(json["aflasdfasdf"]); //不存在的属性，返回值是undefined。
+   for (i=0;i<arr.length;i++){
+       //判断数组中的元素，在json中是否存在属性值。
+       if (json[arr[i]]){
+           json[arr[i]] += 1;
+       }
+       else{
+           json[arr[i]]=1;
+       }
+   }
+   console.log(json);
+
+
+   // 4.工资的数组[1500,1200,2000,2100,1800],把工资超过2000的删除
+   //思路：创建一个新数组，把原数组符合条件的放到新数组里面，直接利用filter（）方法，
+   // 因为其的返回值是由true的结构项组成的新数组，而且不改变原数组
+    var wage=[1500,1200,2000,2100,1800];
+    var newWage=wage.filter(function (element,index,array) {
+        var flag=true;
+        if (element>2000){
+            return false;
+        }
+        return true;
+    });
+   console.log(newWage);
+
+
+</script>
+</body>
+</html>

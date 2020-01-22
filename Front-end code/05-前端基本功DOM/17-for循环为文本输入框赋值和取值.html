@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17-for循环为文本输入框赋值和取值</title>
+</head>
+<body>
+
+    <input type="text"> <br><br>
+    <input type="text"> <br><br>
+    <input type="text"> <br><br>
+    <input type="text"> <br><br>
+    <input type="text"> <br><br>
+    <input type="text"> <br><br>
+    <input type="text"> <br><br>
+
+    <button>赋值</button>
+    <br> <br>
+    <button>取值</button>
+    <script>
+        var inpArr=document.getElementsByTagName("input");
+        var btnArr=document.getElementsByTagName("button");
+        //赋值
+        //for循环为每一个input赋值，从0开始
+        btnArr[0].onclick=function () {
+            for (var i=0;i<inpArr.length;i++){
+                inpArr[i].value=i;
+            }
+        }
+
+        //取值
+        //for循环获取每一个input的值
+        btnArr[1].onclick=function () {
+            var newArr=[];
+            for (var i=0;i<inpArr.length;i++) {
+                //newArr[i]=inpArr[i].value;
+                newArr.push(inpArr[i].value);
+            }
+            console.log(newArr);
+        }
+    </script>
+
+</body>
+</html>

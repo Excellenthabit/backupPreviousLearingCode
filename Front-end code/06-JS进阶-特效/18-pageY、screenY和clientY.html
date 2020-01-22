@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18-pageY、screenY和clientY</title>
+    <style>
+        body{
+            height: 5000px;
+        }
+    </style>
+</head>
+<body>
+        <script>
+            document.onclick = function () {
+                event = event || window.event;
+                console.log(event.pageY); //body
+                console.log(event.screenY);//屏幕
+                console.log(event.clientY);//浏览器可视区域
+            }
+        </script>
+</body>
+</html>

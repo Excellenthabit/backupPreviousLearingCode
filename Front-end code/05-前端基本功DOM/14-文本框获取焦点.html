@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14-文本框获取焦点</title>
+    <style>
+        input {
+            width: 300px;
+            height: 36px;
+            padding-left: 5px;
+            color: #ccc;
+        }
+        label {
+            position: absolute;
+            top: 83px;
+            left: 60px;
+            font-size: 12px;
+            color: #ccc;
+            cursor: text;
+        }
+        .hide {
+            display: none;
+        }
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+京东：<input id="inp1" type="text" value="京东文本输入框"> <br> <br>
+淘宝：<label for="inp2">淘宝文本输入框</label><input id="inp2" type="text"> <br> <br>
+placeholder: <input type="text" placeholder="文本输入框"> <br>
+<!--placeholder 属性提供可描述输入字段预期值的提示信息（hint）。-->
+<!--该提示会在输入字段为空时显示，并会在字段获得焦点时消失。-->
+
+<script>
+    //京东的获取焦点
+    //当文本输入框获取了焦点之后立即删除文本框里面的预设文本内容，失去光标后且没有输入任何文本内容的话，还是显示原来的文本内容
+    var inp1=document.getElementById("inp1");
+    //onfocus 获取焦点事件  onfocus 事件在对象获得焦点时发生。
+    inp1.onfocus=function () {
+        if (this.value==="京东文本输入框") {
+            this.value = "";
+        }
+    }
+
+    //onblur 失去焦点事件  onblur 事件会在对象失去焦点时发生。
+    inp1.onblur=function () {
+        if (this.value==="")
+        this.value="京东文本输入框";
+    }
+
+    //淘宝的获取焦点
+    //思路：当文本输入框获取了焦点之后并没有直接删除原来文本输入框里面的预设文本内容，
+    // 而是当输入了字符才会隐藏预设文本内容，如果没输入任何内容，还是显示原来的内容
+    var lab=document.getElementsByTagName("label")[0];
+    var inp2=document.getElementById("inp2");
+    //oninput 事件在用户输入时触发。
+    inp2.oninput=function () {
+        if (this.value===""){
+            lab.className="show";
+        } else{
+            lab.className="hide";
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-动画封装</title>
+    <style>
+        .box1{
+            margin: 0;
+            padding: 0;
+            height: 200px;
+            background-color: #d0d0d0;
+            position: relative;
+        }
+        button{
+            margin: 5px;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: burlywood;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <button>移动到200px处</button>
+        <button>移动到400px处</button>
+        <div class="box2"></div>
+    </div>
+
+    <script>
+        //获取事件源以及相关元素
+        var btn = document.getElementsByTagName("button");
+        var box2 =document.getElementsByClassName("box2")[0];
+
+        //定义定时器
+        var timer = null;
+
+        //绑定事件
+        btn[0].onclick = function () {
+            animate(200);
+        }
+
+        btn[1].onclick = function () {
+            animate(400);
+        }
+
+        //动画实现的函数封装
+
+        function animate(target) {
+            // bug1:点击多次以后，越来越快(原因是每次点击都打开一个定时器，
+            // 多个步长叠加在一起不快才怪咧)，
+            // 解决方法：每次只能打开一个定时器 执行定时器前先清除定时器
+
+            //要用定时器，先清除定时器
+            clearInterval(timer);
+
+            //bug2：无法返回。原因就是步长（step）不能为恒定值
+            //传递的目标值如果比当前值大，那么步长为正数，否则为负数
+            //要求盒子既能向左又能向右移动，那么步长就得有正有负
+            var step = target>box2.offsetLeft?10:-10;
+
+            timer = setInterval(function () {
+                //bug3：二次点击不停止
+                //如果当前值===目标值，那么先判断两者之间的距离还有多少，
+                // 如果小于步长，那么久不再移动，马上停止定时器
+
+                //在执行之前就获取当前值和目标值之差（differ）
+                var differ = target - box2.offsetLeft;
+
+                //盒子自身的位置+步长（10）
+                box2.style.left = box2.offsetLeft + step + "px";
+
+                //如果盒子停止了，就清除定时器
+                //因为步长（step）有正有负，所以转换成绝对值来进行比较
+                if (Math.abs(differ)<Math.abs(step)){
+                    box2.style.left = target + "px";
+                    clearInterval(timer);
+                }
+
+            },30)
+        }
+
+
+    </script>
+</body>
+</html>

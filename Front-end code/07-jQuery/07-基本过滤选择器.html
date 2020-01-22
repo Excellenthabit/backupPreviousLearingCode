@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07-基本过滤选择器</title>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+
+            // odd 选择匹配到的元素中索引号为奇数的所有元素，index从0开始
+            // even 选择匹配到的元素中索引号为偶数的所有元素，index从0开始
+
+            //利用过滤选择器设置偶数行元素的背景为粉色
+            var evenLi = $("li:odd");
+            evenLi.css("background","pink");
+
+            //利用过滤选择器设置奇数行元素的背景为黄色
+            var oddLi = $("li:even");
+            oddLi.css("background","yellow");
+
+            //利用过滤选择器设置指定索引值元素的背景
+            //把第一行换成红色
+            $("ul>li:eq(0)").css("background","red");
+
+            //把最后一行变为黑色
+            var li = $("li");
+            lastLi = $("ul>li").eq(li.length-1);
+            lastLi.css("background","black");
+        })
+    </script>
+</head>
+<body>
+<ul>
+    <li>燃烧我的卡路里</li>
+    <li>燃烧我的卡路里</li>
+    <li>燃烧我的卡路里</li>
+    <li>燃烧我的卡路里</li>
+    <li>燃烧我的卡路里</li>
+    <li>燃烧我的卡路里</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-伪元素before和after</title>
+    <style>
+        /*
+        伪元素：假的元素
+        在css2 当中 :before   :after  ，不推荐使用
+        标志性符号是 双冒号(::)
+        */
+        
+        /*
+        ::before 
+        ::after
+        通过css模拟出来的html标签的效果
+        写这两个伪元素，必须要有content属性才行
+        */
+
+        span::before{
+            content: "作词：管启源；作曲：陈子超";
+        }
+
+        span::after{
+            content: "演唱：张栋梁";
+        }
+
+
+
+
+
+        span{
+            border: 1px solid #000;
+        }
+
+    </style>
+</head>
+<body>
+    <span>现在你是怎样的人</span>
+</body>
+</html>

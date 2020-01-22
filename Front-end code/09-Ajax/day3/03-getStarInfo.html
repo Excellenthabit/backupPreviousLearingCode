@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03-getStarInfo</title>
+	<style type="text/css">
+		.imageBox{
+			width: 200px;
+			height: 200px;
+			border: 1px solid #0094ff;
+			margin: 0 auto;
+		}
+
+		.infoBox{
+			border: 1px solid #000;
+			margin: 20px auto;
+			width: 300px;
+			height: 100px;
+		}
+
+		body{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="imageBox"></div>
+	<div class="infoBox"></div>
+	<input type="button" class="btn" value="zdl">
+	<input type="button" class="btn" value="zhj">
+	<input type="button" class="btn" value="ts">
+</body>
+</html>
+<script type="text/javascript">
+	var btnArr = document.querySelectorAll('.btn');
+	for(var i=0;i<btnArr.length;i++){
+		btnArr[i].onclick = function () {
+			// ajax五部曲(使用post方法)
+			var ajax = new XMLHttpRequest();
+
+			//使用post
+			ajax.open('post','03-getStarInfo.php');
+
+			//必须要设置  请求报文
+			ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			//发送请求  name=zdl
+			ajax.send('name='+this.value);
+
+			//注册事件
+			ajax.onreadystatechange = function () {
+				if (ajax.readyState==4 && ajax.status==200) {
+					//将返回的字符串分割成数组，分隔符是 |
+					var strArr = ajax.responseText.split('|');
+					console.log(strArr);
+
+					// 从数组中取出不同的值设置给不同的dom元素即可
+					// 背景图片
+					document.querySelector('.imageBox').style.background = 'url('+strArr[0]+') no-repeat center/cover';
+
+					//显示文本信息
+					document.querySelector('.infoBox').innerHTML = strArr[1];
+				}
+			}
+		}
+	}
+</script>

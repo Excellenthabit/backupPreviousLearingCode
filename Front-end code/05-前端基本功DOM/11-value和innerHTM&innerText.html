@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-value和innerHTM&innerText</title>
+</head>
+<body>
+
+<input id="a1" type="text" value="大家好才是真的好！">
+
+<div id="a2">有梦就去追活得漂亮！
+    <div id="a3">为未来加油！</div>
+</div>
+<div id="a4">
+    a4
+    <div id="a5">a5</div>
+</div>
+<script>
+    //1.老版本的火狐不支持innerText，支持textContent
+    //2.p不能嵌套p。h1不能嵌套h1。a连接内部不能嵌套a连接
+
+    //value 标签的value属性
+    console.log(document.getElementById("a1"));
+
+    //innerHTML：获取双闭合标签里面的内容。（识别标签）
+    console.log(document.getElementById("a2").innerHTML);
+    document.getElementById("a2").innerHTML="<h1>暖的夕阳，晒在脸上</h1>"
+
+    //innerText：获取双闭合标签里面的内容。（不识别标签）（老版本的火狐用textContent）
+    console.log(document.getElementById("a4").innerText);
+    document.getElementById("a5").innerText="<h2>时间是最好的证明</h2>";
+
+</script>
+</body>
+</html>

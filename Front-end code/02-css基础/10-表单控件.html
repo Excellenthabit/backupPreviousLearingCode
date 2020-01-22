@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	.username{
+        		border:dashed green 1px;
+        		outline-style:none;
+                background:#ccc;
+        	}
+        	.username:focus{
+        		background-color:red;
+        	}
+
+        	.email{
+        		border:0 none; /* 去边框 */
+        		border-bottom: red dotted 1px;
+        		outline-style:none; /* 去掉轮廓线 */
+        	}
+
+        	.search{
+        		background:url('img/search.png') no-repeat right;
+        		outline-style:none;
+        		border:1px solid black;
+        	}
+        </style>
+    </head>
+    <body>
+    	<label for="username">用户名：</label><input type="text" class="username" id="username" size=30px> <br><br>
+    	电子邮箱：<input type="text" class="email" size=30px> <br><br>
+    	搜索一下: <input type="text" class="search" size=30px > <br><br>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20-点亮盒子</title>
+    <style>
+        button{
+            margin: 10px;
+            width: 100px;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .current{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+        <button>0</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+
+     <script>
+         //需求：鼠标放到哪个button上，改button变成黄色背景（添加类）
+         //步骤：
+         //1.获取事件源
+         //2.绑定事件
+         //3.书写事件驱动程序
+
+         var btnArr=document.getElementsByTagName("button");
+         for (var i=0;i<btnArr.length;i++) {
+             btnArr[i].onmouseover=function () {
+                 //排他思想（干掉所有人，就剩我一个）
+                 //排他思想用适合for循环连用
+                 for (var j=0;j<btnArr.length;j++){
+                     //干掉所有，即把所有的样式都干掉
+                     btnArr[j].className="";
+                 }
+                 //就剩我一个，需要哪个就给哪个添加样式
+                 this.className="current";
+             }
+         }
+     </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-层级选择器</title>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            //获取ul中的li设置为粉色,获取ol中的li设置为红色
+            var ulLi = $("ul li");  // 空格 是后代选择器（包括所有子孙元素），这里选取了ul中的所有li标签，包括ol里面的
+            var olLi = $("ul>ol>li"); // > 是子代选择器（只选择直系后代，只管亲儿子，不管孙子）
+            ulLi.css("background","pink");
+            olLi.css("background","red");
+        })
+    </script>
+</head>
+<body>
+<ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <ol>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <ol>
+            <li>test</li>
+        </ol>
+    </ol>
+</ul>
+</body>
+</html>

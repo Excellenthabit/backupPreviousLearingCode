@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>体验AngularJS</title>
+</head>
+<body ng-app>
+
+    <input type="text" ng-model="msg">
+    <h2>{{msg}}</h2>
+    <p>angular js是由Google公司开发维护的前端MVC框架，
+        其克服了HTML在构建应用上的诸多不足，
+        从而降低了开发成本提升了开发效率。
+    </p>
+    <p>
+        angular js以数据和逻辑作为驱动，jQuery以DOM作为驱动。
+        angular减少了对DOM的操作，而jQuery是对DOM操作来实现各种功能。
+    </p>
+    <p>
+        angular js有着诸多特性，最为核心的就是：模块化、双向数据绑定、语义化标签、依赖注入等。
+        与之类似的框架还有BackBone、KnockoutJS、Vue、React等。
+    </p>
+    <p>
+        模型（Model）一般用来处理数据（读取/设置），一般指操作数据库。
+        视图（View）一般用来展示数据，比如通过HTML展示。
+        控制器（Controller）一般用做连接模型和视图的桥梁。
+    </p>
+
+    <!--引入angularJS框架-->
+    <script src="./libs/angular.min.js"></script>
+
+</body>
+</html>

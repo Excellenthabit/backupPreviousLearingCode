@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>16-伪数组和arguments</title>
+</head>
+<body>
+
+<script>
+    // var arr=[5,1,2,3,4];
+    // // //console.log(arr.push(5,6,7,8)); //在数组最后面插入项，返回修改后数组的长度
+    // // //console.log(arr.pop());  //取出数组最后一项并返回最后一项
+    // // //console.log(arr.unshift(9)); //在数组最前面插入项并返回修改后的数组长度
+    // // //console.log(arr.shift());//取出数组中的第一个元素，返回原来数组中的第一个值
+    // // //console.log(arr.reverse());//翻转数组
+    //
+    // //sort();无参：按照数组元素的首字符对应的Unicode编码值从小到大排列数组元素。
+    // console.log(arr.sort(function (a, b) {
+    //     //return a - b;  //升序排列
+    //     return b - a;  //降序排列
+    // }));
+
+    fn(1,3);
+    function fn(a,b) {
+        //arguments只在函数中使用，实参的数组
+        console.log(arguments); //打印的是[1,3]
+        arguments[0]=0; //伪数组支持修改元素，不支持修改数组长度
+        console.log(arguments); //打印的是[0,3]
+        // arguments.push(1);   //报错因为伪数组不支持修改数组长度
+        console.log(arguments instanceof Array); //输出结果false，伪数组并不是真正的数组
+        console.log(fn.length);  //形参个数
+        console.log(arguments.length);  //实参个数
+        //aruments.callee  整个函数，整个函数名
+        console.log(arguments.callee);  //打印整个函数
+    }
+</script>
+
+</body>
+</html>

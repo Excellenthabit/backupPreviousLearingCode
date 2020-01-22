@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js千分位处理</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function commafy(num) {
+        return num && num
+            .toString()
+            .replace(/(\d)(?=(\d{3})+\.)/g,function ($0,$1) {
+                return $1 + ",";
+        });
+    }
+    console.log(commafy(1234567.90));
+</script>

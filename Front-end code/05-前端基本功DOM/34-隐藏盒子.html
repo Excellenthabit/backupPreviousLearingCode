@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>34-隐藏盒子</title>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        //需求：点击盒子，盒子就隐藏起来
+        var box = document.getElementsByClassName("box")[0];
+        box.style.cssText = "width:300px;height:300px;background-color:burlywood;"
+        box.onclick = function () {
+            this.style.display = "none"; //隐藏后不再占据原来的位置
+            //this.style.opacity="0";   //仍占据原来的位置
+            //this.style.visibility="hidden"; //仍占据原来的位置
+            //this.style.position = "absolute";
+            //this.style.top = "-300px";
+        }
+    </script>
+</body>
+</html>

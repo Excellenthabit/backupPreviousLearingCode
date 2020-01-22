@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-全屏切换</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html,body{
+            height: 100%;
+        }
+
+        body{
+            /*清除点击第三个a链接时动画效果产生的黑边*/
+            overflow: hidden;
+        }
+
+        .picture{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .picture img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .picture img:target{
+            z-index: 6;
+        }
+
+        .picture img:nth-child(1){
+            z-index: 1;
+        }
+
+        .picture img:nth-child(1):target{
+            animation: showLeft 1s;
+        }
+
+        .picture img:nth-child(2):target{
+            animation: showTop 1s;
+        }
+
+        .picture img:nth-child(3):target{
+            animation: rot 1s;
+        }
+
+        ul{
+            position: absolute;
+            z-index: 1;
+            width: 300px;
+            height: 80px;
+            left: 50%;
+            bottom: 20px;
+            margin-left: -150px;
+        }
+
+        ul li{
+            float: left;
+        }
+
+        ul li a{
+            display: block;
+            width: 80px;
+            height: 80px;
+            background-color:lightskyblue;
+            border-radius:50%;
+            text-align: center;
+            line-height: 80px;
+            font-size: 30px;
+            color: yellow;
+            text-decoration:none;
+            margin-left: 20px;
+        }
+
+        @keyframes showLeft {
+            from{
+                transform:translateX(-2000px);
+            }
+            to{
+                transform:translateX(0px);
+            }
+        }
+
+        @keyframes rot {
+            from{
+                transform:scale(0.5) rotate(245deg);
+            }
+            to{
+                transform:scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes showTop {
+            from{
+                transform:translateY(-1000px);
+            }
+            to{
+                transform:translateY(0px);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+      <div class="picture">
+          <img src="images/bg2.jpg" id="img1">
+          <img src="images/bg3.jpg" id="img2">
+          <img src="images/bg5.jpg" id="img3">
+      </div>
+      <ul>
+          <li><a href="#img1">1</a></li>
+          <li><a href="#img2">2</a></li>
+          <li><a href="#img3">3</a></li>
+      </ul>
+
+</body>
+</html>

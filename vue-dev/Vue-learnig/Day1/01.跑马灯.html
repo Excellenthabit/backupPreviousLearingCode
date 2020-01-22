@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跑马灯效果</title>
+	<style>
+		body{
+			background: lightblue;
+		}
+	</style>
+</head>
+<body>
+		<div id="app">
+			<h2>{{ msg1 }}</h2>
+			<p>{{ msg2 }}</p>
+			<input type="button" value="滚动起来" @click='roll'>
+			<input type="button" value="停止" @click='stop'>
+		</div>		
+</body>
+</html>
+<script src='./lib/vue.min.js'></script>
+<script>
+	 var app = new Vue({
+		el:'#app',
+		data:{
+			msg1:'使用vue.js实现跑马灯效果',
+			msg2:'守得云开见月明，最好的快要发生！',
+			intervalId:null //在data上定义定时器
+		},
+		methods:{
+			// 使用了es6语法 箭头函数
+			roll(){
+				// 开始前先判断定时器是否为空
+				if (this.intervalId != null) return;
+				this.intervalId = setInterval( () => {
+					//获取第一个字符串
+					var start = this.msg2.substring(0,1);
+					//获取后面所有的字符串
+					var end = this.msg2.substring(1);
+					// 重新拼接字符串
+					this.msg2 = end + start;
+				},100)
+			},
+
+			stop(){
+				// 清除定时器
+				clearInterval(this.intervalId);
+				// 清除定时器后重新给定时器置为null
+				this.intervalId = null;
+			}
+
+		}
+	})
+</script>

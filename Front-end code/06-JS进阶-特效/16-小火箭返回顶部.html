@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>16-小火箭返回顶部</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: rgba(123,123,123,0.2);
+        }
+        img{
+            position: fixed;
+            bottom: 100px;
+            right: 50px;
+            cursor: pointer;
+            display: none;
+            border: 1px solid red;
+        }
+        div{
+            width: 1210px;
+            margin: 100px auto;
+            text-align: center;
+            font: 500 26px/50px "simsun";
+            color: darkorange;
+        }
+    </style>
+    <script src="demo.js"></script>
+    <script>
+        window.onload = function () {
+            //需求：被卷去的头部超过100显示小火箭，然后点击小火箭屏幕缓慢移动到最顶端。
+            //难点：我们以前是移动盒子，现在是移动屏幕，我们没有学过如何移动屏幕。
+            //技术点：window.scrollTo(x,y);浏览器显示区域跳转到指定的坐标
+            var img = document.getElementsByTagName("img")[0];
+            window.onscroll = function () {
+                //判断被卷去的头部距离大于200就显示小火箭，否则隐藏小火箭
+                //显示与隐藏小火箭
+                if (scroll().top>200){
+                    img.style.display = "block";
+                } else {
+                    img.style.display = "none";
+                }
+                //每次移动滚动条的时候都给temp赋值，模拟temp获取距离顶部的距离
+                temp = scroll().top;
+            }
+
+            var timer = null;
+            var temp = 0; //显示区域自身的位置
+            var target = 0;//目标位置
+
+            //点击小火箭 缓慢跳转到页面最顶端
+            //绑定点击事件
+            img.onclick = function () {
+                //技术点： window.scrollTo(0,0);
+                //要用定时器，先清定时器
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    var step = (target-temp)/10;
+                    step = step>0?Math.ceil(step):Math.floor(step);
+                    temp += step;
+                    //显示区域移动
+                    window.scrollTo(0,temp);
+                    //清除定时器
+                    if (temp === 0){
+                        clearInterval(timer);
+                    }
+                },20)
+            }
+
+        }
+    </script>
+</head>
+<body>
+   <img src="images/backToTop.jpg" title="点击返回顶部" >
+    <div>
+        <h1>《人生没有如果》</h1>
+        繁忙的大街 <br>
+        没表情的脸 我活在今天 <br>
+        跟回忆缠绵 迷路的少年 <br>
+        已经不再抱怨 <br>
+        爱情像一只蝴蝶 <br>
+        脆弱却让人想念 <br>
+        它总是忽隐忽现 <br>
+        我心中的花园 <br>
+        向昨天告别 <br>
+        跟伤口和解 别哭丧着脸 <br>
+        我不再扮演 青春的少年 <br>
+        你也不必留恋 <br>
+        走过不安的岁月 <br>
+        牺牲多少的睡眠 <br>
+        终于对快乐不再贪得无厌 <br>
+        人生没有如果 比如说 <br>
+        换另一种生活 有什么结果 <br>
+        人生没有如果 比如说 <br>
+        没有参考星座 会不会落魄 <br>
+        只能放手一搏 <br>
+        拥挤的地铁 <br>
+        多少梦浮现 多少梦幻灭 <br>
+        喜欢去海边 冲浪的少年 <br>
+        总算学会妥协 <br>
+        无伤大雅的谎言 <br>
+        微笑应对着敷衍 <br>
+        终于学会用温柔 <br>
+        对抗世界 <br>
+        人生没有如果 比如说 <br>
+        换另一种生活 有什么结果 <br>
+        人生没有如果比如说 <br>
+        没有参考星座 会不会落魄 <br>
+        偶尔挂念那些深夜 <br>
+        理想很远怎么实现 <br>
+        人生没有如果 比如说 <br>
+        重新让你选过 你会选什么 <br>
+        人生没有如果 比如说 <br>
+        没有参考星座 会不会落魄 <br>
+        只能放手一搏 <br>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-动画属性详解 </title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: deepskyblue;
+            margin: 100px;
+            /*animation: dongHua 2s 3 alternate linear;*/
+            /*animation属性详解*/
+
+            /*动画名称*/
+            animation-name: dongHua;
+
+            /*一次动画持续时间  （ps：动画名称和一次动画持续时间这两个属性为必写的，而且顺序固定，*/
+            /*这两个属性后面的属性可写可不写，顺序也不固定）*/
+            animation-duration: 1s;
+
+            /*动画执行次数  infinite为无数次*/
+            animation-iteration-count: 3;
+
+            /*动画的方向  normal正常 alternate 反向*/
+            animation-direction: alternate;
+
+            /*动画延迟执行*/
+            animation-delay: 1s;
+
+            /*设置动画结束盒子的状态*/
+            /*forwards  保持动画结束后的状态*/
+            /*backwards 保持动画开始前的状态（这个是默认值）*/
+            animation-fill-mode: forwards;
+
+            /*运动曲线
+            linear ease-in-out steps() and so on*/
+            animation-timing-function: steps(5);
+
+
+        }
+
+        @keyframes dongHua {
+            0%{
+
+            }
+            100%{
+                transform:translateX(500px) rotate(388deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+html body{
+    margin: 0;
+    padding: 0;
+    li{
+        font-size:20px;
+        line-height: 30px;
+    }
+    .box{
+        margin: 10px auto;
+        width: 280px;
+        height: 280px;
+        background-color: pink;
+        //默认情况下，webpack无法处理css中的url地址，不管是图片还是字体库，只要是url地址都无法处理
+        //如果要处理url路径，需要添加 url-loader file-loader
+        background: url('../images/github.png') no-repeat;
+    }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18-动画之滑入和滑出</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            display: none;
+            background-color: pink;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+
+            //滑入动画  4种使用方法 与show（）方法同理，参数一样
+            //通过控制高度和display
+            $("button:eq(0)").click(function () {
+                //$("div").slideDown();  // 1 不加参数
+                //$("div").slideDown(2000);// 2 毫秒值
+                //$("div").slideDown("slow"); // 3 字符串
+                $("div").slideDown(2000,function () {
+                    alert(520);
+                });  // 毫秒值，回调函数
+            });
+
+            //滑出动画  4种使用方法 与show（）方法同理，参数一样
+            //通过控制高度和display
+            $("button:eq(1)").click(function () {
+                //$("div").slideUp();  // 1 不加参数
+                //$("div").slideUp(2000);// 2 毫秒值
+                //$("div").slideUp("slow"); // 3 字符串
+                $("div").slideUp(2000,function () {
+                    alert(520);
+                }); // 毫秒值，回调函数
+            });
+
+            //滑入滑出动画切换 4种使用方法 与show（）方法同理，参数一样
+            //通过控制高度和display
+            $("button:eq(2)").click(function () {
+                //$("div").slideToggle();  // 1 不加参数
+                //$("div").slideToggle(2000);// 2 毫秒值
+                //$("div").slideToggle("slow"); // 3 字符串
+                $("div").slideToggle(2000,function () {
+                    alert(520);
+                }); // 毫秒值，回调函数
+            });
+
+        })
+    </script>
+</head>
+<body>
+        <button>滑入</button>
+        <button>滑出</button>
+        <button>切换</button>
+        <div></div>
+</body>
+</html>

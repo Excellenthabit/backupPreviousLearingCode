@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>what css is?</title>
+	<link  rel="icon" href="../html基础/img/s9.jpg">
+    <style type="text/css">
+        /*标签选择器*/
+    	div{
+    		width:1000px;height:500px;background-color:#666;font-size: 50px;
+    	   }
+
+    	   /*类选择器*/
+    	  .box{
+    	  	font-size: 60px;
+    	  	background-color: yellow;
+    	  }
+
+    	  .miss{
+    	  	text-indent: 2em;/*首行缩进*/
+    	  }
+
+	      .kiss{
+	      	text-align: center;
+	      }
+
+          .G{
+          	font-size: 100px;
+          	color: blue;
+          }
+
+          .o1{
+          	font-size: 100px;
+          	color: red;
+          }
+
+          .o2{
+          	font-size: 100px;
+          	color: orange;
+          }
+
+          .g1{
+          	font-size: 100px;
+          	color: blue;
+          }
+
+          .l{
+          	font-size: 100px;
+          	color: green;
+          }
+
+          .e{
+          	font-size: 100px;
+          	color: red;
+          }
+
+	      /*ID选择器*/
+	      #nf{
+	      	width: 1000px;height: 200px;
+	      	background-color: rgba(210,100,66,0.5);
+	      	font-family: microsoft yahei;
+	      }
+
+	      /*通配符选择器，其特点是给所有的标签都使用相同的样式。
+	      不推荐使用，因为会增加浏览器和服务器的负担*/
+	      *{
+	      	background-color: pink;
+	      }
+    </style>
+    
+
+
+</head>
+<body>
+	<div >cascading style sheets
+		<br>层叠样式表</div>
+
+	<div class="box miss kiss">燃烧我的卡路里</div>
+	<div id="nf">燃烧我的卡路里</div>
+	<span class="G">G</span>  <!-- span能让文本在同一行显示 -->
+	<span class="o1">o</span>
+	<span class="o2">o</span>
+	<span class="g1">g</span>
+	<span class="l">l</span>
+	<span class="e">e</span>
+
+</body>
+</html>

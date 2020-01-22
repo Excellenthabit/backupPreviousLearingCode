@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10-无缝滚动</title>
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .gallery {
+            width: 882px;
+            height: 86px;
+            margin: 200px auto;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+
+        ul{
+            width: 1764px;
+            height: 86px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            position: absolute;
+            left: 0;
+            animation: move 7s linear infinite;
+        }
+
+        ul li{
+            float: left;
+            font-size: 0;
+        }
+
+        @keyframes move {
+            from{
+                transform: translate(0);
+            }
+            to{
+                transform: translate(-882px);
+            }
+        }
+
+        ul:hover{
+            /*控制动画状态 paused暂停 running播放*/
+            animation-play-state: paused;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <ul>
+            <li><img src="images/1.jpg"></li>
+            <li><img src="images/2.jpg"></li>
+            <li><img src="images/3.jpg"></li>
+            <li><img src="images/4.jpg"></li>
+            <li><img src="images/5.jpg"></li>
+            <li><img src="images/6.jpg"></li>
+            <li><img src="images/7.jpg"></li>
+            <li><img src="images/1.jpg"></li>
+            <li><img src="images/2.jpg"></li>
+            <li><img src="images/3.jpg"></li>
+            <li><img src="images/4.jpg"></li>
+            <li><img src="images/5.jpg"></li>
+            <li><img src="images/6.jpg"></li>
+            <li><img src="images/7.jpg"></li>
+        </ul>
+    </div>
+</body>
+</html>

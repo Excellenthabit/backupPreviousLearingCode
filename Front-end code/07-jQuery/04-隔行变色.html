@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-隔行变色</title>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        //需求；隔行变色；鼠标放进去还要变色。
+        $(function () {
+            var li1 = $("li:odd"); //获取索引值为奇数的行数，实际上就是偶数行
+            var li2 = $("li:even");//获取索引值为偶数的行数，实际上就是奇数行
+            //隔行变色
+            li1.css("background","burlywood");
+            li2.css("background","pink");
+
+            //鼠标进入变色，移开恢复原来的颜色
+            //首先要获取鼠标进入之前的颜色
+            var firstBgc = "";
+            $("li").mouseenter(function () {
+                firstBgc = $(this).css("background");//记录原来的颜色
+                $(this).css("background","yellow");
+            });
+            //移开鼠标恢复原来的颜色
+            $("li").mouseleave(function () {
+                $(this).css("background",firstBgc);
+            });
+        })
+    </script>
+</head>
+<body>
+<ul>
+    <li>hello world!</li>
+    <li>hello world!</li>
+    <li>hello world!</li>
+    <li>hello world!</li>
+    <li>hello world!</li>
+    <li>hello world!</li>
+    <li>hello world!</li>
+    <li>hello world!</li>
+</ul>
+</body>
+</html>

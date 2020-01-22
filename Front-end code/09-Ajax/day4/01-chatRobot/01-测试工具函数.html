@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01-测试工具函数</title>
+</head>
+<body>
+	<input type="button" value="测试工具函数">
+	<ul>
+		<li>我爱吃菠菜面1</li>
+		<li>我爱吃菠菜面2</li>
+		<li>我爱吃菠菜面3</li>
+		<li>我爱吃菠菜面4</li>
+		<li>我爱吃菠菜面5</li>
+		<li>我爱吃菠菜面6</li>
+		<li>我爱吃菠菜面7</li>
+		<li>我爱吃菠菜面8</li>
+		<li>我爱吃菠菜面9</li>
+		<li>我爱吃菠菜面10</li>
+	</ul>
+</body>
+</html>
+<script type="text/javascript" src="ajax_tool_pro.js"></script>
+<script type="text/javascript">
+	document.querySelector('input').onclick=function () {
+		ajax_tool_pro({
+			method:"get",
+			success:function (data) {
+				console.log(data);
+			},
+			data:undefined,
+			url:"01test.php"
+		})
+	}
+</script>
+

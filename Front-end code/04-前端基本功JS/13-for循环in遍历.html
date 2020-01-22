@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13-for循环in遍历</title>
+</head>
+<body>
+<script>
+    //对象没有length属性，所以不能使用for循环遍历，要使用 for ... in 循环
+    var json = {"name":"fdq","age":22,"height":"176cm","weight":"64kg"};
+    for ( var k in json){
+        console.log(k);  //在这里打印的是json.k只是json这个对象对性k属性的值，而不是k对应值的属性
+        // console.log(json[k]); // json[k],代表的是json这个对象中k这个变量对应的属性值
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>19-给元素查索引</title>
+</head>
+<body>
+<script>
+
+    var arr = [1,2,3,4,5,6,7,8,9,10];
+    //   indexOf()、lastIndexOf() 如果没找到返回-1，都不会改变原数组
+    // indexOf() 从前往后查
+    console.log(arr.indexOf("9"));  // 没找到，返回-1
+    console.log(arr.indexOf(9));    //返回8
+
+    //lastIndexOf() 从后往前查，查找到立刻返回索引值
+    console.log(arr.lastIndexOf("10")); //没找到返回-1
+    console.log(arr.lastIndexOf(1)); // 返回0
+
+</script>
+</body>
+</html>

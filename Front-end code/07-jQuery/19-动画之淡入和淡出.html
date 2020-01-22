@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>19-动画之淡入和淡出</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            display: none;
+            background-color: pink;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+
+            //淡入入动画  4种使用方法 与show（）方法同理，参数一样
+            //通过控制  透明度和display
+            $("button:eq(0)").click(function () {
+                //$("div").fadeIn();  // 1 不加参数
+                //$("div").fadeIn(2000);// 2 毫秒值
+                //$("div").fadeIn("slow"); // 3 字符串
+                $("div").fadeIn(2000,function () {
+                    alert("fadeIn");
+                });  // 毫秒值，回调函数
+            });
+
+            //滑出动画  4种使用方法 与show（）方法同理，参数一样
+            //通过控制  透明度和display
+            $("button:eq(1)").click(function () {
+                //$("div").fadeOut();  // 1 不加参数
+                //$("div").fadeOut(2000);// 2 毫秒值
+                //$("div").fadeOut("slow"); // 3 字符串
+                $("div").fadeOut(2000,function () {
+                    alert("fadeOut");
+                }); // 毫秒值，回调函数
+            });
+
+            //滑入滑出动画切换 4种使用方法 与show（）方法同理，参数一样
+            //通过控制  透明度和display
+            $("button:eq(2)").click(function () {
+                //$("div").fadeToggle();  // 1 不加参数
+                //$("div").fadeToggle(2000);// 2 毫秒值
+                //$("div").fadeToggle("slow"); // 3 字符串
+                $("div").fadeToggle(2000,function () {
+                    alert("fadeToggle");
+                }); // 毫秒值，回调函数
+            });
+
+
+
+            //改变透明度到某个值
+            // 与淡入淡出的区别：淡入淡出只能控制元素的不透明度从 完全不透明 到完全透明；
+            // 而fadeTo可以指定元素不透明度的具体值。并且时间参数是必需的！
+            // 作用：调节匹配元素的不透明度
+
+            // 用法有别于其他动画效果
+            // 第一个参数表示：时长(这个参数不写的话会报错)
+            // 第二个参数表示：不透明度值，取值范围：0-1
+            // $(selector).fadeTo(1000, .5); //  0全透，1全不透
+            // 第一个参数为0，此时作用相当于：.css(“opacity”, .5);
+            // $(selector).fadeTo(0, .5);
+
+
+            //  4种写法，注意第一个参数必须要写
+            $("button:eq(3)").click(function () {
+                //$("div").fadeTo(0,0.3);
+                $("div").fadeTo("slow",0.3);
+                // $("div").fadeTo(2000,0.3,function () {
+                //     alert("ok");
+                // });
+                //$("div").fadeTo(); //不起作用
+            });
+
+        })
+    </script>
+</head>
+<body>
+        <button>淡入</button>
+        <button>淡出</button>
+        <button>切换</button>
+        <button>改透明度为0.3</button>
+        <div></div>
+</body>
+</html>

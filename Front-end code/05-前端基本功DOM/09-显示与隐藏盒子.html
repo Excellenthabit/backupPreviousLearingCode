@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-显示与隐藏盒子</title>
+    <style>
+        button{
+            margin: 10px;
+        }
+        div{
+            width: 300px;
+            text-align: center;
+            background: #fff555;
+        }
+        .show{
+            display:block;
+        }
+        .hide{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+
+      <button id="btn">隐藏</button>
+      <div>
+           暖的夕阳，晒着脸庞 <br>
+           算不上辉煌的青春期 <br>
+           回望时我打开洗衣机 <br>
+           我多希望能够回去   <br>
+           哪怕十六七        <br>
+           可担心的是遇不到你 <br>
+          《长白山》——王啸坤 <br>
+      </div>
+</body>
+</html>
+<script>
+    //需求：点击button,隐藏盒子。改变文字，在点击按钮，显示出来。
+    var button=document.getElementById("btn");
+    var div=document.getElementsByTagName("div")[0];
+    button.onclick=function () {
+        //判断鼠标点击btn时，btn里面的innerHTML属性值，如果为“隐藏”就隐藏盒子，否则显示盒子
+        if (this.innerHTML==="隐藏"){
+            div.className="hide";
+            button.innerHTML="显示";//修改文字
+        } else{
+            div.className="show";
+            button.innerHTML="隐藏";//修改文字
+        }
+
+    }
+</script>

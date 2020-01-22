@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-拖拽事件</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box" draggable="true"></div>
+    <script>
+        //在HTML5的规范中，我们可以通过为元素增加draggable="true"
+        //来设置此元素是否可以进行拖拽操作，其中图片、链接默认是开启的。
+
+        var box = document.querySelector('.box');
+        // ondragstart拖拽开始
+        box.ondragstart = function () {
+            console.log('拖拽开始');
+        }
+
+        // ondragend 拖拽结束
+        box.ondragend = function () {
+            console.log('拖拽结束');
+        }
+
+        // ondrapleave 拖拽离开:鼠标拖拽时离开被拖拽的元素时触发
+        box.ondragleave = function () {
+            console.log('拖拽离开');
+        }
+
+        // ondrag 拖拽：只要被拖拽就会触发
+        box.ondrag = function () {
+            console.log('拖拽ing');
+        }
+
+
+    </script>
+</body>
+</html>

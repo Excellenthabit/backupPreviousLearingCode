@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13-scroll()的封装</title>
+    <style>
+        body{
+            width: 5000px;
+            height: 5000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+
+        window.onscroll = function () {
+            console.log(scroll2().top);
+        }
+
+
+        //需求：封装一个兼容的scroll().返回值是json，用scroll().top获取scrollTop
+        //需求：封装一个兼容的scroll().返回值是json，用scroll().left获取scrollLeft
+
+        //练习使用此种封装方法（复杂，了解原理使用）
+        function scroll1() {
+            if (window.pageYOffset !== undefined){
+                return{
+                    "top":window.pageYOffset,
+                    "left":window.pageXOffset
+                };
+            }else if (document.compatMode === "CSS1Compat"){
+                return{
+                    "top":document.documentElement.scrollTop,
+                    "left":document.documentElement.scrollLeft
+                };
+            } else{
+                return{
+                    "top":document.body.scrollTop,
+                    "left":document.body.scrollLeft
+                };
+            }
+        }
+
+        //简单封装方法（实际工作中使用）
+        function scroll2() {
+            return {
+                "top": window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
+                "left":  window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>

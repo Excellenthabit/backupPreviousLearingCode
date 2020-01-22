@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>30-改变盒子的大小和透明度</title>
+</head>
+<body>
+    <div style="width: 200px;height: 200px;background: burlywood;"></div>
+    <script>
+        var div=document.getElementsByTagName("div")[0];
+        div.onmouseover=function () {
+            div.style.width="600px";
+            div.style.height="600px";
+            div.style.backgroundColor="black";
+            div.style.opacity="0.2";  //透明度修改为0.2
+            //写下面这句为了兼容ie老古董版本
+            div.style.filter="alpha(opacity=20)"; //不透明度修改为0.2（20%） ，这里要用百分数，只写%前面的数值
+
+        }
+    </script>
+</body>
+</html>

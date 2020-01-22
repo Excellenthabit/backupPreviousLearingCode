@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-DOM拓展</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 100px;
+            margin:10px auto;
+            border: 1px solid #000;
+            background: #cccccc;
+        }
+        .current{
+            background: red;
+            width: 300px;
+            height: 100px;
+            margin:10px auto;
+            border: 1px solid #000;
+            border-radius:50%;
+        }
+    </style>
+
+</head>
+<body>
+        <button>切换类</button>
+        <div class="box box1" id="box1"></div>
+        <div class="box box3 "></div>
+        <div class="box box3"></div>
+        <div class="box box4"></div>
+        <div class="box" title="测试盒子" data-my-name="fdq"></div>
+
+        <script>
+            // 1、document.getElementsByClassName ('class') 通过类名获取元素，以类数组形式存在。
+            // 2、document.querySelector(‘div’) 通过CSS选择器获取元素，符合匹配条件的第1个元素。
+            // 3、document.querySelectorAll('selector') 通过CSS选择器获取元素，以类数组形式存在。
+            // var box1 = document.querySelector(".box"); //document.querySelector 只会获取符合条件的第一个元素
+            // box1.style.backgroundColor = 'yellow';
+            var divs = document.querySelectorAll("div.box"); //会获取所有符合条件的标签，返回的是一个数组。参数：可以是任意css选择器
+            // for (var i=0;i<divs.length;i++){
+            //     divs[i].style.backgroundColor = "burlywood";
+            // }
+
+            //类名操作
+            // 1、Node.classList.add('class') 添加class
+            // 2、Node.classList.remove('class') 移除class
+            // 3、Node.classList.toggle('class') 切换class，有则移除，无则添加
+            // 4、Node.classList.contains('class') 检测是否存在class,返回值布尔类型
+            // Node指一个有效的DOM节点，是一个通称。
+
+            for (var i=2;i<divs.length;i++){
+                divs[i].classList.remove('box');  //移除 box 类
+                divs[i].classList.add('current');  //添加 current 类
+            }
+
+
+            document.querySelector("button").onclick = function () {
+                divs[0].classList.toggle("current");  //切换类，原来有就删除，没有就添加
+                console.log(divs[0].classList.contains("current"));  // ，检测是否存在current类，返回布尔类型值
+            }
+
+            //在HTML5中我们可以自定义属性，其格式如下data-*=""，例如
+            // data-info="我是自定义属性"，通过Node.dataset['info'] 我们便可以获取到自定义的属性值。
+            // Node.dataset是以类对象形式存在的
+            // 当我们如下格式设置时，则需要以驼峰格式才能正确获取
+            // data-my-name="itcast"，获取Node.dataset['myName']
+
+            var div5 = divs[4];
+            // console.log(div5);
+            //自定义属性
+            div5.dataset['content'] = 'hello world';
+
+            //获取自定义属性
+            console.log(div5.dataset['content']); //hello world
+
+            console.log(div5.dataset['myName']); //fdq
+            console.log(div5.dataset['my-name']); //undefined
+
+        </script>
+</body>
+</html>

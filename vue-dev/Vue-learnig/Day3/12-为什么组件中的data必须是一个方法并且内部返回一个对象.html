@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>为什么组件中的data必须是一个方法</title>
+</head>
+<body>
+
+    <div id='app'>
+        <counter></counter>
+        <hr>
+        <counter></counter>
+        <hr>
+        <counter></counter>
+    </div>
+
+    <template id="tmp">
+        <div>
+            <input type="button" value="+1" @click='increment'>
+            <h3>{{count}}</h3>
+        </div>
+    </template>
+
+</body>
+</html>
+<script src="./lib/vue.js"></script>
+<script>
+    var dataObj = { count: 0 }
+    //这是一个计数器组件，它上面有个按钮，每当点击按钮，让data中的count自增1
+    Vue.component('counter',{
+        template:'#tmp',
+        data:function(){
+            // return dataObj  //这里直接返回这个dataObj，每个组件都会共享这个数据，点击任意一个按钮，所有的count都会自增1
+            return{
+                count:0  //这样写才对，每次引用一次组件，都会返回一个count：0初始化，而不是所有的组件都共享数据
+            }
+        },
+        methods:{
+            increment(){
+                this.count++
+            }
+        }
+    })
+
+
+    var vm = new Vue({
+         el:'#app',
+         data:{},
+         methods:{}
+    })
+
+</script>

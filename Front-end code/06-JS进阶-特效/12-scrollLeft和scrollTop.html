@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12-scrollLeft和scrollTop</title>
+    <style>
+        body{
+            width: 5000px;
+            height: 5000px;
+            background: rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+            // //网页，被浏览器遮挡的头部和左边部分。
+            // //scrollTop：网页被卷去的头部
+            // //scrollLeft：网页被卷去的头部
+            // //有兼容问题
+            window.onscroll = function () {
+                //document.title = document.body.scrollTop + "  "+document.body.scrollLeft;
+
+                //没有dtd约束的   未声明 DTD（谷歌只认识他）
+               //document.title = document.body.scrollTop + "  "+document.body.scrollLeft;
+
+               //有dtd约束的     已经声明DTD（IE678只认识他）
+               //document.title = document.documentElement.scrollTop + "  "+document.documentElement.scrollLeft;
+
+
+               //兼容写法
+               //document.title = document.body.scrollTop || document.documentElement.scrollTop;
+               // document.title = document.body.scrollTop + document.documentElement.scrollTop;
+
+                //火狐/谷歌/ie9+以上支持的 window.pageYOffset; window.pageXOffset;
+               document.title = window.pageYOffset;
+               document.title = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
+            }
+
+
+               //  判断页面有没有DTD
+               //  document.compatMode === "BackCompat"
+               //  BackCompat  未声明
+               //  CSS1Compat  已经声明
+               //  注意大小写
+                alert(document.compatMode);
+
+
+    </script>
+
+</body>
+</html>

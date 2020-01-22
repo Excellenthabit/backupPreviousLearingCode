@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>05块元素</title>
+	<style type="text/css">
+	/*块元素转行内元素*/
+		p{
+			display: inline;
+		}
+		div{
+			display: inline;
+		}
+		h1{
+			display: inline;
+		}
+
+
+		/*行内元素转块元素*/
+		span{display: block;}
+		a{display: block;}
+		strong{display: block;}
+		em{display: block;}
+		del{display: block;}
+		ins{display: block;}
+	</style>
+</head>
+<body>
+
+<!-- 块元素特点：独占一行，可以设置宽高，嵌套（包含）下字块元素宽度（没有定义情况下）和父块元素宽度默认一致 -->
+
+<div>块元素</div>
+<p>块元素</p>
+<h1>块元素</h1>
+
+<hr>
+
+<!-- 行内元素特点：在一行显示，不能设置宽高，元素的宽和高就是内容撑开的宽高 -->
+<span>行内元素</span>
+<a href="#">行内元素</a>
+<strong>行内元素</strong>
+<em>行内元素</em>
+<del>行内元素</del>
+<ins>行内元素</ins>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15-复习数组和简单的API</title>
+</head>
+<body>
+
+<script>
+
+  // //定义数组
+  //    var arr1 = [1,2,3,4,5,6]; //method 1
+  //    var arr2 = new Array(1,2,3,4,5,6); // method 2
+  // // console.log(arr1);
+  // // console.log(arr2);
+  // //定义字符串
+  //   var str1 = "nicholasfung"; //method 1
+  //   var str2 = new String("nicholas"); // method 2
+  //   // console.log(arr1 instanceof Array); //判断arr1是否为数组，返回值是true或false
+  //   // console.log(arr2 instanceof Array);
+  //   // console.log(str1 instanceof String); //判断str1是否为字符串，返回值是true或false
+  //   // console.log(str2 instanceof Array);
+  //   // console.log(Array.isArray(arr1));  // 判断arr1是否是数组
+  //   //数组转换
+  //   console.log(arr1);
+  //   console.log(arr1.toString()); //数组转字符串
+  //   console.log(typeof arr1.toString());  //判断上述转换后是什么数据类型    结果是string
+  //   console.log(arr1.valueOf());        //valueOf() 方法返回 Array 对象的原始值,不改变原始数组
+  //   console.log(typeof arr1.valueOf());  //判断上述转换后是什么数据类型  结果是object
+  var arr3=["Jcak","Lisa","Nico","Rachel"];
+  //join()就是把数组元素根据特殊连接符连接成字符串
+  var str1=arr3.join();  //()里为空，还是默认的逗号
+  var str2=arr3.join("."); //(".") 用.连接起来
+  var str3=arr3.join("&");// ("&")  用&连接起来
+  var str4=arr3.join(""); // 无缝连接，即把原来每个数组元素无缝连接在一块，没有分隔符
+  console.log(str1);
+  console.log(str2);
+  console.log(str3);
+  console.log(str4);
+
+</script>
+
+</body>
+</html>

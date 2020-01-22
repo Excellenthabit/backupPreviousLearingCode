@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-过渡体验</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+
+            /*过渡属性 transition*/
+            /*如果多个过渡，特性是一样的，可以简写*/
+            /*transition: 过渡属性 持续时间 运动曲线 延迟时间*/
+            transition: all 2s linear 1s;
+
+            /*ps：过渡必须给盒子本身*/
+        }
+
+        .box:hover{
+            width: 400px;
+            height: 400px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

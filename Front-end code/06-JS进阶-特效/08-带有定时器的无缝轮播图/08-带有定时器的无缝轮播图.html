@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-带有定时器的无缝轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: 0;
+        }
+        .content{
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            border: 1px solid darkorange;
+            margin: 100px auto 0;
+            position: relative;
+        }
+        .screen{
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .screen li{
+            width: 500px;
+            height: 200px;
+            overflow:hidden;
+            float: left;
+        }
+        .screen ul{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3000px;
+        }
+        .screen ul img{
+            width: 500px;
+            height: 200px;
+        }
+        .content ol{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+        }
+        .content ol li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor:pointer;
+        }
+        .content .screen ol li.current{
+            background-color: yellow;
+        }
+        .sp{
+            display: none;
+        }
+        .sp span{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            text-align: center;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+        .sp #right{
+            right: 5px;
+            left: auto;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="content" id="content">
+        <div class="screen">
+            <ul>
+                <li><img src="images/1.jpg"></li>
+                <li><img src="images/2.jpg"></li>
+                <li><img src="images/3.jpg"></li>
+                <li><img src="images/4.jpg"></li>
+                <li><img src="images/5.jpg"></li>
+            </ul>
+            <ol></ol>
+            <div class="sp">
+                <span id="left"><</span>
+                <span id="right">></span>
+            </div>
+        </div>
+    </div>
+
+        <script>
+            //需求：无缝轮播图
+            //步骤：
+            //1.老三步。获取相关元素。
+            //2.补齐相互盒子
+            //1.复制第一张图片所在的li，填入所在的ul中。
+            //2.生成相关的ol中的li。
+            //3.点亮第一个ol中的li。
+            //3.鼠标放到小方块儿上，轮播图片。
+            //4.添加定时器。
+            //5.左右切换的按钮
+
+
+            //1.老三步。获取相关元素。
+            var content = document.getElementById("content");
+            var imgWidth = content.children[0].offsetWidth;
+            var ul = content.children[0].children[0];
+            var ol = content.children[0].children[1];
+            var ulLiArr = ul.children;
+            var swcImg = document.getElementsByClassName("sp")[0].children;
+            //2.复制第一张图片所在的li，添加到所在的ul的最后面。
+            var newLi = ulLiArr[0].cloneNode(true);
+            ul.appendChild(newLi);
+            //3.给ol中添加li，ul中的个数-1个，并点亮第一个按钮
+            for (var i=0;i<ulLiArr.length-1;i++){
+                var newOlLi = document.createElement("li");
+                newOlLi.innerHTML = i+1;
+                ol.appendChild(newOlLi);
+            }
+            //点亮第一个ol中的li。
+            var olLiArr = ol.children;
+            ol.children[0].className = "current";
+
+            //4.鼠标放到ol的li上切换图片
+            for (var i=0;i<olLiArr.length;i++){
+                //自定义属性，把索引值绑定到元素的index属性上
+                olLiArr[i].index = i;
+                olLiArr[i].onmouseover = function () {
+                    //排他思想(注意是i还是j，别老弄混了。。。)
+                    for (var j=0;j<olLiArr.length;j++){
+                        olLiArr[j].className = "";
+                    }
+                    this.className = "current";
+                    //鼠标放到小方块上的时候索引值和key以及square同步
+                    //  key = this,index;
+                    //  square = this.index;
+                    key = square = this.index;
+                    //移动盒子
+                    animate(ul,-this.index*imgWidth);
+                }
+
+
+            }
+            //5.添加定时器。
+            var timer = null;
+            var key = 0;
+            var square = 0;
+            timer = setInterval(autoPlay,1000);
+            //自动播放函数封装
+            function autoPlay() {
+                key++;
+                square++;
+                if (key>olLiArr.length){
+                    //图片已经滑动到最后一张，接下来跳转到第一张，然后再滑动到第二张
+                    ul.style.left = 0;
+                    key = 1;
+                }
+                animate(ul,-key*imgWidth);
+                //通过控制square的自增来模拟小方块的索引值，然后点亮盒子
+                //用排他思想做小方块
+                square = square>olLiArr.length-1?0:square;
+                for (var j=0;j<olLiArr.length;j++){
+                    olLiArr[j].className = "";
+                }
+                olLiArr[square].className = "current";
+            }
+
+            //鼠标移开开启定时器，鼠标放上去清除定时器（左右切换按钮在鼠标放上去显示，移开隐藏）
+            content.onmouseover = function () {
+                document.getElementsByClassName("sp")[0].style.display = "block";
+                clearInterval(timer);
+            }
+            content.onmouseout = function () {
+                document.getElementsByClassName("sp")[0].style.display = "none";
+                timer = setInterval(autoPlay,1000);
+            }
+
+            //6.左右切换图片
+            swcImg[0].onclick = function () {
+                //通过key的自增来模拟图盘的索引值，然后移动ul
+                key--;
+                if (key<0){
+                    //先移动到最后一张，然后key的值取之前一张的索引值，然后再向左移动
+                    ul.style.left = -imgWidth*(olLiArr.length)+"px";
+                    key = olLiArr.length-1;
+                }
+                animate(ul,-key*imgWidth);
+                //通过控制square的自增来模拟小方块的索引值，然后点亮盒子
+                //用排他思想做小方块
+                square--;
+                if (square<0){
+                    //索引值不能大于等于5，如果等于5，立刻变为0
+                    square = olLiArr.length-1;
+                }
+                for (var i=0;i<olLiArr.length;i++){
+                    olLiArr[i].className = "";
+                }
+                this.className = "current";
+            }
+
+            swcImg[1].onclick = function () {
+                //右侧的切换按钮和定时器的一模一样
+                autoPlay();
+            }
+
+
+
+
+
+            //动画函数封装
+            function animate(elm,target) {
+                clearInterval(elm.timer);
+                var step = target>elm.offsetLeft?10:-10;
+                elm.timer = setInterval(function () {
+                    var differ = target - elm.offsetLeft;
+                    elm.style.left = elm.offsetLeft + step + "px";
+                    if (Math.abs(differ)<Math.abs(step)){
+                        elm.style.left = target + "px";
+                        clearInterval(elm.timer);
+                    }
+                },10)
+            }
+        </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>webpack起步</title>
+    <!-- 不推荐在这里引用任何包和任何css文件 -->
+
+    <!-- <script src="./main.js"></script> -->
+    <!-- 因为main.js中的代码涉及到了ES6中的新语法，但是浏览器无法识别
+    通过webpack的前端构建工具，把main.js做了处理，生成了bundle.js文件 -->
+
+    <!-- <script src="bundle.js"></script> -->
+    <!-- 当使用了 html-webpack-plugin之后，我们不在需要手动处理bundle.js的引用路径了，
+    因为这个插件已经帮我们创建了一个合适的script并引用了正确的路径 -->
+
+</head>
+<body>
+    <!-- webpack 测试 -->
+    <ul>
+        <li>hello world</li>
+        <li>hello vue</li>
+        <li>hello webpack</li>
+        <li>Iron Man</li>
+        <li>Spider Man</li>
+        <li>Hail Hydra（会不会被打。。。）</li>
+    </ul>
+    <div class="box"></div>
+</body>
+</html>
+
+

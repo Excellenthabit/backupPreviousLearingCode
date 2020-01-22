@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03-php文件上传保存处理</title>
+</head>
+<body>
+	<!-- 上传文件时html代码中需要进行如下设置:
+	1.在html表单中需要设置enctype="multipart/form-data"
+	2.只能post方式 PHP接收文件可以通过$_FILES来获取 -->
+	<form action="03.php" method="post" enctype="multipart/form-data">
+		<input type="file" name="picture">
+		<br>
+		<br>
+		<input type="submit" >
+	</form>
+</body>
+</html>

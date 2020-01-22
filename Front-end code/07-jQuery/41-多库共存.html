@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>41-多库共存</title>
+    <script src="jquery-1.8.2.min.js"></script>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            //注意：引jQuery包的时候，要先引进旧版本的再引进新版本的，如果先引进新版本的jq再引进旧版本的jq，
+            // 旧版本的无法层叠掉新版本的jq，会出现问题
+
+            //此处多库共存指的是：jQuery占用了$ 和jQuery这两个变量。
+            // 当在同一个页面中引用了jQuery这个js库，并且引用的
+            // 其他库（或者其他版本的jQuery库）中也用到了$或者jQuery这两个变量，
+            // 那么，要保证每个库都能正常使用，这时候就有了多库共存的问题。
+
+
+            // console.log($.fn.jquery);  //打印版本号  1.11.1
+            // $.noConflict(); //让1.11.1放弃 $ 的使用权
+            // console.log($.fn.jquery); // 1.812
+
+            //放弃两个符号（$ 和 jQuery）的使用权，同时定义一个新的使用权
+            var nf = $.noConflict(true); // 让1.11.1放弃 $ 的使用权,后面若是想使用1.11.1版本的jq，就用nf代替
+            console.log(nf.fn.jquery);  //打印版本号  1.11.1
+            console.log($.fn.jquery);  //打印版本号  1.8.2
+            console.log(jQuery.fn.jquery);  //打印版本号  1.8.2
+
+
+        })
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

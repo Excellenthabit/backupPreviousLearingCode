@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            .red{
+                color:red;
+            }
+    
+            .thin{
+                font-weight: 200;
+            }
+    
+            .italic{
+                font-style: italic;
+            }
+    
+            .active{
+                /* letter-spacing 属性增加或减少字符间的空白（字符间距）。 */
+                letter-spacing: 0.5em;
+            }
+        </style>
+</head>
+<body>
+    <div id='app'>
+        <h1>Vue中样式的使用方法</h1>
+        <!-- 第一种方法：直接传递一个数组，需要注意的是，这里的class要用v-bind做数据绑定 -->
+        <h2 :class="['red','italic']">Vue中样式的使用方法1:直接传递一个数组</h2>
+
+        <!-- 第二种使用方式：在数组中使用三元表达式 -->
+        <h2 :class="['red','thin',flag?'active':'']">Vue中样式的使用方法2:在数组中使用三元表达式</h2>
+
+        <!-- 第三种使用方法：在数组中使用对象来代替三元表达式，提高代码的可读性 -->
+        <h2 :class="['thin','italic',{'active':flag}]">Vue中样式的使用方法3:在数组中使用对象来代替三元表达式，提高代码的可读性</h2>
+
+        <!-- 在为class使用v-bind绑定对象的时候，对象的属性名是类名，由于对象的属性可以带引号，
+          也可不带引导，这里没写引号，属性的值为一个标识符 -->
+        <!-- 第四种使用方法：直接使用对象2 -->
+        <h4 :class="classsObj">Vue中样式的使用方法4</h4>
+    </div>
+</body>
+</html>
+<script src='./lib/vue.min.js'></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            flag:false,
+            classsObj:{red:true,thin:true,italic:true,active:false}
+        },
+        methods: {
+            
+        }
+    })
+</script>

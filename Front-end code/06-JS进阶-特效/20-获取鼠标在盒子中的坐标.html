@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20-获取鼠标在盒子中的坐标</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 500px;
+            height: 300px;
+            padding-top: 200px;
+            margin: 100px auto;
+            border: 1px solid #000;
+            background:burlywood;
+            text-align: center;
+        }
+    </style>
+    <script src="demo.js"></script>
+</head>
+<body>
+    <div class="box">
+    </div>
+    <script>
+        //需求：鼠标进入盒子之后只要移动，哪怕只有1px，随时更换里面显示的坐标值。
+        //技术点：新事件，onmousemove  在事件源上哪怕移动1px也会触动这个事件
+        //在一定程度上模拟了定时器
+
+        //获取事件源以及相关元素
+        var div = document.getElementsByTagName("div")[0];
+
+        //绑定事件
+        div.onmousemove = function (event) {
+            event = event || window.event;
+            //获取鼠标在整个页面的坐标
+            var pagex = event.pageX || scroll().left + event.clientX;
+            var pagey = event.pageY || scroll().top + event.clientY;
+
+            //获取盒子在整个页面的位置
+            var div_x = div.offsetLeft;
+            var div_y = div.offsetTop;
+
+            //鼠标在盒子中的坐标就是用鼠标在整个页面的坐标减去盒子在整个页面的位置
+            var target_x = pagex - div_x;
+            var target_y = pagey - div_y;
+            //给盒子里更新内容
+            //之所以用innerHTML不用innerText是因为后者不识别标签
+            this.innerHTML = "鼠标在盒子中的X坐标为："+target_x+"px;<br>鼠标在盒子中的Y坐标为："+target_y+"px;"
+        }
+    </script>
+</body>
+</html>

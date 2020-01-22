@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular js模块化</title>
+</head>
+<body>
+<!--    指定模块
+    一个页面可以有多个模块，但不能互相嵌套
+    一般只会有一个-->
+    <div class="box" ng-app="App">
+        <!--指定控制器-->
+        <div ng-controller="demoController">
+            <h1>{{name}}在{{college}}学习{{skill}}</h1>
+            <ul>
+                <li ng-repeat="(key,course) in courses">
+                    第{{key+1}}天：{{course}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+<script src="./libs/angular.min.js"></script>
+<script>
+
+    // 提供一个全局对象angular，在此对象下有N多方法
+    // 其中module方法可以帮助我们创建一个模块
+    var App = angular.module('App',[]);
+    // App就是新创建的模块，这个模块又是一个对象
+    // 在此对象下又有n多方法，可以实现具体业务逻辑
+
+    // 其他controller可以创建一个控制器
+    App.controller('demoController',['$scope',function ($scope) {
+        //$scope 是一个空对象{}，此对象就是Model
+        $scope.name = 'nicholas fung';
+        $scope.college = 'XATU';
+        $scope.courses = [
+            'MVC',
+            '指令',
+            '指令化'
+        ];
+    }]);
+</script>

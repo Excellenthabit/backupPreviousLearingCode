@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04-小火箭案例</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        body{
+            background-color: skyblue;
+        }
+        .rocket{
+            width: 50px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+
+            transform: translate(-100px,100px) rotate(45deg);
+            transition: all 1s;
+        }
+        body:hover .rocket{
+            transform: translate(600px,-600px) rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+<img class="rocket" src="images/rocket.png" alt="little rocket">
+</body>
+</html>

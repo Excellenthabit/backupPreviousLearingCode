@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07-useJsonToGetInfo</title>
+	<style type="text/css">
+		table{
+			margin: 100px auto;
+			width: 500px;
+			background-color: lightblue;
+		}
+		td{
+			border: 1px solid dodgerblue;
+			text-align: center;
+			height: 25px;
+			line-height: 25px;
+
+		}
+	</style>
+</head>
+<body>
+	<h1>use json to get information</h1>
+	<input type="button" id="btn" value="clickHereToGetInfo">
+</body>
+</html>
+<script type="text/javascript">
+	document.querySelector('#btn').onclick=function(){
+		var ajax=new XMLHttpRequest();
+		ajax.open('post','07-useJsonToGetInfo.php');
+		ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
+		ajax.send();
+		ajax.onreadystatechange=function(){
+			if(ajax.readyState==4 &&　ajax.status==200){
+				//转化为js对象，不管是数组还是对象都可以使用该方法转化
+				var infoArr= JSON.parse(ajax.responseText);
+				var str='';
+				str+='<table>';
+				for(var i=0;i<infoArr.length;i++){
+					var currentInfo = infoArr[i];
+					str+='<tr>';
+					str+='<td>'+currentInfo.name+'</td>';
+					str+='<td>'+currentInfo.age+'</td>';
+					str+='<td>'+currentInfo.sex+'</td>';
+					str+='</tr>';
+				}
+				str+='<table>';
+				console.log(str);
+				document.body.innerHTML+=str;
+			}
+		}
+
+	}
+</script>

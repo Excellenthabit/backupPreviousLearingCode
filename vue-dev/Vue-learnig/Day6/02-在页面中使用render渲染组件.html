@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+
+    <div id='app'>
+        <p>20190514</p>
+    </div>
+
+</body>
+</html>
+<script src="../lib/vue.js"></script>
+<script>
+    var login = {
+        template: '<h1> this is login component</h1>'
+    }
+    var vm = new Vue({
+         el:'#app',
+         data:{},
+         methods:{},
+        render:function(createElements){
+            //createElements 是一个方法，调用它能够把指定的组件模板渲染为html结构
+
+            return createElements(login)
+            // 注意这里return的结果，会替换页面中el指定的那个容器
+            // 在这里，原来的<p>20190514</p>会被覆盖掉，替换成组件login里面的内容
+        }
+    })
+
+</script>

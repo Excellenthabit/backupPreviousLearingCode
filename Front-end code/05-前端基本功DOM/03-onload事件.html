@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-onload事件</title>
+</head>
+<body>
+<script>
+    //js和HTML是同步加载的，如果在使用元素在定义元素之前，容易报错。
+    //在整个HTML页面加载完成才加载完毕再执行js里面的内容
+    //加上了window.onload，可以在预防使用标签在定义标签之前
+
+    window.onload=function () {
+        var div=document.getElementById("bbb");
+        div.style.backgroundColor="black";
+        div.style.width="100px";
+        div.style.height="200px";
+    }
+</script>
+
+<div id="bbb"></div>
+</body>
+</html>

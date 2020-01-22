@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>33-百度皮肤</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        img{
+            margin: 10px auto;
+            cursor: pointer;
+        }
+        .gallery{
+            height: 165px;
+            padding-top: 35px;
+            text-align: center;
+            background:rgba(255,255,255,0.3);
+        }
+        body{
+            background: url("image/a1.jpg") no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <img src="image/a1.jpg" alt="" width="200px">
+        <img src="image/a2.jpg" alt="" width="200px">
+        <img src="image/a3.jpg" alt="" width="200px">
+        <img src="image/a4.jpg" alt="" width="200px">
+        <img src="image/a5.jpg" alt="" width="200px">
+    </div>
+    <script>
+        //需求：点击图片，body的背景图修改。
+        //步骤：
+        //1.获取事件源
+        //2.绑定事件
+        //3.书写事件驱动程序
+
+        //获取事件源
+        var gallaery = document.getElementsByTagName("div")[0];
+        var imgArr = gallaery.children;
+        //body的获取js内部帮我们优化完毕
+        var body = document.body;
+         for (var i = 0; i < imgArr.length;i++){
+             //绑定事件
+             imgArr[i].onclick = function () {
+                 //书写事件驱动程序
+                 //更改body的背景图片
+                 body.style.backgroundImage = "url("+this.src+")";
+                 //"this.src"是表示字符串，传的就是“this.src”；
+                 // url("+this.src+")传的就是src的值。
+             }
+         }
+    </script>
+</body>
+</html>

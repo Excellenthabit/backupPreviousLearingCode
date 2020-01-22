@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>43-自定义插件</title>
+    <script src="jquery-1.11.1.js"></script>
+    <script src="diy-jq-plugins.js"></script>
+    <script>
+        $(function () {
+            //调用插件中的方法
+            // //第一种调用方法  绑定到原形上，调用者是jQuery对象
+            // $("button").on("click",function () {
+            //     $(this).setColorRed();
+            // });
+            //
+            // // //绑定到原形上，调用者是jQuery对象
+            // // $.fn.setColorRed = function f() {
+            // //     this.css({"color":"red"});
+            // // }
+
+
+
+
+
+
+            //第二种调用方法  绑定到$上，调用者是$
+            $("button").on("click",function () {
+                $.setColorRed($(this));
+            });
+
+            // //绑定到$上，调用者是$
+            // $.setColorRed = function(e) {
+            //     e.css({"color":"red"});
+            // }
+
+
+        })
+    </script>
+</head>
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+</body>
+</html>

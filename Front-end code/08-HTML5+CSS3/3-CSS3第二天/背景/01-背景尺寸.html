@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-背景尺寸</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 3px solid #000;
+            margin: 0 auto;
+            background: url("images/baby0.jpg") no-repeat;
+            /*控制背景的大小*/
+
+            /* 1.具体数值*/
+            /*background-size: 300px 300px; */
+
+            /*2.百分比*/
+            /*background-size: 100% 100%;*/
+
+            /* 3. cover会自动调整缩放比例，保证图片始终填充满背景区域，如有溢出部分则会被隐藏。*/
+            /*background-size: cover;*/
+
+            /*4. contain会自动调整缩放比例，保证图片始终完整显示在背景区域，但不能保证铺满盒子*/
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

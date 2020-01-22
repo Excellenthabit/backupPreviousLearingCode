@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用第三方类实现动画</title>
+    <!-- 导入第三方动画 -->
+    <link rel="stylesheet" href="./lib/animate.css">
+</head>
+<body>
+
+    <div id='app'>
+
+        <input type="button" value="toggle" @click='flag=!flag'>
+         <!-- 注意使用第三方类实现动画，要加 animated类！ -->
+         <!-- 可以分别加在enter-active-class和leave-active-class里 -->
+         <!-- 也可以只放在要实现动画的元素里 -->
+        <!-- <transition  enter-active-class='animated rotateIn' leave-active-class='animated hinge'>
+            <h2 v-if='flag'>古人学问无遗力</h3>
+        </transition> -->
+
+        <!-- 使用  :duration="毫秒值" 来统一设置入场和离场时候的动画时长 -->
+        <!-- <transition  enter-active-class='rotateIn' leave-active-class='hinge' :duration="1000">
+            <h2 v-if='flag' class='animated'>古人学问无遗力</h3>
+        </transition> -->
+        <!-- 使用 :duration="{enter:1000,leave:1000}" 来分别设置入场和出场的时长 -->
+        <transition
+        enter-active-class='rotateIn'
+        leave-active-class='hinge'
+        :duration="{enter:1000,leave:2000}" >
+            <h3 v-if='flag' class='animated'>古人学问无遗力</h3>
+        </transition>
+        
+    </div>
+
+</body>
+</html>
+<script src="./lib/vue.min.js"></script>
+<script>
+
+    var vm = new Vue({
+         el:'#app',
+         data:{
+             flag:false
+         },
+         methods:{}
+    })
+
+</script>

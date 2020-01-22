@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+
+            <label>id:
+                <input type="text" v-model='id'>
+            </label>
+            <label>name:
+                <input type="text" v-model='name'>
+                </label>
+            <input type="button" value="添加" @click='add'>
+            <input type="button" value="移除" @click='remove'>
+
+        </div>
+        <!-- 在vue2.2.0+的版本里，当组件中使用v-for时，key是必须的属性。 -->
+        <!-- 当vue.js用v-for正在更新已渲染过的元素列表时，它默认使用“就地复用”策略。
+        如果数据项的顺序被改变，vue将不是移动DOM元素来匹配数据项的顺序，
+        而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。 -->
+        <!-- 为了给vue一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，需要为每项提供一个唯一key属性 -->
+        <!-- 注意：v-for循环的时候，key属性只能使用number或者string类型的 -->
+        <!-- key在使用的时候，必须使用v-bind属性绑定的形式，指定key的值 -->
+        <!-- 在组件中，使用v-for的同时，指定唯一的 number或者string 类型的 :key 值 -->
+        <p v-for="item in list" :key='item.id'>
+            <input type="checkbox">{{item.id}}--{{item.name}}
+        </p>
+
+    </div>
+</body>
+</html>
+<script src="./lib/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            id:'',
+            name:'',
+            list:[
+                {id:1,name:'钢铁侠'},
+                {id:2,name:'美国队长'},
+                {id:3,name:'金刚狼'},
+                {id:4,name:'蜘蛛侠'},
+                {id:5,name:'黑豹'},
+                {id:6,name:'蚁人'},
+                {id:7,name:'奇异博士'},
+                {id:8,name:'雷神'},
+                {id:9,name:'惊奇队长'}
+            ]
+        },
+        methods:{
+            add(){
+                this.list.push({id:this.id,name:this.name})
+            },
+
+            remove(){
+                this.list.pop({id:this.id,name:this.name})
+            }
+        }
+    })
+</script>

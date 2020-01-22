@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>创建组件的方法3</title>
+</head>
+<body>
+
+    <div id='app'>
+        <mycom3></mycom3>
+        <login></login>
+    </div>
+
+    <div id='app2'>
+            <mycom3></mycom3>
+            <login></login>
+    </div>
+
+    <!-- 创建组件的模板里，根元素只能有一个，这里默认都是用div根元素包裹着 -->
+    <!-- 创建组件的模板 -->
+    <template id="tmp">
+        <div>
+            <h2>创建组件的方法3</h2>
+            <span>123</span>
+        </div>
+    </template>
+
+    <!-- 这是私有的login组件 -->
+    <template id="tmp2">
+        <div>
+            <h1>私有组件</h1>
+        </div>
+    </template>
+
+</body>
+</html>
+<script src="./lib/vue.min.js"></script>
+<script>
+    Vue.component('mycom3',{
+        //把模板放到外面，直接通过id获取
+        template:'#tmp'
+    });
+    var vm = new Vue({
+         el:'#app',
+         data:{},
+         methods:{},
+         components:{
+             login:{
+                 template:'#tmp2'
+             }
+         }
+    });
+
+    var vm2 = new Vue({
+        el:'#app2',
+        data:{},
+        components:{
+            
+        }
+    })
+
+
+</script>

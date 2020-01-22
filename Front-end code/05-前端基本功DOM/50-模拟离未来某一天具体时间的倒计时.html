@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>50-模拟离未来某一天具体时间的倒计时</title>
+    <style>
+        div{
+            width: 1210px;
+            margin: 200px auto;
+            text-align: center;
+            font: 700 30px/100px "simsun";
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+        //随便定义未来某一天的具体时间，然后得出现在距离那天的倒计时（页面刷新需要使用到定时器）
+        var countDown = document.getElementsByTagName("div")[0];
+
+        //设置定时器
+        var timer = setInterval(fn,1);
+
+        //定义实现要求的函数
+        function fn() {
+            var futureDate = new Date("2019/7/1 00:00:00"); //定义未来那天为2019年7月1日0点0分0秒
+            var nowTime = new Date(); //定义现在的时间
+            var timeSum = futureDate.getTime() - nowTime.getTime(); //计算现在距离未来那天相差时间的具体毫秒数的总和
+
+            //下面计算现在具体离未来那天的具体天数、具体小时、分、秒、毫秒(1s=1000ms)
+            var days = parseInt(timeSum/1000/60/60/24);
+            var hours = parseInt(timeSum/1000/60/60%24);
+            var minutes = parseInt(timeSum/1000/60%60);
+            var seconds = parseInt(timeSum/1000%60);
+            var miliSeconds = parseInt(timeSum%1000);
+
+            days = days<10?"0"+days:days;
+            hours = hours<10?"0"+hours:hours;
+            minutes = minutes<10?"0"+minutes:minutes;
+            seconds = seconds<10?"0"+seconds:seconds;
+
+            if (miliSeconds<10){
+                miliSeconds = "00"+miliSeconds;
+            } else if(miliSeconds<100){
+                miliSeconds = "0"+miliSeconds;
+            }
+
+            if (timeSum<0){
+                countDown.innerHTML = "距离大学毕业还有00天00小时00分00秒000毫秒！！！你已经不再是学生了！！！";
+                clearInterval(timer); //清除定时器
+                return;
+            }
+            //将计算好的相差时间放到页面中去
+            countDown.innerHTML = "距离2019年7月1日大学毕业还有"+days+"天"+hours+"小时"+minutes+"分钟"+seconds+
+                "秒"+miliSeconds+"毫秒"+"<br>"+"时间如白驹过隙，珍惜为数不多的校园生活！为未来加油！";
+        }
+
+    </script>
+
+
+
+</body>
+</html>

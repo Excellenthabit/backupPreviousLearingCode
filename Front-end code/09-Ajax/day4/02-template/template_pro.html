@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script type="text/javascript">
+	var reg = /\w+/;
+	var str = '我是来自南方的name，我爱吃fruit，我的爱好是habbit，我的朋友是friend';
+	var obj = {
+		name:'柯基',
+		fruit:'苹果',
+		habbit:'爬山',
+		friend:'哈士奇'
+	};
+
+	var result;
+	while(result = reg.exec(str)){
+		var key=result[0];
+		var value=obj[key];
+		str=str.replace(key,value);
+		console.log(str);
+	}
+</script>

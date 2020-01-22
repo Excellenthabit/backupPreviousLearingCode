@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-边框阴影</title>
+    <style>
+        body{
+            background: #eee;
+        }
+        .box{
+            width: 200px;
+            height: 300px;
+            margin: 100px auto;
+            background: #fff;
+            border: 1px solid #000;
+
+            /*box-shadow:水平位移 垂直位移 模糊程度 阴影大小 阴影颜色 外/内阴影（inset）;
+            PS:外阴影(默认)不用写，写了就报错 */
+            /*1、水平偏移量 正值向右 负值向左；*/
+            /*2、垂直偏移量 正值向下 负值向上；*/
+            /*3、模糊度是不能为负值；*/
+            /*4、inset可以设置内阴影；*/
+            /*设置边框阴影不会改变盒子的大小，即不会影响其兄弟元素的布局。*/
+                    /*可以设置多重边框阴影，实现更好的效果，增强立体感。*/
+
+
+            box-shadow: 10px 10px 40px 20px #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

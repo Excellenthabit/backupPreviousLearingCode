@@ -1,0 +1,90 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Document</title>
+ 	<style>
+ 		body,ul,li{
+ 			margin: 0;
+ 			padding: 0;
+ 		}
+
+         ul li{
+        	list-style: none;
+        	float: left;
+        }
+
+ 		.banner{
+ 			width: 1259px;
+ 			height: 472px;
+ 			margin: 0 auto;
+ 			position: relative;
+ 		}
+
+ 		.nav{
+ 			width: 960px;
+ 			height: 60px;
+ 			background: #333;
+ 			position:absolute;
+ 			bottom:0px;
+ 			left:50%;
+ 			margin-left: -480px;
+            }
+
+        .nav ul li a{
+            	display: inline-block;
+            	width: 160px;
+            	height: 60px;
+            	font: 16px/60px microsoft yahei;
+            	color: #fff;
+            	text-align: center;
+            }
+
+        .nav ul li a:hover{
+            	font: 16px/60px microsoft yahei;
+            	color: #000;
+            	background: #fff;
+            }
+
+        .search{
+        	width: 342px;
+        	height: 126px;
+        	position: absolute;
+        	bottom: 60px;
+        	left: 149px;
+        }
+
+        .pic{
+        	width: 13px;
+        	height: 9px;
+        	position: absolute;
+        	bottom: 59px;
+        	left: 220px;
+        	z-index: 10;
+        }
+        .nav ul li a.one:hover{
+            background: #333;
+            color: #fff;
+        }
+ 	</style>
+ </head>
+ <body>
+ 	<div class="banner">
+ 		<img src="img/sf1.png" alt="">
+ 		<div class="search"><img src="img/sf2.png" alt=""></div>
+        <div class="pic"><img src="img/sf3.png" alt=""></div>
+ 		<div class="nav">
+ 			<ul>
+ 			<li>
+ 				<a href="#" class="one">运单查询</a>
+ 			</li>
+ 			<li><a href="#">运费查询</a></li>
+ 			<li><a href="#">时效查询</a></li>
+ 			<li><a href="#">服务网点查询</a></li>
+ 			<li><a href="#">收送范围查询</a></li>
+ 		    </ul>
+ 	    </div>
+ 	</div>
+ 	
+ </body>
+ </html>

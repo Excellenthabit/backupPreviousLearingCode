@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-京东狗</title>
+
+</head>
+<body>
+
+
+        <img id="aaa" src="image/jd1.png" alt="京东狗" style="cursor:pointer" border="1px solid #333">
+
+</body>
+
+</html>
+
+<script>
+    window.onload=function () {
+
+        //悬停事件，即鼠标放在图片上方就触发事件
+        var img=document.getElementById("aaa");
+        img.onmouseover=function () {
+            this.src="image/jd2.png";
+        }
+
+        //鼠标移出事件，鼠标离开图片范围内就触发
+        var img=document.getElementById("aaa")
+        img.onmouseout=function () {
+            this.src="image/jd1.png";
+        }
+    }
+</script>

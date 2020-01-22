@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-开关灯案例</title>
+    <style>
+        div {
+            width: 900px;
+            margin: 30px auto 0;
+        }
+        .current{
+            background-color: black;
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(window).ready(function () {
+            // var btn = document.getElementsByTagName("button");
+            // //js对象转化为jq对象
+            // $(btn[1]).click(function () {
+            //     //jq对象转换为js对象
+            //     $("body").get(0).style.background = "black";
+            // })
+            // $(btn[0]).click(function () {
+            //     $("body").get(0).style.background = "white";
+            // })
+
+            //开灯
+            $("button").eq(0).click(function () {
+                $("body").get(0).style.background = "white";
+            });
+            //关灯
+            $("button").eq(1).click(function () {
+                $("body").get(0).style.background = "black";
+            });
+
+            //一键开关灯(点了上面任一一个，再点这个就没用了，权重不够大)
+            $("button").eq(2).click(function () {
+                $("body").toggleClass("current");
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <button>开灯</button>
+    <button>关灯</button>
+    <button>一键开关灯</button>
+    <div>
+        <img src="images/coder.jpg" alt="funny">
+    </div>
+</body>
+</html>

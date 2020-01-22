@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07-动态进度条</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .progress{
+            width: 100%;
+            height: 100px;
+            margin: 100px auto;
+            border: 1px solid #000;
+            background:
+                    linear-gradient(135deg,
+                                    lightskyblue 25%,
+                                    transparent 25%,
+                                    transparent 50%,
+                                    lightskyblue 50%,
+                                    lightskyblue 75%,
+                                    transparent 75%
+                    );
+            background-size: 100px 100px;
+            animation: move 1s infinite linear;
+        }
+
+        p{
+            text-align: center;
+        }
+        
+        @keyframes move {
+            from{
+                background-position: -100px 0;
+            }
+            to{
+                background-position: 0 0;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="progress"></div>
+    <p>Loading...</p>
+</body>
+</html>

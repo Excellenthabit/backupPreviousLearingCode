@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="Keywords" content="西安工业大学首个小说网，欢迎来稿！"/>
+		<meta name="Description" content="西安工业大学文豪交流233"/>
+		<title>西安工业大学小说网</title>
+		<style>
+			/*初始化*/
+			body,ul,li{
+				margin: 0;
+				padding: 0;
+			}
+			img{
+				border:0;
+			}
+		.header .nav ul li{
+			float: left;
+			list-style-type: none;
+		}
+		
+		/*heater部分开始*/
+		.header{
+			width: 1000px;
+			height: 60px;
+			margin: 0 auto;
+			background-color:#eee;
+		}
+		.header .nav ul li a{
+			display: inline-block;
+			width: 200px;
+			height: 60px;
+			font:16px/60px "microsoft yahei";
+			color: #000;
+			text-align: center;
+			text-decoration: none;
+		}
+		.header .nav ul li a:hover{
+			background-color: pink;
+			width: 200px;
+			height: 60px;
+		}
+			/*header部分结束*/
+
+			/*main部分开始*/
+        .main{
+            width: 1000px;
+            height: 500px;
+            background: #eee;
+            margin: 10px 0;
+        }
+        .leftside{
+            width: 700px;
+            height: 500px;
+            background: orange;
+            float: left;
+        }
+        .rightside{
+            width: 290px;
+            height: 500px;
+            background: orange;
+            float: right;
+        }
+            /*container部分结束*/
+            
+            /*footer部分开始*/
+            .footer{
+                width: 1000px;
+                height: 60px;
+                background: #eee;
+                margin: 0 auto;
+            }
+            /*footer部分结束*/
+
+            /*清除浮动*/
+            .clearfix{
+                content: '.';
+                display: block;
+                height: 0;
+                line-height: 0;
+                visibility: hidden;
+                clear: both;
+            }
+            /*写这个为了兼容ie浏览器*/
+            .clearfix{
+                zoom: 1;
+            }
+		</style>
+	</head>
+	<body>
+		
+        <!--		网页布局，header头部，main中间内容部分，分为左右两侧，footer底部部分-->
+        <div class="header">
+        	<div class="nav">
+        		<ul>
+        			<li><a href="#">首页</a></li>
+        			<li><a href="#">搜索</a></li>
+        			<li><a href="#">登录</a></li>
+        			<li><a href="#">注册</a></li>
+					<li><a href="#">分享</a></li>
+        		</ul>
+        	</div>
+        </div>
+		<div class="main clearfix">
+			<div class="leftside"></div>
+			<div class="rightside"></div>
+		</div>
+		<div class="footer"></div>
+	</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01-聊天对话框</title>
+	<style>
+		html,body{
+			height: 100%;
+			margin: 0;
+		}
+
+		.container{
+			display: flex;
+			height: 100%;
+			border: 1px solid #0094ff;
+			width: 70%;
+			margin: 0 auto;
+			flex-direction: column;
+		}
+
+		.messageBox{
+			flex: 9;
+			background:gray;
+			overflow: scroll;
+		}
+
+		.inputBox{
+			flex: 2;
+			background: skyblue;
+			display: flex;
+		}
+
+		.messageText{
+			flex: 8;
+			font-size: 30px;
+		}
+
+		.sendBtn{
+			flex: 2;
+			font-size: 30px;
+			border-width: 0px;
+			background: dodgerblue;
+		}
+
+		.other{
+			text-align: right;
+			background: white;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="messageBox"></div>
+		<div class="inputBox">
+			<input type="text" class="messageText">
+			<input type="button" class="sendBtn" value="发送">
+		</div>
+	</div>
+
+
+	<script>
+		document.querySelector('.sendBtn').onclick=function (event) {
+		    //获取用户输入的文本框的值
+		    var inputValue = document.querySelector('.messageText').value;
+		    //创建div，设置class为self将输入的内容设置进去
+            var createDiv = document.createElement('div');
+            createDiv.className = 'self';
+            createDiv.innerHTML = inputValue;
+            //添加到messageBox中
+            document.querySelector('.messageBox').appendChild(createDiv);
+		    // ajax五部曲(get方式)
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','01chat.php?message='+inputValue);
+            ajax.send();
+            ajax.onreadystatechange=function () {
+                if (ajax.readyState==4 && ajax.status==200){
+                    console.log(ajax.responseText);
+                    //根据服务器返回的内容修改页面
+                    //创建div 设置class为other 设置innerHTML添加到messageBox中
+                    var otherDiv = document.createElement('div');
+                    otherDiv.className = 'other';
+                    otherDiv.innerHTML = ajax.responseText;
+                    //添加到messageBox中
+                    document.querySelector('.messageBox').appendChild(otherDiv);
+                }
+            }
+            //点击发送按钮后 清空文本输入框的内容
+            document.querySelector('.messageText').value = '';
+        }
+	</script>
+</body>
+</html>

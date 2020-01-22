@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>21-放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 350px;
+            height: 350px;
+            margin: 100px;
+            border: 1px solid #cccccc;
+            position: relative;
+        }
+        .small{
+            position: relative;
+        }
+        .mask{
+            width: 175px;
+            height: 175px;
+            background: rgb(177, 231, 255,0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+            display: none;
+        }
+        .big{
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ccc;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            overflow: hidden;
+            display: none;
+        }
+        img{
+            vertical-align: top;
+        }
+    </style>
+    <script src="demo.js"></script>
+    <script>
+        window.onload = function () {
+            //需求：鼠标放到小盒子上，让大盒子里面的图片同步等比例移动
+            //技术点：onmouseenter==onmouseover 第一个不冒泡
+            //技术点：onmouseleave==onmouseout 第一个不冒泡
+            //步骤：
+            //1.鼠标放上去显示盒子，移开隐藏盒子
+            //2.老三步和新五步（小盒子跟随鼠标移动）
+            //3.右侧的大图片等比例移动
+
+            //获取事件源及相关元素
+            var box = document.getElementsByClassName("box")[0];
+            //var small = box.children[0];
+            var small = box.firstElementChild || box.firstChild;
+            var mask = small.children[1];
+            var big = box.children[1];
+            var bigImg = big.children[0];
+            //鼠标放上去显示盒子，移开隐藏盒子(为小盒子绑定事件)
+            small.onmouseenter = function () {
+                //直接调用封装好的方法，隐藏盒子亦是
+                show(mask);
+                show(big);
+            }
+            small.onmouseleave = function () {
+                hide(mask);
+                hide(big);
+            }
+
+            //左侧的小盒子跟随鼠标移动
+            //绑定的是onmousemove事件
+            //新五步
+            small.onmousemove = function (event) {
+                event = event || window.event;
+                //想要移动左侧的小盒子，必须要知道鼠标在small中的坐标（x，y），
+                // x作为mask的left值，y作为mask的top值
+                //获取鼠标在整个页面的坐标
+                var pagex = event.pageX || scroll().left+event.clientX;
+                var pagey = event.pageY || scroll().top+event.clientY;
+                //让鼠标正好在左侧小盒子的中心，减去左侧小盒子宽高的一半
+                //鼠标在整个页面中的位置减去左侧大盒子在整个页面中的位置再减去左侧小盒子宽高的一半
+                var x= pagex - box.offsetLeft - mask.offsetWidth/2;
+                var y= pagey - box.offsetTop - mask.offsetHeight/2;
+                //限制左侧小盒子跟随鼠标移动的范围，让它只能在左侧大盒子的范围内移动
+                //left取值小于0，给x赋值为0，top值同理
+                if (x<0){
+                    x = 0;
+                }
+                //left取值大于左侧大盒子宽度，小盒子的宽减去mask的宽，top取值同理
+                if (x>small.offsetWidth-mask.offsetWidth){
+                    x = small.offsetWidth-mask.offsetWidth;
+                }
+                if (y<0){
+                    y = 0;
+                }
+                if (y>small.offsetHeight-mask.offsetHeight){
+                    y = small.offsetHeight-mask.offsetHeight;
+                }
+                //给左侧小盒子的left和top赋值，实现它跟随鼠标移动
+                mask.style.left = x + "px";
+                mask.style.top = y + "px";
+
+                //右侧大盒子里的图片随左侧小盒子的移动等比例移动
+                //k定义为左边大盒子与右边盒子的比值，恒定值，才可实现等比例移动
+                var k = bigImg.offsetWidth/small.offsetWidth;
+                bigImg.style.marginLeft = -k*x + "px";
+                bigImg.style.marginTop = -k*y +　"px";
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <div class="small">
+            <img src="images/xiaoshubiao.jpg">
+            <div class="mask"></div>
+        </div>
+        <div class="big">
+            <img src="images/dashubiao.jpg">
+        </div>
+    </div>
+</body>
+</html>

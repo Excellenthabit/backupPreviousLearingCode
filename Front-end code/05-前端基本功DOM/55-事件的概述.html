@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>55-事件的概述</title>
+</head>
+<body>
+    <button>关汉卿-《关大王单刀赴会》</button>
+    <div></div>
+
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var div = document.getElementsByTagName("div")[0];
+
+        //绑定事件
+        //第一种绑定方法：匿名函数绑定  这种方法事件容易被层叠掉
+        // btn.onclick=function () {
+        //     div.innerText = "三尺龙泉万卷书,上天生我意何如。不能报国平天下，枉为男儿大丈夫。"
+        // }
+
+
+
+        //第二种方法
+        //addEventListener: 事件监听器。 原事件被执行的时候，后面绑定的事件照样被执行
+        //这种方法不会被层叠掉 适合团队开发
+        btn.addEventListener("click",fn);
+        function fn() {
+            div.innerText = "三尺龙泉万卷书,上天生我意何如。不能报国平天下，枉为男儿大丈夫。"
+        }
+
+
+
+
+    </script>
+</body>
+</html>

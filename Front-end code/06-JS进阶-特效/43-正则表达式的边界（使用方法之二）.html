@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>43-正则表达式的边界（使用方法之二）</title>
+</head>
+<body>
+<script>
+    //   ^会匹配行或者字符串的起始位置
+    //   $会匹配行或字符串的结尾位置
+    //   ^$在一起 表示必须是这个（精确匹配）
+    console.log(/^abcd$/.test("abcd")); //t
+    console.log(/^abcd$/.test("a")); //f
+    console.log(/^abcd$/.test("bc"));//f
+    console.log(/^abcd$/.test("d"));//f
+    console.log(/^abcd$/.test("af"));//f
+    console.log(/^abcd$/.test("fghi"));//f
+
+</script>
+</body>
+</html>

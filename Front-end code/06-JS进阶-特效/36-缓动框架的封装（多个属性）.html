@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>36-缓动框架的封装(多个属性)</title>
+    <style>
+        div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 10px;
+            top: 40px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <button>点击即可运动到400px处，而且原来的盒子宽高都变为400px</button>
+    <div></div>
+
+    <script>
+
+        var btn = document.getElementsByTagName("button")[0];
+        var box = document.getElementsByTagName("div")[0];
+        btn.onclick = function () {
+            var json = {"top":40,"left":400,"width":400,"height":400};
+            animate(box,json);
+        }
+
+
+        //这个在谷歌浏览器打开不知道为何无法清除定时器，在ie老版本、edge浏览器、ff都没问题，就谷歌浏览器有问题。。。
+        function animate(elm,json) {
+            //先清定时器
+            clearInterval(elm.timer);
+            elm.timer = setInterval(function () {
+                //开闭原则（用来处理清除定时器的bug）
+                var flag = true;
+                for (var k in json) {
+
+                    var leader = parseInt(getStyle(elm,k)) || 0;
+                    //获取步长
+                    var step = (json[k] - leader)/10;
+                    //二次加工步长
+                    step = step>0?Math.ceil(step):Math.floor(step);
+                    leader += step;
+                    //赋值
+                    elm.style[k] = leader + "px";
+                    //判断: 目标值和当前值的差大于步长，就不能跳出循环
+                    //不考虑小数的情况：目标位置和当前位置不相等，就不能清除清除定时器。
+                    if (Math.abs(json[k]-leader)>Math.abs(step)){
+                        flag = false;
+                    }
+                }
+                console.log(1); //用来检测定时器是否被清除
+                //只有所有的属性都到了指定位置，flag的值才会变为true，才能清除定时器
+                //清除定时器
+                if (flag) {
+                    clearInterval(elm.timer);
+                }
+            },15)
+        }
+
+        //兼容方法获取内嵌式外链式样式
+        function getStyle(elm,attr) {
+            if (window.getComputedStyle){
+                return window.getComputedStyle(elm,null)[attr];
+            }
+            return elm.currentStyle[attr];
+        }
+
+
+
+        // 未加入opacity、zIndex时的缓动框架
+        // function animate(elm,json,fn) {
+        //     //先清定时器
+        //     clearInterval(elm.timer);
+        //     elm.timer = setInterval(function () {
+        //         //开闭原则（用来处理清除定时器的bug）
+        //         var flag = true;
+        //         for (var k in json) {
+        //             var leader = parseInt(getStyle(elm,k)) || 0;
+        //             //获取步长
+        //             var step = (json[k] - leader)/10;
+        //             //二次加工步长
+        //             step = step>0?Math.ceil(step):Math.floor(step);
+        //             leader += step;
+        //             //赋值
+        //             elm.style[k] = leader + "px";
+        //             //判断: 目标值和当前值的差大于步长，就不能跳出循环
+        //             //不考虑小数的情况：目标位置和当前位置不相等，就不能清除清除定时器。
+        //             if (json[k]!==leader){
+        //                 flag = false;
+        //             }
+        //         }
+        //         console.log(1); //用来检测定时器是否被清除
+        //         //只有所有的属性都到了指定位置，flag的值才会变为true，才能清除定时器
+        //         //清除定时器
+        //         if (flag) {
+        //             clearInterval(elm.timer);
+        //             //所有程序执行完了，现在可以执行回调函数了
+        //             //只有传递了回调函数，才能执行
+        //             if (fn){
+        //                 fn();
+        //             }
+        //         }
+        //     },5)
+        // }
+
+
+    </script>
+</body>
+</html>

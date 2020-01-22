@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>29-style属性演示</title>
+    <style>
+        /*内嵌式样式*/
+        .box{
+            margin: 0 auto;
+            background-color: pink;
+            line-height: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" style="width: 300px;height: 200px; border: 5px solid red;">书山有路勤为径，学海无涯苦作舟。</div>
+    <script>
+        //（style是一个对象，不能获取内嵌和外链）
+        //1.样式少的时候使用
+        //2.style是对象
+        //3.值是字符串，没有设置值是“”；
+	    //4.命名规则，驼峰命名。和css不一样，例如css里的background-color、line-height
+        // 在js里要写成backgroundColor、lineHeight
+        //5.设置了类样式不能获取。（只和行内式交互，和内嵌和外链无关）
+	    //6.box.style.cssText = “字符串形式的样式”；
+
+        var div = document.getElementsByTagName("div")[0];
+        console.log(div.style.backgroundColor);  //这里访问不到background-color这个属性,
+                                                 // 因为style只能读取行内样式的属性，无法访问到内嵌式和外链式
+        console.log(typeof div.style); //object 说明style是一个对象
+        div.style.border="";  //把border属性去掉，设置为空
+        //字符串的样式，右边写样式跟css行内式一致
+        div.style.cssText="width:600px;height:300px;background-color:burlywood;line-height:300px;";
+        console.log(div.style.cssText);//width: 600px; height: 300px; background-color: burlywood; line-height: 300px;
+
+
+    </script>
+</body>
+</html>

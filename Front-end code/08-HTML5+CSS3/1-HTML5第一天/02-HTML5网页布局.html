@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-HTML5网页布局</title>
+    <style>
+        header{
+            width: 1000px;
+            height: 120px;
+            background-color: pink;
+            margin: 0 auto;
+        }
+        nav{
+            width: 1000px;
+            height: 60px;
+            background-color: #daa520;
+            margin: 0 auto;
+        }
+        section{
+            width: 1000px;
+            height: 400px;
+            background-color: #ccc;
+            margin: 0 auto;
+        }
+        section aside{
+            float: left;
+            height: 400px;
+            width: 350px;
+            background-color: burlywood;
+        }
+        section article{
+            float: right;
+            height: 400px;
+            width: 650px;
+            background-color: orange;
+        }
+        footer{
+            width: 1000px;
+            height: 90px;
+            background-color: #333;
+            margin: 0 auto;
+        }
+    </style>
+    <!--旧版本的ie识别h5的新增标签，解决办法是引入html5shiv.js文件-->
+    <!--条件注释（只有ie能够识别）-->
+    <!--[if lte ie8]>
+        <script src="html5shiv.min.js"></script>
+    <![end if]-->
+
+    <!--上面那句条件注释的意思就是，当ie浏览器的版本低于ie8时就引入html5shiv.js这个文件，-->
+    <!--用于解决ie低版本不识别h5新标签的问题-->
+
+    <!--l:less  更小的-->
+    <!--t：than  比-->
+    <!--e：equal  等于-->
+    <!--g：great  更大的-->
+
+
+</head>
+<body>
+    <!--标签语义化：在合适的地方使用合适的标签；-->
+    <!--p：段落-->
+    <!--h1-h6：标题-->
+    <!--div：可以放任何内容。。。-->
+    <!--标签语义化，对seo优化有好处。-->
+
+    <!--网页经典布局-->
+    <!--头部-->
+    <header>头部</header>
+    <!--导航-->
+    <nav>导航</nav>
+    <!--主体-->
+    <section>
+        <aside>侧边栏</aside>
+        <article>文章</article>
+    </section>
+    <!--底部-->
+    <footer>底部</footer>
+</body>
+</html>

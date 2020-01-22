@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>42-正则表达式的五大内部类</title>
+</head>
+<body>
+<script>
+
+    //正则表达式的五大内部类
+    console.log("-------------预定义类-------------");
+    //特殊字符
+    // \t	/\t/	制表符
+ 	// \n	/\n/	换行符
+    // \r	/\r/	回车符
+    // \f	/\f/	换页符
+    // \b	/\b/	与回退字符
+    // \v	/\v/	垂直制表符
+    // \0	/\0/	空字符
+
+    // // . 除了换行和回车之外的任意字符  [^\n\r]
+    // console.log(/./.test("abdcskhfksllaijio72*&^%#"));  //true
+    // console.log(/./.test("\n\r")); //fasle
+
+    // //   \d 表示数字 [0-9]
+    // console.log(/\d/.test("123")); // true
+    // console.log(/\d/.test("sjfgjh")); // false
+
+    // // \D  非数字字符 [^0-9]
+    // console.log(/\D/.test("561"));  //false
+    // console.log(/\D/.test("sashg")); // true
+
+    // //  \s  空白字符 [ \t\n\x0B\f\r]
+    // console.log(/\s/.test("sihfuia"));  //false
+    // console.log(/\s/.test(" ")); // true
+    //
+    // // \S非空白字符  [^ \t\n\x0B\f\r]
+    // console.log(/\S/.test("ubuafbahfoi")); //true
+    // console.log(/\S/.test(" ")); //false
+
+    // //  \w 单词字符  [a-zA-Z_0-9]
+    // console.log(/\w/.test("nicholasfung"));  //true
+    // console.log(/\w/.test(" \n\t"));    //false
+
+    // // \W 非单词字符  [^a-zA-Z_0-9]
+    // console.log(/\W/.test(" \n\t\f"));  //true
+    // console.log(/\W/.test("agfyuhfi"));  //false
+
+
+    console.log("-------------简单类-------------");
+    //[ ]整体对应一个字符，如[abc],里面的内容表示该位置可以是哪些字符
+    // console.log(/fdq/.test("fdq"));  //true
+    // console.log(/fdq/.test("hello")); // false
+    // console.log(/fdq/.test("f")); // false
+    //只要test（）里面含有[]里面的任一字符就会返回true，都不包含才会返回false
+    // console.log(/[fdq]/.test("fdq")); //true
+    // console.log(/[fdq]/.test("a6fdqa6")); //true
+    // console.log(/[fdq]/.test("lhh")); //false
+
+
+    console.log("-------------负向类-------------");
+    //括号内，前面加个元字符^进行取反，表示匹配不能为括号里面的字符
+    //只要不包括[]里面的全部字符。就会返回true（t），否则返回false（f），
+    //另外，如果test（）里包含[]里面的字符，只要不是顺序一样，还是返回t
+    // console.log(/[^fdq]/.test("nf")); //t
+    // console.log(/[^fdq]/.test("f"));  //f
+    // console.log(/[^fdq]/.test("d"));  //f
+    // console.log(/[^fdq]/.test("q"));  //f
+    // console.log(/[^fdq]/.test("f8486458mljkjs"));  //t
+    // console.log(/[^fdq]/.test("fqqdggq"));  //t
+
+    console.log("-------------范围类-------------");
+    //有时匹配的东西过多，而且类型又相同，全部输入太麻烦，我们可以在中间加了个横线
+    //test()里面只要包含了任一一个[]里的字符，都会返回t
+    // console.log(/[a-f]/.test("qq"));  // f
+    // console.log(/[a-f]/.test("lov"));  // f
+    // console.log(/[a-f]/.test("alov"));  // t
+
+
+    console.log("-------------组合类-------------");
+    //用中括号匹配不同类型的单个字符。
+    //test()里面只要包含了任一一个[]里的字符，都会返回t
+    console.log(/[a-c1-3]/.test("abc123"));//t
+    console.log(/[a-c1-3]/.test("af456")); //t
+    console.log(/[a-c1-3]/.test("af123"));//t
+    console.log(/[a-c1-3]/.test("fdq666"));//f
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-缓动动画函数封装</title>
+    <style>
+        button{
+            position: relative;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <button>移动到400px处</button>
+    <button>移动到200px处</button>
+    <button>移动到1000px处</button>
+    <div class="box"></div>
+    <script>
+        var btn = document.getElementsByTagName("button");
+        var box = document.getElementsByClassName("box")[0];
+
+        btn[0].onclick = function () {
+            animate(box,400);
+        }
+        btn[1].onclick = function () {
+            animate(box,200);
+        }
+        btn[2].onclick = function () {
+            animate(box,1000);
+        }
+
+
+        function animate(elm,target) {
+            //要用定时器，先清除定时器
+            clearInterval(elm.timer);
+            elm.timer = setInterval(function () {
+                //定义步长，缓动的原理就是步长不是固定的，越来越慢是因为步长越来越小
+                var step = (target - elm.offsetLeft)/10;
+                //下面这句是用来判断目标值与当前值谁大，再决定向上取整或者向下取整，保证能够到达目标位置
+                step = step>0?Math.ceil(step):Math.floor(step);
+                elm.style.left = elm.offsetLeft +　step + "px";
+                if (Math.abs(target-elm.offsetLeft)<=Math.abs(step)) {
+                    //处理小数赋值
+                    elm.style.left = target + "px";
+                    clearInterval(elm.timer);
+                }
+            },30)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>48-三个方法</title>
+</head>
+<body>
+    <script>
+        //trim() 去除前后的空格
+        var str = "     hello  Nicholas,u r the best!   ";
+        console.log(str); //     hello  Nicholas,u r the best!
+        console.log(str.trim());  //hello  Nicholas,u r the best!
+
+        //replace() 替换和全局替换值
+        console.log(str.replace(/l/g, "fdq")); //     hefdqfdqo  Nichofdqas,u r the best!
+
+        //search() 给字符查索引,和indexOf（）方法一样
+        console.log(str.search(/l/)); //7
+        console.log(str.indexOf("l"));//7
+    </script>
+</body>
+</html>

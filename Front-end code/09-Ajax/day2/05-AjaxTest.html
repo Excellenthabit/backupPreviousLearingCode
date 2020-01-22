@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05-Ajax-Test</title>
+</head>
+<body>
+	<h1>发送get请求的ajax</h1>
+	<input type="button" id="btn" value="ajax test">
+	<script type="text/javascript">
+		//绑定事件
+		var btn = document.querySelector('#btn');
+		btn.onclick = function () {
+
+			// //XMLHttpRequest兼容性写法
+			// //考虑兼容性创建Ajax对象
+			// var request;
+			// if (XMLHttpRequest) {
+			// 	//新浏览器写法
+			// 	request=new XMLHttpRequest();
+			// }else{
+			// 	//IE5 IE6写法
+			// 	new ActiveXObject("Microsoft.XMLHttp");
+			// }
+
+			//发送ajax请求需要五步
+
+			//创建异步对象
+			var ajaxObj = new XMLHttpRequest();
+
+			//设置请求的url等参数
+			//参数1 请求的方法  参数2 请求的url
+			ajaxObj.open('get','05ajax.php');
+
+			//发送请求
+			ajaxObj.send();
+
+			//注册事件
+			ajaxObj.onreadystatechange= function () {
+				//这步为判断服务器是否正确响应
+				if (ajaxObj.readyState==4&&ajaxObj.status==200) {
+					//在注册的事件中获取返回的内容并修改页面的显示内容
+
+					// 数据是保存在异步对象的属性中的
+					console.log(ajaxObj.responseText);
+
+					//修改页面的显示内容
+					document.querySelector('h1').innerHTML = ajaxObj.responseText;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-3D-rotateX</title>
+    <style>
+        .rotateX{
+            margin: 100px auto;
+            width: 300px;
+            height: 226px;
+          /*  透视：加给变换的父盒子
+            设置的是用户的眼睛距离平面的距离
+            透视效果只是视觉上的呈现，并不是真正的3d
+            所有的3d旋转。对着正方向去看，都是顺时针旋转*/
+            perspective: 200px;
+        }
+        .rotateX img{
+            /*添加过渡*/
+            transition:all 2s;
+        }
+        .rotateX:hover img{
+            transform:rotateX(360deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="rotateX">
+        <img src="images/x.jpg"/>
+    </div>
+</body>
+</html>

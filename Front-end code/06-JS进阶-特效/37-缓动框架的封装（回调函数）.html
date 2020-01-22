@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>37-缓动框架的封装（回调函数）</title>
+    <style>
+        div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 10px;
+            top: 40px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <button>点击即可运动到400px然后回来</button>
+    <div></div>
+
+    <script>
+        //回调函数
+        //程序执行完毕，在次执行的函数。
+        //在函数中给指定的函数定义一个形参，然后程序执行到最后，调用这个形参后面加一个括号。
+
+        var btn = document.getElementsByTagName("button")[0];
+        var box = document.getElementsByTagName("div")[0];
+        btn.onclick = function () {
+            var json1 = {"top":400,"left":400,"width":400,"height":400,"opacity":10};
+            var json2 = {"top":40,"left":10,"width":100,"height":100};
+            animate(box,json1,function () {
+                animate(box,json2,function () {
+                    animate(box,json2);
+                });
+            });
+        }
+
+
+        //变为3个参数
+        function animate(elm,json,fn) {
+            //先清定时器
+            clearInterval(elm.timer);
+            elm.timer = setInterval(function () {
+                //开闭原则（用来处理清除定时器的bug）
+                var flag = true;
+                //遍历属性和值，分别单独处理json
+                //attr == k(键)    target == json[k](值)
+                for (var k in json) {
+                    var leader;
+                    //判断属性，特殊情况特殊处理(处理透明度opacity属性)
+                    if ( k === "opacity"){
+                        leader = getStyle(elm,k)*100 || 1;  //这里乘以100，以后调用时都要写成百分制
+                                                            //例如opacity = 0.1,写成10
+                    } else{
+                        leader = parseInt(getStyle(elm,k)) || 0;
+                    }
+                    //获取步长
+                    var step = (json[k] - leader)/10;
+                    //二次加工步长
+                    step = step>0?Math.ceil(step):Math.floor(step);
+                    leader += step;
+                    //赋值
+                    //特殊情况特殊赋值
+                    //如果是层级，一次赋值成功，不需要缓动赋值
+                    if (k === "opacity") {
+                        // opacity: 0.5;  内容一起透明.(火狐谷歌IE9+)
+                        //取值范围：  0-1
+                        //filter: alpha(opacity=50);     IE678(不研究)
+                        //取值范围：  0-100
+                        elm.style[k] = leader/100;
+                        //兼容ie6、7、8
+                        elm.style.filter = "alpha(opacity="+leader+")";
+                    }else if (k === "zIndex") {
+                        elm.style.zIndex = json[k];  //调用时写zIndex，避免前后不一致出错
+                    } else{
+                        elm.style[k] = leader + "px";
+                    }
+                    //判断: 目标值和当前值的差大于步长，就不能跳出循环
+                    //不考虑小数的情况：目标位置和当前位置不相等，就不能清除清除定时器。
+                    if (json[k]!==leader){
+                        flag = false;
+                    }
+                }
+                console.log(1); //用来检测定时器是否被清除
+                //只有所有的属性都到了指定位置，flag的值才会变为true，才能清除定时器
+                //清除定时器
+                if (flag) {
+                    clearInterval(elm.timer);
+                    //所有程序执行完了，现在可以执行回调函数了
+                    //只有传递了回调函数，才能执行
+                    if (fn){
+                        fn();
+                    }
+                }
+            },15)
+        }
+
+        //兼容方法获取内嵌式外链式样式
+        function getStyle(elm,attr) {
+            if (window.getComputedStyle){
+                return window.getComputedStyle(elm,null)[attr];
+            }
+            return elm.currentStyle[attr];
+        }
+
+    </script>
+</body>
+</html>

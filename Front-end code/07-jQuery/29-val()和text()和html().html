@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>29-val()和text()和html()</title>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            //val()方法  作用：设置或返回表单元素的值，例如：input,select,textarea的值
+            //获取匹配元素的值，只匹配第一个元素   $(selector).val();
+            //设置所有匹配到的元素的值  $(selector).val(“具体值”);
+            // val()括号中没参数，就是获取值，有参数就是设置值
+
+            //获取标签中的value属性的值。带有参数是赋值(类比js中的value属性)
+            // alert($("#inp").val());
+
+            $("button").click(function () {
+                //$("#inp").val(""); //清空值
+                $("#inp").val("我是用val（）方法赋值的内容");
+            });
+
+            //text()方法  作用：设置或获取匹配元素的文本内容(注意，它不识别标签！类似于innerText)  获取双闭合标签中的文本值。
+            //获取操作不带参数（注意：这时候会把所有匹配到的元素内容拼接为一个字符串，
+            //不同于其他获取操作！）$(selector).text();
+            //设置操作带参数，参数表示要设置的文本内容如果设置的内容包含
+            //html标签（<span>我要动态创建span，这时候行吗？</span>），那么text这个方法
+            //会把他们当作文本内容输出，而不会创建元素。这个text()和html()方的主要区别  $(selector).text(“我是内容”);
+            // $("div").text("我是text()方法添加的内容"); //会覆盖原来的文本内容
+            // $("div").text("<li>我是text()方法添加的内容</li>"); //  <li>我是text()方法添加的内容</li>  ,不识别标签，把标签当作文本输出
+
+            // html() 方法，类似于innerHTML  获取双闭合标签中的文本值。（识别标签）
+            //$("div").html("");  //清空内容
+            $("div").html("<li>我是html（）方法添加的内容，我能识别标签，text（）那个沙雕不识别标签233</li>");
+
+
+
+
+
+
+
+        })
+    </script>
+</head>
+<body>
+    <input type="text" value="我是input按钮" id="inp" size="35">
+    <button>设置input的value值</button>
+    <div>
+        <li>r u ok?</li>
+    </div>
+</body>
+</html>

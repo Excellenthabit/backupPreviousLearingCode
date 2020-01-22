@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-体验动画</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: burlywood;
+            position: absolute;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button>点击移动</button>
+    <div class="box"></div>
+    <script src="demo.js"></script>
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var box = document.getElementsByClassName("box")[0];
+
+        //闪动（瞬移）
+        // btn.onclick = function () {
+        //     box.style.left = "1000px";
+        // }
+
+        //匀速移动（利用定时器）
+        btn.onclick = function () {
+            // setInterval(function (){
+            //     //动画原理：盒子未来的位置=盒子现在的位置+步长
+            //     //style.left赋值，用offsetLeft获取值。
+            //     //style.left获取值不方便，获取行内式，如果没有事“”；容易出现NaN；
+            //     //offsetLeft获取值特别方便，而且是现成number方便计算。因为他是只读的不能赋值。
+            //     box.style.left = box.offsetLeft + 10 + "px";
+            // },300)
+            animateX2(box,1000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组去重</title>
+</head>
+<body>
+
+
+</body>
+</html>
+<script>
+    //判断是否是数组的方法：Array.isArray(参数) 、 参数 instanceof Array
+    //直接利用ES6的 Array.from 和Set去重
+    function unique1(arr) {
+        //Array.isArray(ary)判断是不是数组
+        if (Array.isArray(arr)){
+            return Array.from(new Set(arr)); //利用es6新特性直接去重
+        }
+        //反之，如果传进来的不是数组，那么返回错误信息
+        return "参数错误，不是数组！";
+    }
+    var arr = [1,1,1,1,2,2,2,3,3,3,4,5,6,6,6,7,7,8,8,9,9,];
+    // var arr = "hello world!";
+    console.log(arr);
+    console.log(unique1(arr));
+
+    //利用indexOf（）方法去重
+    function unique2(arr) {
+        //先判断是不是数组
+        if (arr instanceof Array){
+            //定义一个空数组用来存储去重后的数组
+            let newArr = [];
+            for (let i=0;i<arr.length;i++){
+                // indexOf()  找不到匹配的就会返回-1
+                if (newArr.indexOf(arr[i])==-1){
+                    newArr.push(arr[i]);
+                }
+            }
+            //返回去重后的数组
+            return newArr;
+        }
+        //反之，如果传进来的不是数组，那么返回错误信息
+        return "参数错误，不是数组！";
+    }
+
+    console.log(unique2(arr));
+    
+    
+    //利用Object键值对法来去重
+    function unique3(arr) {
+        var obj = {};
+        var newArr = [];
+        for (let i=0;i<arr.length;i++){
+            if (!obj[arr[i]]){
+                obj[arr[i]] = 1;
+                newArr.push(arr[i]);
+            }
+        }
+        return newArr;
+    }
+
+    console.log(unique3(arr));
+</script>

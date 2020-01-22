@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>56-事件监听原理</title>
+</head>
+<body>
+
+    <button>关汉卿-《关大王单刀赴会》</button>
+    <div></div>
+
+
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var div = document.getElementsByTagName("div")[0];
+        fn("click",fn1,btn);
+
+        function fn1() {
+            div.innerText = "三尺龙泉万卷书,上天生我意何如。不能报国平天下，枉为男儿大丈夫。"
+        }
+
+        //原理（了解）  自己封装一个（click）
+        function fn(str,fn,elm) {
+            var oldEvent = elm["on"+str];
+            elm["on"+str] = function () {
+                //不能直接执行函数，因为我们还不知道以前有没有绑定我同样的事件
+                //进行判断，如果以前有过绑定事件，那么把以前的执行完毕在执行现在的事件，如果没有就直接执行
+                //如果没有被定义过事件该事件源的该事件属性应该是null对应的boolean值是false
+                //如果已经定义过事件该事件源的该事件属性应该是function本身对应的boolean值是true
+                if (oldEvent){
+                    //因为oldEvent本身他就是函数本身，那么后面加一个（）;就是执行函数
+                    oldEvent();
+                    fn();
+                } else {
+                    //没有绑定过事件
+                    fn();
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

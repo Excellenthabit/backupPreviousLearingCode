@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>49-模拟日历</title>
+    <style>
+        div{
+            width: 800px;
+            height: 200px;
+            margin: 200px auto;
+            background-color:burlywood;
+            text-align: center;
+            font: 700 30px/200px "simsun";
+            border: 2px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+    <script>
+        //需求：每次打开浏览器都能获取到年月日时分秒以及星期
+        //思路：直接利用Date对象即可实现
+
+        //获取事件源以及相关元素
+        var moniCalendar =  new Date();
+        var div = document.getElementsByTagName("div")[0];
+        var weekArr = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+
+        div.innerText = "今天是"+moniCalendar.getFullYear()+"年"+(moniCalendar.getMonth()+1)+
+                        "月"+moniCalendar.getDate()+"日"+moniCalendar.getHours()+":"+
+                        moniCalendar.getMinutes()+":"+moniCalendar.getSeconds()+
+                        weekArr[moniCalendar.getDay()] ;
+    </script>
+</body>
+</html>

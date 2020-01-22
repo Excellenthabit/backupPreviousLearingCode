@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-背景原点</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            border: 30px solid rgba(0,0,255,0.3);
+            padding: 30px;
+
+            background: url("images/baby0.jpg") no-repeat;
+
+            /*
+            background-origin(原点，起点)设置背景定位的原点
+            所谓的背景原点就是调整背景位置的一个参照点.
+            调整背景图片定位的参照原点.
+            背景原点：控制背景从什么地方开始显示*/
+            /*padding-box是默认值*/
+            /*background-origin: padding-box;*/
+            /*从 border-box开始显示*/
+            /*background-origin: border-box;*/
+            /*从content-box开始显示*/
+            background-origin: content-box;
+
+
+
+
+
+
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

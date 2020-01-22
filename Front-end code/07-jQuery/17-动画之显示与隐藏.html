@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17-动画之显示与隐藏</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            display: none;
+            background-color: burlywood;
+            margin: 10px;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            //显示（4种使用方法）  show();
+            //点击按钮后产生动画
+            //通过控制宽高度、display、透明度
+            $("button").eq(0).click(function () {
+                //$("div").show(2000);  //用法1：参数为数值类型，表示：执行动画时长。单位为：毫秒（ms），参数2000即2秒钟显示完毕
+
+                //$("div").show("fast");// 用法2：参数为字符串类型，是jQuery预设的值，共有三个，分别是：slow、normal、fast
+                                            /* 跟用法一的对应关系为： */
+                                            /* slow：600ms、normal：400ms、fast：200ms */
+
+                $("div").show(2000,function () {
+                    alert("报告：动画执行完毕！");
+                }); //用法3：参数一可以是数值类型或者字符串类型。参数二表示：动画执行完后立即执行的回调函数
+                    //例如： $(selector).show(2000, function() {});
+                //$("div").show();// 用法4：不带参数，作用等同于 css(“display”, ”block”)
+                                // /* 注意：此时没有动画效果 */$(selector).show();
+
+        });
+
+
+            // 隐藏 4种使用方法 参考show()的四种，同理。
+            //点击按钮隐藏
+            //通过控制宽高度、display、透明度
+            $("button").eq(1).click(function () {
+                // $("div").hide(2000);
+                // $("div").hide("slow");
+                $("div").hide(2000,function () {
+                    alert("报告：动画执行完毕！");
+                });
+                //$("div").hide();
+            });
+
+
+            //显示、隐藏来回切换  同样4种使用方法，参考show()的，同理。
+            //通过控制宽高度、display、透明度
+            $("button").eq(2).click(function () {
+                //$("div").toggle(2000);
+                //$("div").toggle();
+                //$("div").toggle("slow");
+                $("div").toggle(2000,function () {
+                    alert("我信你个鬼哦，你这人坏的很！bazinga!");
+                });
+            });
+
+
+        })
+    </script>
+
+</head>
+<body>
+        <button>显示</button>
+        <button>隐藏</button>
+        <button>显示/隐藏</button>
+        <div></div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>27-jquery属性操作</title>
+    <style>
+        .test{
+            border: 2px solid red;
+        }
+        /*.aaa{*/
+            /*width: 100px;*/
+            /*height: 20px;*/
+        /*}*/
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+             //获取元素，绑定属性
+            var btn1 = $("button").eq(0);
+            var btn2 = $("button").eq(1);
+            var inp1 = $("input:eq(0)");
+            var inp2 = $("input:checkbox");
+
+            btn1.click(function () {
+                //设置属性
+                // $(selector).attr(“title”, “传智播客”);
+                // 第一个参数表示：要设置的属性名称
+                // 第二个参数表示：该属性名称对应的值
+                inp1.attr("class","test"); //为第一个文本输入框绑定一个类
+
+                //获取属性  $(selector).attr(“title”);
+                // 参数为：要获取的属性的名称，该操作会返回指定属性对应的值
+                alert(inp1.attr("class"));
+
+                //注意：checked、selected、disabled要使用.prop()方法。
+                // prop方法通常用来影响DOM元素的动态状态，而不是改变的HTML属性。
+                // 例如：input和button的disabled特性，以及checkbox的checked特性。
+
+                // inp2.attr("checked",true);  //一次性地给这个文本输入框添加了 checked="checked";
+                //form中的特殊属性，用prop
+                inp2.prop("checked",true);
+
+            });
+
+            //  移除属性   $(selector).removeAttr(“title”);
+            btn2.click(function () {
+                // 参数为：要移除的属性的名称,不能一个一个移除，会移除调用者所有叫这个名字的属性
+                inp1.removeAttr("class");
+            });
+
+
+
+        })
+
+    </script>
+</head>
+<body>
+    <button>绑定属性</button>
+    <button>移除属性</button>
+    <input type="text" >
+    <input type="checkbox" >
+
+
+</body>
+</html>

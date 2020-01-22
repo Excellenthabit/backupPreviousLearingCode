@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>31-文本框获取焦点高亮显示</title>
+    <style>
+        input{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    帐号：<input type="text"><br>
+    密码：<input type="text"><br>
+    性别：<input type="text"><br>
+    生日：<input type="text"><br>
+    爱好：<input type="text"><br>
+    特长：<input type="text"><br>
+    <button>设置</button>
+
+    <script>
+        ////需求：点击设置按钮，让所有的input标签获取焦点后高亮显示
+        var inpArr=document.getElementsByTagName("input");
+        //绑定设置按钮，这里利用的是最后一个input标签的下一个相邻节点,但是需要注意的如下：
+        // 使用nextSibling属性返回指定节点之后的下一个兄弟节点，（即：相同节点树层中的下一个节点）。
+        // nextSibling属性与nextElementSibling属性的差别：nextSibling属性返回元素节点之后的
+        // 兄弟节点（包括文本节点、注释节点即回车、换行、空格、文本等等）；
+        // nextElementSibling属性只返回元素节点之后的兄弟元素节点（不包括文本节点、注释节点）；
+        // 注意: 空格、回车也会看作文本，以文本节点对待。
+
+        //下面这句在测试时无法实现，可能是因为获取到了换行，所以无法绑定事件，导致无法实现所需功能
+        //var btn = inpArr[inpArr.length-1].nextElementSibling || inpArr[inpArr.length-1].nextSibling ;
+        //用下面这句就很保险了，妥妥的
+        var btn=document.getElementsByTagName("button")[0];
+        btn.onclick=function () {
+            for (var i=0;i<inpArr.length;i++){
+                //当btn按钮点击时，所有的input标签被绑定 onfocus 事件
+                inpArr[i].onfocus=function () {
+                    this.style.border="2px solid red";
+                    this.style.backgroundColor="#ccc";
+                }
+
+                //绑定onblur事件，取消样式
+                inpArr[i].onblur=function () {
+                    this.style.border="";
+                    this.style.backgroundColor="";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

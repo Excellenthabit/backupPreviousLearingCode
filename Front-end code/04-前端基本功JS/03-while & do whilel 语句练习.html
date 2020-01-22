@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-while & do whilel 语句练习</title>
+</head>
+<body>
+<script>
+    //1、1到100求和（while用两种方法）
+    // while语句
+    // var i=1;
+    // var sum=0;
+    // while (i<=100){
+    //     sum+=i;
+    //     i++;
+    //
+    // }
+    // alert(sum);
+
+    //do while 语句
+    // var i=1;
+    // var sum=0;
+    // do {
+    //     sum+=i;
+    //     i++;
+    // }
+    // while(i<=100)
+    // alert(sum);
+
+
+    //2、今天你要嫁给我
+    //点取消就是死循环
+    do{
+        var bool = confirm("你是不是喜欢我？");
+        if (bool) {
+            alert("我就知道你喜欢我^_^");
+            alert("那我们就在一起吧^_^");
+            alert("走，带上户口本身份证，去区民政局领证！");
+            break;
+        }
+    }
+    while(!bool)
+    
+
+</script>
+</body>
+</html>

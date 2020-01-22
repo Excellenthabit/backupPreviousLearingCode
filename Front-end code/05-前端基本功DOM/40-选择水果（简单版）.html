@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>40-选择水果（简单版）</title>
+    <style>
+        select {
+            width: 180px;
+            height: 240px;
+            font-size: 16px;
+            background-color: burlywood;
+        }
+    </style>
+    <script>
+        //需求：点击>>>左边的所有选项全部进入右边，
+        //点击<<<右边的所有选项全部进入左边。
+        //思路：获取所有的子元素，然后直接添加到另一侧。
+        window.onload = function () {
+            //获取事件及相关元素
+            var slt1 = document.getElementById("slt1");
+            var slt2 = document.getElementById("slt2");
+            var btnArr = document.getElementsByTagName("button");
+            var opt1Arr = slt1.children;
+            var opt2Arr = slt2.children;
+            // 点击>>>左边的所有选项全部进入右边，
+            //绑定事件源
+            btnArr[0].onclick = function () {
+                //往另外一个标签中添加元素原来的数组长度容易变化，为了防止跳出循环，我们使用反向遍历数组
+                for (var i=opt1Arr.length-1;i>=0;i--){
+                    //事件驱动程序
+                    //注意：appendChild 是在父元素后添加！！！
+                    slt2.appendChild(opt1Arr[opt1Arr.length-1-i]);
+                }
+            }
+
+            //点击<<<右边的所有选项全部进入左边。
+            //绑定事件源
+            btnArr[1].onclick = function () {
+                //往另外一个标签中添加元素原来的数组长度容易变化，为了防止跳出循环，我们使用反向遍历数组
+                for (var i=opt2Arr.length-1;i>=0;i--){
+                    //事件驱动程序
+                    //注意：appendChild 是在父元素后添加！！！
+                    slt1.appendChild(opt2Arr[opt2Arr.length-1-i]);
+                }
+            }
+
+            //点击>左边被选项进入右边。
+            btnArr[2].onclick =function () {
+                for (var i=opt1Arr.length-1;i>=0;i--){
+                    if (opt1Arr[i].selected === true){
+                        slt2.appendChild(opt1Arr[i]);
+                    }
+                }
+            }
+
+            //点击<右边被选项进入左边。
+            btnArr[3].onclick =function () {
+                for (var i=opt2Arr.length-1;i>=0;i--){
+                    if (opt2Arr[i].selected === true){
+                        slt1.appendChild(opt2Arr[i]);
+                    }
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <select name="" id="slt1" size="10" multiple>
+        <option value="">苹果</option>
+        <option value="">香蕉</option>
+        <option value="">草莓</option>
+        <option value="">西瓜</option>
+        <option value="">雪梨</option>
+        <option value="">大青枣</option>
+        <option value="">百香果</option>
+    </select>
+
+    <button>>>></button>
+    <button><<<</button>
+    <button>></button>
+    <button><</button>
+
+    <select name="" id="slt2" size="10" multiple>
+
+    </select>
+
+
+</body>
+</html>

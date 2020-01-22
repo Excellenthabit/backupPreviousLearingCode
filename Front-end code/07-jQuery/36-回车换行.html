@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>36-回车换行</title>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            //需求:在input中按了回车键，插入光标跳转到下一个input
+            $("input").on("keyup",function (e) {
+                if (e.keyCode === 13){
+                    // alert("你按了回车键！");  //for testing
+                    //跳转到下一行：下一个input获取插入光标
+                    // focus();    //js 和jq 一模一样的方法
+                    $(this).next().next().focus();
+                    // $(this).next().next()[0].focus();
+                }
+            });
+
+            $("input").on("mouseenter",function (e) {
+                //选定所有内容（能够输入内容的标签）
+                $(this).select();
+            });
+
+
+
+
+
+        })
+    </script>
+</head>
+<body>
+        <input type="text" value="学习使我快乐"> <br>
+        <input type="text" value="优秀是一种习惯"> <br>
+        <input type="text" value="学海无涯"> <br>
+        <input type="text" value="潜心磨剑"> <br>
+        <input type="text" value="书山有路"> <br>
+        <input type="text" value="宁静致远"> <br>
+</body>
+</html>

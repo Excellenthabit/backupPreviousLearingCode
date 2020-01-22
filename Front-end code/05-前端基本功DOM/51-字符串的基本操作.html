@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>51-字符串的基本操作</title>
+</head>
+<body>
+<script>
+    var str = "nicholasfung";
+    //charAt(index) 方法根据索引值查找字符串，找到就返回相应的索引值对应的字符串，
+    // 找不到就返回空字符串（一般是索引值大于字符串的长度才会这样）
+    // charAt，获取相应位置字符（参数：字符位置）
+    //注释：字符串中第一个字符的下标是 0。如果参数 index
+    // 不在0与string.length 之间,该方法将返回一个空字符串。
+
+    // alert(str.charAt(8)); // f
+    // alert(typeof str.charAt(20)); // string
+
+    //charCodeAt() 获取相应位置字符编码（参数：索引值）
+    //charCodeAt() 方法可返回指定位置的字符的 Unicode 编码。这个返回值是 0 - 65535 之间的整数。
+    //方法 charCodeAt() 与 charAt() 方法执行的操作相似，只不过前者返回的是位于指定位置的字符的编码，
+    // 而后者返回的是字符子串。
+    //console.log(str.charCodeAt(2)); //99
+    //console.log(str.charCodeAt(6)); //97
+
+
+    //1 indexOf，从前向后索引字符串位置（参数： 索引字符串）
+    //从前面寻找第一个符合元素的位置 找不到则返回 -1
+    //2 lastIndexOf，从后向前索引字符串位置（参数：索引字符串）从后面寻找第一个符合元素的位置  找不到则返回 -1
+    // console.log(str.indexOf("f")); //8
+    // console.log(str.lastIndexOf("n")); //10
+    // console.log(str.indexOf("d"));  // -1
+    // console.log(str.lastIndexOf("q")); // -1
+
+
+    //了解内容
+    //URI (Uniform ResourceIdentifiers,通用资源标识符)进行编码，以便发送给浏览器。
+    // 有效的URI中不能包含某些字符，例如空格。而这URI编码方法就可以对URI进行编码，它们用
+    // 特殊的UTF-8编码替换所有无效的字符，从而让浏览器能够接受和理解。
+    //encodeURIComponent() 函数可把字符串作为 URI 组件进行编码
+    //decodeURIComponent() 函数可把字符串作为 URI 组件进行解码
+
+    // var url = "http://cn.bing.com?username='fdq'&passward='12345678'";
+    // console.log(encodeURIComponent(url)); //http%3A%2F%2Fcn.bing.com%3Fusername%3D'fdq'%26passward%3D'12345678'
+    // console.log(decodeURIComponent(url)); //http://cn.bing.com?username='fdq'&passward='12345678'
+
+    var str1 = "What wake you up in the morning is dream,not alarm clock.";
+    var str2 = "每天早上叫醒你的是梦想而不是闹钟。";
+    //新字符串 = str1.concat(str2)； 链接两个字符串 concat()方法并不会修改原数组
+    var str3 = str1.concat(str2);
+    var str4 = str1+str2; //concat方法还不如这个来得快233
+    //console.log(str1);
+    //console.log(str2);
+    //console.log(str3);//What wake you up in the morning is dream,not alarm clock.每天早上叫醒你的是梦想而不是闹钟。
+    //console.log(str4);//同上
+
+    //字符串的截取
+    //1. slice，截取字符串（参数：1，截取位置【必须】，2终结点）
+    // console.log(str3.slice(6)); // 从指定位置截取到最后
+    //                             // ake you up in the morning is dream,not alarm clock.每天早上叫醒你的是梦想而不是闹钟。
+    // console.log(str3.slice(0, 13));// 正常包左不包右，从索引值为0开始截取到索引值为12的元素  What wake you
+    // console.log(str3.slice(-9)); //从倒数第9个截取到最后结束  是梦想而不是闹钟。
+    // console.log(str3.slice(25, 9)); //前面的索引值大于后面的索引值 返回空字符串
+
+
+    //2. substr，截取字符串（参数：1，截取位置【必须】，2截取长度）
+    // console.log(str3.substr(6, 10)); //从索引值为6开始截取10个字符串  ake you up
+    // console.log(str3.substr(6)); //只给一个参数，就是从所给的索引值开始截取到最后 ake you up in the morning is dream,not alarm clock.每天早上叫醒你的是梦想而不是闹钟。
+    // console.log(str3.substr(-9)); //从倒数第9个开始截取到最后  是梦想而不是闹钟。
+    // console.log(str3.substr(5, 2)); // 不包括前大后小的情况。  这样还是从索引值为5开始截取2个长度的字符串，
+    //                                 // 只要写了两个参数，后面的参数就是字符串长度
+
+    //3. substring 同slice
+    // console.log(str3.substring(6)); // 从指定位置截取到最后
+    //                             // ake you up in the morning is dream,not alarm clock.每天早上叫醒你的是梦想而不是闹钟。
+    // console.log(str3.substring(0, 13));// 正常包左不包右，从索引值为0开始截取到索引值为12的元素  What wake you
+    // console.log(str3.substring(-9)); // 只有一个参数为负值 将截取所有字符串 这跟slice方法有区别 注意区分！！！
+    // console.log(str3.substring(25, 9)); //   you up in the m   在执行时自动换成 str3.substring(9, 25)，
+    //                                     // 这跟slice方法有区别，注意区分！！！
+
+
+    //特殊方法简介
+    var str6 = " a b c ";
+    //trim()     //只能去除字符串前后的空白
+    console.log(str6.trim()); //a b c
+    console.log(str6); // a b c
+
+
+    //replace()  //替换   str.replace(/aaa/gi,“bbb”);
+    var str7 = "aaabbbcccAaadddeeefgaaa";
+    console.log(str7);
+    console.log(str7.replace(/aaa/, "fdq"));  //只能把字符开头的aaa替换成fdq    fdqbbbcccAaadddeeefgaaa
+    console.log(str7.replace(/aaa/g, "fdq"));  //把所有的aaa(区分大小写)都换成了fdq，用到了正则表达式的知识，现在还没学到，待了解
+                                               //fdqbbbcccAaadddeeefgfdq
+
+    console.log(str7.replace(/aaa/gi, "fdq")); //fdqbbbcccAaadddeeefgfdq
+                                               //把所有的aaa(不区分大小写)都换成了fdq，用到了正则表达式的知识，现在还没学到，待了解
+
+    //split()    //字符串变数组
+    var str8 = "刘备|关羽|张飞";
+    //split（）中括号无参数，是把字符串作为一个元素添加进数组中。空字符串，分隔字符串中每一个字符，分别添加进入数组中
+    console.log(str8.split()); //["刘备|关羽|张飞"]
+    //指定字符分隔数组：特殊符号将不会出现在数组的任意一个元素中
+    console.log(str8.split("|")); // ["刘备", "关羽", "张飞"]
+
+
+
+    //大小写转化
+    var str9="AaBbCcDefg";
+    console.log(str9.toLowerCase());  //转换成小写  aabbccdefg
+    console.log(str9.toUpperCase()); //转换成大写  AABBCCDEFG
+
+    //创建标签
+    var str10 = "HelloWorld";
+
+    console.log(str10.anchor());
+    console.log(str10.big());
+    console.log(str10.sub());
+    console.log(str10.sup());
+    console.log(str10.link("http://www.baidu.com"));
+    console.log(str10.bold());
+
+
+</script>
+</body>
+</html>

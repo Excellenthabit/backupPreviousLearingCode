@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>35-缓动框架的封装(单个属性)</title>
+    <style>
+        div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button>运动到400px处</button>
+    <button>宽度变为400px</button>
+    <div></div>
+
+    <script>
+
+        let btn = document.getElementsByTagName("button");
+        var box = document.getElementsByTagName("div")[0];
+        btn[0].onclick = function () {
+            animate(box,"left",400);
+        }
+        btn[1].onclick = function () {
+            animate(box,"width",400);
+        }
+
+        //缓动动画函数封装(三个参数）
+        function animate(elm,attr,target) {
+            clearInterval(elm.timer);
+            elm.timer = setInterval(function () {
+                var leader = parseInt(getStyle(elm,attr)) || 0;
+                //获取步长
+                var step = (target - leader)/10;
+                //二次加工步长
+                step = step>0?Math.ceil(step):Math.floor(step);
+                leader += step;
+                //赋值
+                elm.style[attr] = leader + "px";
+                //清除定时器
+                if (Math.abs(target-leader)<=Math.abs(step)) {
+                    elm.style[attr] = target + "px";
+                    clearInterval(elm.timer);
+                }
+            },15)
+
+        }
+
+        //兼容方法获取内嵌式外链式样式
+        function getStyle(elm,attr) {
+            if (window.getComputedStyle){
+                return window.getComputedStyle(elm,null)[attr];
+            }
+            return elm.currentStyle[attr];
+        }
+
+    </script>
+</body>
+</html>

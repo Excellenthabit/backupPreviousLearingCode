@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>07表单练习</title>
+</head>
+<body>
+
+<form action="test.php" method="post">
+<!-- method="post"通过action=""里的文件来处理信息，安全性高；
+	method="get"通过地址栏传输信息，安全性差 -->
+
+	<fieldset> <!-- filedset对表单信息分组 -->
+		<legend align="center">三达不溜点帅哥美女论坛</legend>  
+		<!-- <legend></legend>表单信息分组名称 -->
+<!-- 	文本输入框-->
+	用户名：<input type="text" name="username"  maxlength="10" size="15">
+
+	<br>
+	<br>
+
+<!-- 	密码输入框-->	
+    密&nbsp;码：<input type="password" name="pw" size="15">
+	<br>
+	<br>
+
+<!-- 	单选框，只有将name的值设置为一样才能实现单选效果，checked设置默认选项-->
+性别：
+	<input type="radio" name="gender" value="1" checked="checked">男
+	<input type="radio" name="gender" value="2">女
+	<br>
+	<br>
+	<!-- 下拉列表 -->
+	省（市）<select >    <!-- 如果在<select>里边加入multiple="multiple"，可以实现多选 -->
+		     <option>广西</option>   <!-- 下拉列表选项 -->
+		     <option>上海</option>
+		     <option>浙江</option>
+		     <option>广东</option>
+		     <option selected="selected">北京</option>   <!-- selected="selected"设置默认选项 -->
+	     </select>  
+
+
+	 市（区）<select>
+	 	      <optgroup label="北京市">  <!--  <optgroup></optgroup>对下拉列表进行分组，label=""分组名称 -->
+	 	         <option selected="selected">海淀区</option>
+	 	         <option>昌平区</option>
+	 	         <option>大兴区</option>
+	 	         <option>怀柔区</option>
+	 	      </optgroup>
+	 	    <optgroup label="广州市">
+	 	    	 <option>越秀区</option>
+	 	    	 <option>天河区</option>
+	 	    	 <option>白云区</option>
+	 	    	 <option>南沙区</option>
+	 	      </optgroup>
+            </select>
+
+  <br>
+  <br>
+
+<!-- 多选框--> 
+ 兴趣爱好（可多选）:
+  <input type="checkbox" name="fav1" value="1">骑行
+  <input type="checkbox" name="fav2" value="2">游泳
+  <input type="checkbox" name="fav3" value="3">唱歌
+  <input type="checkbox" name="fav4" value="4">打羽毛球
+  <input type="checkbox" name="fav5" value="5">编程
+
+<br>
+<br>
+
+    <!-- 多行文本框 -->
+   <p>个人说明：</p>
+   <textarea cols="140" rows="30"></textarea> <!-- cols控制输入字符的长度，rows控制输入的行数 ，这里表示的是共有30行，每行可容纳140个字符-->
+
+  <br>
+  <br>
+
+   <!-- 文件上传控件 -->
+   <input type="file">
+
+   <br>
+  
+   <input type="button" value="普通按钮"> <!--普通按钮，不能提交信息，需要配合js使用-->
+
+   <br>
+   
+   <input type="image" src="img/s9.jpg" >  <!-- 图片按钮，可以实现信息提交功能 -->
+   
+   <br>
+   <br>
+   
+   <!-- 时间控件 -->
+   请输入时间：
+   <input type="time">
+
+   <br>
+
+   <!-- 网址控件 -->
+   请输入网址：
+    <input type="url">
+
+    <br>
+
+   <!-- 邮件控件 -->
+   请输入邮箱地址：
+   <input type="email">
+
+   <br>
+
+   <!-- 日期控件 -->
+   请输入日期：
+   <input type="date">
+
+   <br>
+
+   <!-- 滑块控件 -->
+   <input type="range">
+
+   <br>
+
+
+   <input type="submit">  <!-- 文件提交按钮，可实现信息提交功能 -->
+   <input type="reset">  <!-- 重置按钮，将信息重置到默认状态 -->
+
+
+</fieldset>
+</form>
+</body>
+</html>

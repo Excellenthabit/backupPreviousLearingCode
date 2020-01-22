@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		table{
+			margin: 100px auto;
+			width: 500px;
+		}
+		td{
+			border: 1px solid #0094ff;
+		}
+	</style>
+</head>
+<body>
+	<h1>使用模板获取明星信息</h1>
+	<input type="button" value="获取明星信息" id="getStarInfo">
+	<table id='tableBox'></table>
+</body>
+</html>
+
+<!-- 定义模板 -->
+<script type="text/template" id="template">
+	<tr>
+		<td>{{name}}</td>
+		<td>{{skill}}</td>
+		<td><img src="{{path}}"></td>
+		<td><a href="#">点击了解更多关于{{name}}</a></td>
+	</tr>
+</script>
+
+<!-- 导入模板引擎 -->
+<script src='template.js'></script>
+<script type="text/javascript">
+	document.querySelector('#getStarInfo').onclick=function () {
+		var ajax=new XMLHttpRequest();
+		ajax.open('post','getInfo.php');
+		ajax.setRequestHeader('content-type','application/x-www-form-urlencoded');
+		ajax.send();
+		ajax.onreadystatechange=function () {
+			if (ajax.readyState==4&&ajax.status==200) {
+				console.log(ajax.responseText);
+
+				//转化为js对象，不管是数组还是对象都可以使用该方法
+				var starArr=JSON.parse(ajax.responseText);
+				console.log(starArr);
+
+				// 获取要替换的文本
+				var templateStr=document.querySelector('#template').innerHTML;
+				// 将每一次获取的字符串拼接起来
+				var totalTr='';
+				//这里获取到的是一个数组
+				for(var i=0;i<starArr.length;i++){
+					//获取当前循环的这个对象
+					var currentObj=starArr[i];
+
+					//调用封装的模板方法进行替换
+					var resultStr=template_pro(templateStr,currentObj);
+
+					//测试替换是否成功
+					console.log(resultStr);
+					totalTr+=resultStr;
+				}
+
+				//循环完毕后 tr拼接完毕  直接设置给页面中的table即可
+				document.querySelector('#tableBox').innerHTML=totalTr;
+			}
+		}
+	}
+</script>

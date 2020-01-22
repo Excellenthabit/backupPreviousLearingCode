@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04-getXML</title>
+	<style type="text/css">
+		table{
+			margin: 100px auto;
+			width: 400px;
+		}
+		td{		
+			text-align: center;
+			border: 1px solid #0094ff;
+		}
+	</style>
+</head>
+<body>
+	<input type="button"  value="获取xml数据">
+</body>
+</html>
+<script type="text/javascript">
+	document.querySelector('input').onclick=function() {
+		var ajax=new XMLHttpRequest();
+		ajax.open('post','04getXML.php');
+		ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		ajax.send();
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState==4 && ajax.status==200) {
+				//如果返回的是一个xml文件
+				console.log(ajax.responseText);
+				//异步对象中有一个属性专门用来获取xml
+				//xml对象在浏览器端就是一个document对象
+				//解析时 可以直接使用querySelector或者getElementById等document对象有的语法
+				console.log(ajax.responseXML);
+
+				var persons = ajax.responseXML.querySelectorAll('person');
+				// 在循环之前把table的拼接出来
+				var str = '';
+				str += '<table>';
+				// 循环获取其中的某一个
+				for(var i=0;i<persons.length;i++){
+					var currentPerson = persons[i];
+					 // 直接拼接出一个table的字符串然后设置到页面上即可
+					 
+				str += '<tr>';
+				str += '<td>'+currentPerson.querySelector('name').innerHTML+'</td>';
+				str += '<td><img src="'+currentPerson.querySelector('path').innerHTML+'" ></td>';
+				str += '<td>'+currentPerson.querySelector('job').innerHTML+'</td>';
+				// 再次添加一个td
+				str+='<td><a href="https://www.baidu.com/s?ie=UTF-8&wd=%E5%BC%A0%E6%A0%8B%E6%A2%81">点击了解更多_'+currentPerson.querySelector('name').innerHTML+'</a></td>';
+				str += '</tr>';
+				}
+				//循环完毕以后，将table合并
+				str += '</table>';
+				document.body.innerHTML=str;
+			}
+		}
+	}
+</script>

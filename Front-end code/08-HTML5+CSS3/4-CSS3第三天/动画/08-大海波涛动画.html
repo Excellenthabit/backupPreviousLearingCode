@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-大海波涛动画</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        html,body{
+            height: 100%;
+        }
+
+        body{
+            background-color: lightseagreen;
+            /*清除海浪动画效果产生的滚动条*/
+            overflow: hidden;
+        }
+        
+        /*海浪部分*/
+        .wave{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 235px;
+        }
+
+        .wave>div{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: url("images/wave01.png") no-repeat left bottom;
+            opacity: 0.4;
+        }
+
+        .wave .wave1{
+            animation: wave 1s infinite alternate;
+        }
+
+        .wave .wave2{
+            background: url("images/wave02.png");
+            animation:wave 1s infinite alternate 0.5s;
+        }
+
+        /*海浪动画*/
+        @keyframes wave {
+            from{
+                bottom: 0px;
+            }
+            to{
+                bottom:-30px;
+            }
+        }
+        
+        /*太阳部分*/
+        .sun{
+            width: 80px;
+            height: 80px;
+            background-color: #ff0014;
+            border-radius:50%;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+
+        .sun1,.sun2{
+            width: 100%;
+            height: 100%;
+            background-color: #ff0014;
+            border-radius: inherit;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .sun1{
+            animation: shiny 1s infinite;
+        }
+
+        .sun2{
+            animation: shiny 1s infinite 0.5s;
+        }
+        
+        /*太阳动画*/
+        @keyframes shiny {
+            from{
+                transform: scale(1);
+                opacity: 1;
+            }
+            to{
+                transform: scale(1.5);
+                opacity: 0.1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sun">
+        <div class="sun1"></div>
+        <div class="sun2"></div>
+    </div>
+    <div class="wave">
+        <div class="wave1"></div>
+        <div class="wave2"></div>
+    </div>
+
+</body>
+</html>

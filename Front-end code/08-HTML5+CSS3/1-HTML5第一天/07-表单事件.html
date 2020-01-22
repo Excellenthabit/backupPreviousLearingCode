@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07-表单事件</title>
+    <style>
+        form{
+            width: 100%;
+            /* 最大宽度*/
+            max-width: 640px;
+            /* 最小宽度*/
+            min-width: 320px;
+            margin:0 auto;
+            font-family: "Microsoft Yahei";
+            font-size: 20px;
+        }
+
+        input{
+            display: block;
+            width: 100%;
+            height:30px;
+            margin:10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="666.php" method="post">
+        <fieldset>
+            <legend style="text-align: center">表单事件</legend>
+            <label for="">
+                email: <input type="email" id="inp1">
+            </label>
+
+            <label for="">
+                password: <input type="text" id="inp2">
+            </label>
+
+            <input type="submit">
+        </fieldset>
+    </form>
+    <script>
+        //表单事件
+        <!--oninput 用户输入内容时触发，可用于移动端输入字数统计-->
+        <!--oninvalid 验证不通过时触发-->
+        var inp1 = document.getElementById("inp1");
+        var inp2 = document.getElementById("inp2");
+        var num = 0;
+        inp1.oninput = function () {
+            num++;
+            //将数字显示在inp2中
+            inp2.value = num;
+        }
+        <!--oninvalid 验证不通过时触发一般用来设置验证不通过时的提示文字-->
+        inp1.oninvalid = function () {
+            this.setCustomValidity('请输入正确格式的邮箱地址，不会就上百度谷歌一下！什么？你不会查？真丢人，退群吧你！');
+        }
+    </script>
+</body>
+</html>

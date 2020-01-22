@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用钩子函数模拟小球半场动画</title>
+    <style>
+        .ball{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+  
+    <div id='app'>
+        <input type="button" value="快到碗里来" @click="flag=!flag">
+          <!-- 这里先声明了钩子函数 -->
+        <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter"
+        @enter-cancelled="enterCancelled">
+            <div class='ball' v-show='flag'></div>
+        </transition>
+    </div>
+
+</body>
+</html>
+<script src="./lib/vue.min.js"></script>
+<script>
+
+    var vm = new Vue({
+         el:'#app',
+         data:{
+             flag:false
+         },
+         methods:{
+            //  注意：动画钩子函数的第一个参数：el，表示要执行动画的那个DOM元素，是个原生的js dom对象
+            // 可以认为el是通过document.getElementById('') 方式获取到的原生js dom对象
+             beforeEnter(el){
+                 el.style.transform = "translate(0,0)"
+             },
+             enter(el,done){ //enter表示动开始之后的样式，这里可以设置小球完成动画之后的结束状态
+                 el.offsetWidth;//这行代码没实际作用，但是如果不写出不来动画效果，也可以用offsetHeight...
+                 el.style.transform = "translate(150px,450px)";
+                 el.style.transition = "all 1s ease";
+                 done(); //这里的done，其实就是afterEnter这个函数，也就是说：done是afterEnter函数的引用
+             },
+             afterEnter(el){
+                 //动画完成之后，会调用afterEnter
+                //  这句话第一个作用就是控制小球的显示与隐藏
+                // 第二个作用就是直接跳过后半场动画，让flag标识符直接变为false
+                // 当第二次再点击按钮的时候，flag: false -> true
+                 this.flag = !this.flag;
+
+                // Vue把一个完整的动画，使用钩子函数，拆分为两部分
+                // 我们使用flag标识符，来表示动画的切换：
+                // 刚开始，flag = flag   -> true -> false
+             },
+             enterCancelled(el){
+
+             }
+
+         }
+    })
+
+</script>

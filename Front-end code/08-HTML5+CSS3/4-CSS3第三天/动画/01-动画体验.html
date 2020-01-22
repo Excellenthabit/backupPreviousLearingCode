@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-动画体验</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            margin: 100px;
+            background-color: skyblue;
+            /*调用动画*/
+            /*infinite 无限次*/
+            /*animation：动画名称 持续时间执行次数 是否反向(alternate) 运动曲线 延迟执行*/
+            /*animation: move 1s alternate linear 3;*/
+            /*animation: gun 2s;*/
+            animation: move 4s;
+        }
+
+        /*css3中的动画使用类似js中的函数，先定义再使用*/
+        /*js 定义函数 function gun(){函数体}*/
+        /*调用：gun()*/
+
+        /*css3中的动画：*/
+        /*定义动画：*/
+        /*@keyframes donghuaming {*/
+            /*from{初始状态}*/
+            /*to{结束状态}*/
+        /*}*/
+        /*调用：基本语法格式*/
+        /*animation：动画名称 持续时间;*/
+        @keyframes gun{
+            /*如果只有from和to这俩参数，那么from相当于0%，to相当于100%*/
+            from{
+                transform: translateX(0px) rotate(0deg);
+            }
+            to{
+                transform: translateX(500px) rotate(720deg);
+            }
+        }
+
+        /*定义多组动画*/
+
+        @keyframes move {
+            0%{
+                transform: translateX(0px) translateY(0px);
+                background-color:skyblue;
+                border-radius:0px;
+            }
+            25%{
+                transform: translateX(500px) translateY(0px);
+            }
+            50%{
+                transform: translateX(500px) translateY(320px);
+                border-radius:50%;
+            }
+            75%{
+                transform: translateX(0px) translateY(320px);
+            }
+            100%{
+                transform: translateX(0px) translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

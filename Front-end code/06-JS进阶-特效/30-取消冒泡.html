@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>30-取消冒泡</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        //阻止冒泡
+        //w3c的方法是：（火狐、谷歌、IE11）
+        //event.stopPropagation()
+        //IE10以下则是使用：event.cancelBubble = true
+        //兼容代码如下：
+
+          // var event = event || window.event;
+          //       if(event && event.stopPropagation){
+          //           event.stopPropagation();
+          //       }else{
+          //           event.cancelBubble = true;
+          //       }
+
+
+        var box =document.getElementsByClassName("box")[0];
+        //onmouseover 事件会冒泡，在之前的放大镜案例中讲过
+        box.onmouseover = function (event) {
+            //阻止冒泡
+            event = event || window.event;
+            if (event &&　event.stopPropagation){
+                event.stopPropagation();
+            } else {
+                event.cancelBubble = true;
+            }
+        }
+
+        document.onmouseover = function (event) {
+            console.log(event.bubbles);
+
+            //谁触动事件，就会被放到target中
+            console.log(event.target);
+        }
+    </script>
+</body>
+</html>

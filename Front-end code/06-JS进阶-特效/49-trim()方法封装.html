@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>49-trim()方法封装</title>
+</head>
+<body>
+<script>
+
+    var str = "  别来无恙，最近还好吗？我过得  很好！   ";
+    console.log(str); //别来无恙，最近还好吗？我过得  很好！
+    // console.log(trim(str)); //别来无恙，最近还好吗？我过得很好！
+
+    function trim(str) {
+        var temp = str.replace(/\s/gi,""); //将所有空格删除
+        return temp;
+    }
+
+    //面对对象时才学习
+    // String.prototype.aaa = function () {
+    //     var aaa = str.replace(/\s/gi,""); //将所有空格删除
+    //     return aaa;
+    // }
+    // console.log(str.aaa()); //别来无恙，最近还好吗？我过得很好！
+
+</script>
+</body>
+</html>

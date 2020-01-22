@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-太阳系</title>
+    <style>
+        /*公转周期（大概数字，四舍五入了）：*/
+        /*地球：365天*/
+        /*金星：225天*/
+        /*月球：27天*/
+        /*火星：687天*/
+        body{
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .sun{
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+            position: absolute;
+            border-radius:50%;
+            box-shadow: 0 0 30px 3px gold;
+            /*水平竖直居中*/
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .earth{
+            width: 350px;
+            height: 350px;
+            border: 1px solid #ccc;
+            border-radius:50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            /*保证居中*/
+            transform: translate(-50%,-50%);
+            animation: rot 13s linear infinite;
+        }
+        .earth::before{
+            content: '';
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            background-color: lightskyblue;
+            border-radius: 50%;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .moon{
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            border-radius: 50%;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            animation: rot 0.93s linear infinite 0.5s;
+
+        }
+        .moon::before{
+            content: '';
+            width: 15px;
+            height: 15px;
+            background-color: gray;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .venus{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #ccc;
+            border-radius:50%;
+            position: absolute;
+            left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            animation:rot 8.2s linear infinite;
+        }
+        .venus::before{
+            content: '';
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            background-color: goldenrod;
+            border-radius:50%;
+            position: absolute;
+            left:0;
+            top:50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .mars{
+            width: 600px;
+            height: 600px;
+            border: 1px solid #ccc;
+            border-radius:50%;
+            position: absolute;
+            left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            animation:rot 25s linear infinite;
+        }
+        .mars::before{
+            content: '';
+            width: 50px;
+            height: 50px;
+            border: 1px solid #ccc;
+            background-color: red;
+            border-radius:50%;
+            position: absolute;
+            left:0;
+            top:50%;
+            transform: translate(-50%,-50%);
+        }
+
+        /*动画*/
+        @keyframes rot {
+            from{
+                transform:translate(-50%,-50%) rotate(0deg);
+            }
+            to{
+                transform:translate(-50%,-50%) rotate(360deg);
+
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sun"></div>
+    <div class="earth">
+        <div class="moon"></div>
+    </div>
+    <!--venus 金星   mars 火星-->
+    <div class="venus"></div>
+    <div class="mars"></div>
+</body>
+</html>

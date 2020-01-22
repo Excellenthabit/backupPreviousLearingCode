@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transparent</title>
+    <style>
+        .out{
+            margin: 100px auto;
+            width: 400px;
+            height: 400px;
+            background-color: pink;
+            border: 1px solid #000;
+            background: transparent;
+        }
+
+        /*transparent 可以单独设置透明度，但是无法设置透明度的值，也无法改变透明度的值*/
+
+        .in{
+            margin: 100px auto;
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="out">
+        <div class="in"></div>
+    </div>
+</body>
+</html>

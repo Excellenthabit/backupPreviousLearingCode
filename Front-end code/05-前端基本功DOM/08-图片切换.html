@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08-图片切换</title>
+
+</head>
+<body>
+   <!--return false的目的是禁止a链接跳转-->
+   <a href="http://cn.bing.com" style="margin:10px;display:block" onclick="changeImage();return false;">切换</a>
+   <img src="image/1.jpg" width="600px" id="tp">
+
+</body>
+</html>
+<script>
+    var img=document.getElementById("tp");
+    function changeImage() {
+        img.src="image/2.jpg";
+
+    }
+</script>

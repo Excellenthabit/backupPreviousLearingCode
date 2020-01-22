@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/bootstrap-3.3.7.css">
+</head>
+<body>
+    <div id="app">
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+                    <h3 class="panel-title">vue-resource练习</h3>
+              </div>
+              <div class="panel-body form-inline">
+                    <label>
+                        userId:
+                        <input type="text" v-model='userId' class='form-control'>
+                    </label>
+                    <label>
+                        id:
+                        <input type="text" v-model='id' class='form-control'>
+                    </label>
+                    <label>
+                        title:
+                        <input type="text" v-model='title' class='form-control'>
+                    </label>
+                    <label>
+                        body:
+                        <input type="text" v-model='body' class='form-control'>
+                    </label>
+                    <input type="button" value="添加" @click='add' class='btn btn-primary'>
+              </div>
+        </div>
+        <table class="table table-bordered table-hover ">
+            <thead>
+                <tr>
+                    <th>userId</th>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>body</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for='item in list' :key='item.id'>
+                    <td>{{item.userId}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.body}}</td>
+                    <td>
+                        <a href="" @click.prevent='del(item.id)'> 删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+    </div>
+</body>
+</html>
+<script src="./lib/vue.min.js"></script>
+<script src="./lib/vue-resource-1.3.4.js"></script>
+<script>
+    //如果全局配置了，请求的接口、根域名，则在每次单独发起http请求的时候，请求的url路径，
+    //应该以相对路径开头，前面不能带反斜杠 / ,否则不会启用根路径做拼接
+    // Vue.http.options.root = 'https://jsonplaceholder.typicode.com/';
+
+    // 全局启用emmulateJSON选型，所以后面使用post方法发送http请求不用再写这个参数
+    Vue.http.options.emulateJSON = true;
+   
+
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            userId:'',
+            id:'',
+            title:'',
+            body:'',
+            list:[ //存放所有的品牌列表的数组
+
+            ]
+        },
+        created() { //当vm实例的data和methods初始化完毕后，vm实例会自动执行created这个生命周期函数
+            this.getAllList();
+        },
+        methods: {
+            getAllList(){//获取所有数据
+                this.$http.get('https://jsonplaceholder.typicode.com/posts').then(result =>{
+                    if(result.status === 200){
+                        this.list = result.body;
+                    }else{
+                        alert('获取数据失败！~~~');
+                    }
+                })
+            },
+            add(){
+                this.$http.post('https://jsonplaceholder.typicode.com/posts',{userId:this.userId,id:this.id,title:this.title,body:this.body}).then(result =>{
+                    if(result.status === 201){
+                    console.log(result.data);//在控制台打印已添加的数据
+                    this.userId = '';
+                    this.id = '';
+                    this.title = '';
+                    this.body = '';
+                    }else{
+                        alert('添加数据失败！');
+                    }
+                 })
+            },
+            del(id){
+
+            }
+        }
+
+    })
+
+</script>

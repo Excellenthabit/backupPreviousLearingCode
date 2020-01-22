@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17-楼层跳跃</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body,html{
+            height: 100%;
+        }
+        ul{
+            list-style:none;
+            height: 100%;
+        }
+        ul li{
+            height: 100%;
+            text-align: center;
+        }
+        ol{
+            list-style:none;
+            position: fixed;
+            top: 100px;
+            left: 50px;
+        }
+        ol li{
+            width: 60px;
+            height: 50px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 50px;
+            margin-top: -1px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="demo.js"></script>
+    <script>
+        window.onload = function () {
+            //需求：点击ol中的li，屏幕滑动到对应ul中的li的范围
+            //思路：还是利用window.scrollTo();利用缓动动画原理实现屏幕滑动
+
+            //1.获取元素
+            var ul = document.getElementsByTagName("ul")[0];
+            var ol = document.getElementsByTagName("ol")[0];
+            var ulLiArr = ul.children;
+            var olLiArr = ol.children;
+            var target = 0;
+            var leader = 0;
+            var timer = null;
+            //2.指定ul和ol中的li的背景颜色，对应的li背景颜色应该相同
+            //设置一个数组，里面装颜色，然后指定的颜色给对应的li元素
+            var colorArr = ["pink","burlywood","yellow","orange","blue","purple"];
+            for (var i=0;i<ulLiArr.length;i++){
+                ulLiArr[i].style.backgroundColor = colorArr[i];
+                olLiArr[i].style.backgroundColor = colorArr[i];
+                //3.绑定事件
+                //属性绑定索引值
+                olLiArr[i].index = i;
+                olLiArr[i].onclick = function () {
+                    //4.利用缓动动画原理实现屏幕滑动
+                    target = ulLiArr[this.index].offsetTop;
+                    clearInterval(timer);
+                    timer = setInterval(function () {
+                        //处理步长
+                        var step = (target-leader)/10;
+                        step = step>0?Math.ceil(step):Math.floor(step);
+                        //屏幕滑动
+                        leader += step;
+                        window.scrollTo(0,leader);
+                        if (Math.abs(target-leader)<=Math.abs(step)){
+                            window.scrollTo(0,target);
+                            clearInterval(timer);
+                        }
+                    },25)
+                }
+            }
+
+
+            //5.用scroll事件模拟盒子距离最顶端的距离
+            window.onscroll = function () {
+                //每次屏幕滑动，把屏幕卷去的头部赋值给leader，模拟获取显示区域顶部的距离
+                leader = scroll().top;
+            }
+
+        }
+    </script>
+</head>
+<body>
+
+    <ul>
+        <li>一楼</li>
+        <li>二楼</li>
+        <li>三楼</li>
+        <li>四楼</li>
+        <li>五楼</li>
+        <li>六楼</li>
+    </ul>
+    <ol>
+        <li>去一楼</li>
+        <li>去二楼</li>
+        <li>去三楼</li>
+        <li>去四楼</li>
+        <li>去五楼</li>
+        <li>去六楼</li>
+    </ol>
+
+
+</body>
+</html>

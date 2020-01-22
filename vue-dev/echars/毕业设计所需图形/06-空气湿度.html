@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>空气湿度</title>
+</head>
+<body>
+    <div id="main" style="width: 100%;height:650px"></div>
+</body>
+</html>
+<script src='./lib/echarts.min.js'></script>
+<script>
+    var year = new Date().getFullYear(); // 年
+	var month = new Date().getMonth() + 1; // 月
+    var day = new Date().getDate();   // 日
+    var myChart = echarts.init(document.getElementById('main'));
+    option = {
+        title : {
+        	        text:year+'年'+month+'月'+day+'日,秦岭山脉地区空气湿度',
+        	        subtext: '模拟数据',
+        	        x:'center'
+        	    },
+        xAxis: {
+            type: 'category',
+            data: ['00:00','02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00','18:00','20:00','22:00']
+        },
+        yAxis: {
+
+        },
+        series: [{
+            symbolSize: 20,
+            data: [
+                [0.0,50.50],
+                [1.1,50.90],
+                [2.2,51.56],
+                [3.0,52.86],
+                [4.0, 51.26], 
+                [5.0, 52.68],
+                [6.0, 53.24],
+                [7.0, 54.82],
+                [8.0, 56.95], 
+                [9.0, 58.81],
+                [10.0, 58.04],
+                [11.0, 58.33], 
+                [12.0, 60.84], 
+                [13.0, 67.58],
+                [14.0, 69.96],
+                [15.0,70.68],
+                [16.1,71.06],
+                [17.6,68.88],
+                [18.0,68.06],
+                [19.0,65.86],
+                [20.2,63.56],
+                [21.0,61.86],
+                [22.0,58.06],
+                [23.0,53.86]
+            ],
+            type: 'scatter'
+        }]
+    };  
+    myChart.setOption(option); 
+
+
+</script>

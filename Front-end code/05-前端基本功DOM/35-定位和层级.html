@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>35-定位和层级</title>
+    <style>
+
+        img{
+            width: 200px;
+            position: absolute;
+            left: 20px;
+            top:100px;
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            margin-top: 20px;
+            background-color: burlywood;
+            position: absolute;
+            left: 20px;
+            top: 100px;
+            z-index: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <button>动起来</button>
+    <div></div>
+    <img src="image/mm.png" alt="" id="image">
+<script>
+    //需求：点击按钮，让盒子和图片同事移开，并且，图片压住盒子.
+    //获取事件源和相关元素
+    var btn = document.getElementsByTagName("button")[0];
+    var div = document.getElementsByTagName("div")[0];
+    var img = document.getElementById("image");
+    //绑定事件
+    btn.onclick = function () {
+        //书写事件驱动程序
+        div.style.top = "400px";
+        div.style.left = "400px";
+        img.style.top = "400px";
+        img.style.left = "400px";
+        img.style.zIndex = "2";
+    }
+</script>
+</body>
+</html>

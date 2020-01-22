@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>27-根据浏览器可视区域大小给定背景色</title>
+</head>
+<body>
+<script src="demo.js"></script>
+    <script>
+        //需求：浏览器每次更改大小，判断是否符合某一标准然后给背景上色。
+        //  // >960红色，大于640小于960蓝色，小于640绿色。
+        //步骤：
+        //1.老三步
+        //2.判断。
+        //3.上色
+        window.onresize = changeBgc; //页面加载时直接执行一次函数，确定浏览器可视区域的宽然后给背景上色
+        changeBgc();
+
+
+        function  changeBgc() {
+            //判断（由大到小判断，比较方便，符合小的肯定符合大的）
+            if (client().width>960){
+                //给背景上色
+                document.body.style.backgroundColor = "red";
+                //这里之所以没有写 client().width>640 && client().width<960
+                // 是因为不满足上述的条件才会执行到这里，所以没必要多写
+            } else if (client().width>640){
+                document.body.style.backgroundColor = "blue";
+            } else {
+                document.body.style.backgroundColor = "green";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ECharts入门示例</title>
+</head>
+<body>
+    <!-- 为EChars准备一个具备大小（较高）的DOM -->
+    <div id="main" style="width:600px;height: 400px;"></div>
+</body>
+</html>
+<script src='./lib/echarts.js'></script>
+<script>
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.querySelector('#main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title:{
+            text:'ECharts入门示例'
+        },
+        tootip:{},
+        legend:{
+            data:['销量']
+        },
+        xAxis:{
+            data:['衬衫','羊毛衫','雪纺衫','裤子','袜子','高跟鞋']
+        },
+        yAxis:{},
+        series:[{
+            name:'销量',
+            type:'bar',
+            data:[5,20,36,10,10,20]
+        }]
+    };
+
+    //使用前面指定的配置项和数据项显示图表
+    myChart.setOption(option);
+</script>

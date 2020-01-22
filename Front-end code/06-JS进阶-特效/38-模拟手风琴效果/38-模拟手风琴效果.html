@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>38-模拟手风琴效果</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 1150px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid darkorange;
+            overflow: hidden;
+        }
+        ul{
+            list-style: none;
+        }
+        div ul{
+            width: 1300px;
+        }
+        div li{
+            width: 240px;
+            height: 400px;
+            float: left;
+        }
+    </style>
+    <script src="../demo.js"></script>
+    <script>
+        window.onload = function () {
+            //需求：鼠标放到li中该盒子变宽，其他的盒子变窄，移开大盒子，恢复原样
+
+            var div = document.getElementsByTagName("div")[0];
+            var liArr = document.getElementsByTagName("li");
+            //给li添加背景
+            for(var i=0;i<liArr.length;i++){
+                liArr[i].style.background = "url(images/"+(i+1)+".jpg) no-repeat";
+
+                //绑定onmouseover事件，鼠标放入到li中该盒子变宽，其他的盒子变窄（排他思想）
+                liArr[i].onmouseover = function () {
+                    //排他思想
+                    for (var j=0;j<liArr.length;j++){
+                        //利用框架实现宽度变窄
+                        //干掉所有人
+                        animate(liArr[j],{"width":100});
+                    }
+                    //剩下他自己
+                    animate(this,{"width":800});
+                }
+            }
+
+            //移开大盒子，恢复原样
+            div.onmouseout = function () {
+                for (var i=0;i<liArr.length;i++){
+                    //移开大盒子变回原样
+                    animate(liArr[i],{"width":240});
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+        <div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+</body>
+</html>

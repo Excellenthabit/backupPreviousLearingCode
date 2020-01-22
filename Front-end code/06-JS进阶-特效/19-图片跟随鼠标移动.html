@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>19-图片跟随鼠标移动</title>
+    <style>
+        body{
+            height: 5000px;
+        }
+        img{
+            position: absolute;
+            padding: 10px 0;
+            cursor: pointer;
+            border: 1px solid darkred;
+        }
+    </style>
+    <script src="demo.js"></script>
+    <script>
+        window.onload = function () {
+            //需求：点击页面的任何地方，图片跟随鼠标移动到点击位置。
+            //思路：获取鼠标在页面中的位置，然图片缓慢运动到鼠标点击的位置。
+            //  兼容ie67做pageY和pageX；
+            //  原理：鼠标在页面的位置 = 被卷去的部分+可视区域部分。
+            //步骤：
+            //1.老三步。
+            //2.获取鼠标在页面中的位置。
+            //3.利用缓动原理，慢慢的运动到指定位置。（包括左右和上下）
+
+            //获取事件源以及相关元素
+            var img = document.getElementsByTagName("img")[0];
+            var timer =null;
+            var targetX = 0;
+            var targetY = 0;
+            //给整个文档绑定点击鼠标获取位置事件
+            document.onclick = function(event){
+            event = event || window.event;
+            // 鼠标在页面的位置 = 被卷去的部分+可视区域部分
+                var pageX = event.pageX ||scroll().left + event.clientX;
+                var pageY = event.pageY ||scroll().top + event.clientY;
+                targetX = pageX - img.offsetWidth/2;   // /2为了让图片的中心和鼠标的横坐标一样
+                targetY = pageY - img.offsetHeight/2;  // /2为了让图片的中心和鼠标的纵坐标一样
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    leaderX = img.offsetLeft;//为图片的位置获取值
+                    leaderY = img.offsetTop;//为图片的位置获取值
+                    var stepx =  (targetX - img.offsetLeft)/10;
+                    var stepy =  (targetY - img.offsetTop)/10;
+                    stepx = stepx>0?Math.ceil(stepx):Math.floor(stepx);
+                    stepy = stepy>0?Math.ceil(stepy):Math.floor(stepy);
+                    leaderX = leaderX + stepx;
+                    leaderY = leaderY + stepy;
+                    img.style.left = leaderX + "px";
+                    img.style.top = leaderY + "px";
+                    //同时满足两个条件就清除定时器
+                    if (Math.abs(targetX-img.offsetLeft)<=Math.abs(stepx) &&
+                        Math.abs(targetY-img.offsetTop)<=Math.abs(stepy)){
+                        img.style.left = targetX + "px";
+                        img.style.top = targetY + "px";
+                        clearInterval(timer);
+                    }
+                },20)
+        }
+
+        }
+    </script>
+</head>
+<body>
+        <img src="images/supermanlogo.jpg" width="100px">
+</body>
+</html>

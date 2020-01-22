@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06-getJson</title>
+</head>
+<body>
+	<h1>获取某一个歌手的信息</h1>
+	<input type="button" id="btn" value="获取json">
+</body>
+</html>
+<script type="text/javascript">
+	document.querySelector('#btn').onclick = function() {
+		var ajax=new XMLHttpRequest();
+		ajax.open('get','06getJson.php');
+		ajax.send();
+		ajax.onreadystatechange=function(){
+			if (ajax.readyState==4 && ajax.status==200) {
+				//转化成js对象
+				var jsObj = JSON.parse(ajax.responseText);
+				console.log(jsObj);
+				// 拼接
+				var str = '';
+				str+='<ul>';
+				str+='<li>'+jsObj.name+'</li>';
+				str+='<li>'+jsObj.country+'</li>';
+				str+='<li>'+jsObj.height+'</li>';
+				str+='<li>'+jsObj.weight+'</li>';
+				str+='</ul>';
+
+				document.body.innerHTML = str;
+
+			}
+		}
+	}
+</script>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>46-10秒后关闭广告</title>
+    <style>
+
+        img{
+            position: fixed;
+            top: 50%;
+            margin-top:-220px;
+
+        }
+        .left{
+            left:20px;
+        }
+        .right{
+            right: 20px;
+        }
+        div{
+            width: 800px;
+            margin: 150px auto;
+            text-align: center;
+            font: 700 30px/50px "microsoft yahei";
+            color: #cc6600;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var img = document.getElementsByTagName("img");
+            setInterval(fn,10000);
+            function fn() {
+                img[0].style.display = "none";
+                img[1].style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <img class="left" src="image/1.gif" alt="道高一尺">
+    <img class="right" src="image/2.gif" alt="魔高一丈">
+    <div>
+        <h1>《人生没有如果》</h1>
+        繁忙的大街 <br>
+        没表情的脸 我活在今天 <br>
+        跟回忆缠绵 迷路的少年 <br>
+        已经不再抱怨 <br>
+        爱情像一只蝴蝶 <br>
+        脆弱却让人想念 <br>
+        它总是忽隐忽现 <br>
+        我心中的花园 <br>
+        向昨天告别 <br>
+        跟伤口和解 别哭丧着脸 <br>
+        我不再扮演 青春的少年 <br>
+        你也不必留恋 <br>
+        走过不安的岁月 <br>
+        牺牲多少的睡眠 <br>
+        终于对快乐不再贪得无厌 <br>
+        人生没有如果 比如说 <br>
+        换另一种生活 有什么结果 <br>
+        人生没有如果 比如说 <br>
+        没有参考星座 会不会落魄 <br>
+        只能放手一搏 <br>
+        拥挤的地铁 <br>
+        多少梦浮现 多少梦幻灭 <br>
+        喜欢去海边 冲浪的少年 <br>
+        总算学会妥协 <br>
+        无伤大雅的谎言 <br>
+        微笑应对着敷衍 <br>
+        终于学会用温柔 <br>
+        对抗世界 <br>
+        人生没有如果 比如说 <br>
+        换另一种生活 有什么结果 <br>
+        人生没有如果比如说 <br>
+        没有参考星座 会不会落魄 <br>
+        偶尔挂念那些深夜 <br>
+        理想很远怎么实现 <br>
+        人生没有如果 比如说 <br>
+        重新让你选过 你会选什么 <br>
+        人生没有如果 比如说 <br>
+        没有参考星座 会不会落魄 <br>
+        只能放手一搏 <br>
+    </div>
+</body>
+</html>

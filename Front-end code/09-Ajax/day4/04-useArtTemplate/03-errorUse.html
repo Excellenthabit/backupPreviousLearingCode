@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script src="template-native.js"></script>
+<script type="text/template" id="template">
+	<ul>
+		<% for(var i=0;i<foodArr.length;i++){%>
+			<li><%=foodArr[i]%></li>
+		<%}%>
+	</ul>
+</script>
+
+<script type="text/javascript">
+	//准备对象（数组）
+	var obj = [
+		'西兰花',
+		'西葫芦',
+		'西红柿',
+		'西瓜',
+		'文体两开花'
+	];
+	//将数组包装到一个对象中
+	var foodObj = {
+		foodArr:obj
+	}
+
+
+	var resultStr = template('template',foodObj);
+	console.log(resultStr);
+	document.body.innerHTML = resultStr;
+</script>

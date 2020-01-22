@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding="utf-8"?>
+<starInfo>
+	<person>
+		<name>张栋梁</name>
+		<path>images/zdl.jpg</path>
+		<job>singer</job>
+	</person>
+	<person>
+		<name>周华健</name>
+		<path>images/zhj.jpg</path>
+		<job>singer</job>
+	</person>
+	<person>
+		<name>Taylor Swift</name>
+		<path>images/ts.jpg</path>
+		<job>singer</job>
+	</person>
+</starInfo>

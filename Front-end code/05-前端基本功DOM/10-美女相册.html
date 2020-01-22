@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10-美女相册</title>
+    <style>
+        body {
+            font-family: "Helvetica", "Arial", serif;
+            color: #333;
+            background-color: #ccc;
+            margin: 1em 10%;
+        }
+
+        h1 {
+            color: #333;
+            background-color: transparent;/* transparent透明的*/
+        }
+
+        ul{
+            padding: 0;
+        }
+
+        li{
+            float: left;
+            list-style: none;
+            padding: 1em;
+        }
+        a{
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #gallery{
+            list-style: none;
+        }
+        #gallery li {
+            margin: 0px 20px 20px 0px;
+            padding: 0px;
+            display: inline;
+        }
+
+        #gallery li a img {
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+<h2>美女相册案例</h2>
+<ul id="gallery">
+    <li>
+        <a href="image/1.jpg" title="美女A">
+            <img src="image/1-small.jpg" width="100px">
+        </a>
+    </li>
+
+    <li>
+        <a href="image/2.jpg" title="美女B">
+            <img src="image/2-small.jpg" width="100px">
+        </a>
+    </li>
+
+    <li>
+
+        <a href="image/3.jpg" title="美女C">
+            <img src="image/3-small.jpg" width="100px">
+        </a>
+    </li>
+
+    <li>
+        <a href="image/4.jpg" title="美女D">
+            <img src="image/4-small.jpg" width="100px">
+        </a>
+    </li>
+</ul>
+<div style="clear:both"></div>
+<img id="img" src="image/placeholder.png" width="465px" >
+<p id="choosePitcure">请选择一张图片</p>
+
+
+<script>
+    //需求：点击小图片，改变下面的大图片的src属性值。赋值为a链接的href属性值。
+    //让p标签的innnerHTML属性值，变成a标签的title属性值。
+    //步骤：
+    //1.获取事件源和相关元素
+    //2.绑定事件
+    //3.书写事件驱动程序
+
+    //1.获取事件源和相关元素
+    var ul=document.getElementById("gallery");
+    //利用元素获取其下面的标签。
+    var aArr=ul.getElementsByTagName("a"); // 等同于var aArr=document.getElementsByTagName("a");
+    var img=document.getElementById("img");
+    var choosePitcure=document.getElementById("choosePitcure");
+    //2.绑定事件
+    //以前是一个一个绑定，但是现在是一个数组。for循环绑定
+        for (var i=0;i<aArr.length;i++){
+            aArr[i].onclick=function () {
+                //修改属性
+                //this指的是函数调用者，和i并无关系，所以不会出错。
+                img.src=this.href;// 等同于 img.src=aArr[i].href;
+                choosePitcure.innerHTML=this.title;
+                return false;
+            }
+        }
+</script>
+</body>
+</html>

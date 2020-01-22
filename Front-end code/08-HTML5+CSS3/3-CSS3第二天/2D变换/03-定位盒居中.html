@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-定位盒居中</title>
+    <style>
+        div{
+            width: 300px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left:50%;
+            top:100px;
+        }
+        div:nth-child(1){
+            margin-left: -150px;
+        }
+        div:nth-child(2){
+            top:300px;
+            /*水平方向上向左走自己宽的一半*/
+            /*推荐的写法*/
+            transform:translate(-50%);
+
+            /*margin-left: -150px;*/
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+</body>
+</html>

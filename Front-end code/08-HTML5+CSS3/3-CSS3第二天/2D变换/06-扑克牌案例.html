@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06-扑克牌案例</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        h2{
+            text-align: center;
+        }
+        .poker{
+            width: 310px;
+            height: 441px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .poker img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all 1.5s;
+
+            /*设置扑克牌的下边中心为变换中心*/
+            transform-origin: center bottom;
+            box-shadow: 1px 1px 3px 1px #333;
+        }
+
+       .poker:hover img:nth-child(1){
+            transform: rotate(-60deg);
+        }
+        .poker:hover img:nth-child(2){
+            transform: rotate(-50deg);
+        }
+        .poker:hover img:nth-child(3){
+            transform: rotate(-40deg);
+        }
+        .poker:hover img:nth-child(4){
+            transform: rotate(-30deg);
+        }
+        .poker:hover img:nth-child(5){
+            transform: rotate(-20deg);
+        }
+        .poker:hover img:nth-child(6){
+            transform: rotate(-10deg);
+        }
+        /*第七张牌不用动，留在原来的位置保持不动*/
+        .poker:hover img:nth-child(8){
+            transform: rotate(10deg);
+        }
+        .poker:hover img:nth-child(9){
+            transform: rotate(20deg);
+        }
+        .poker:hover img:nth-child(10){
+            transform: rotate(30deg);
+        }
+        .poker:hover img:nth-child(11){
+            transform: rotate(40deg);
+        }
+        .poker:hover img:nth-child(12){
+            transform: rotate(50deg);
+        }
+        .poker:hover img:nth-child(13){
+            transform: rotate(60deg);
+        }
+
+    </style>
+</head>
+<body>
+    <h2 style=>西安首家赌场上线了233</h2>
+    <div class="poker">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+        <img src="images/pk2.png" alt="">
+    </div>
+</body>
+</html>

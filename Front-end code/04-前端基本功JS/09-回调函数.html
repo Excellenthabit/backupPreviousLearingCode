@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-回调函数</title>
+</head>
+<body>
+
+<script>
+    console.log(fn(10,5,test1));
+    console.log(fn(10,5,test2));
+    console.log(fn(10,5,test3));
+    console.log(fn(10,5,test4));
+
+    //fn函数回调后面的test1、test2、test3、test4函数
+    //回调函数一般是用于定义一个规则来使用的，规则的传递只能通过函数来实现，
+    //通过变量无法完成，所以传递规则的时候必须回调函数。
+
+    //定义规则
+    function fn(n1,n2,demo) {
+        return demo(n1,n2);
+    }
+
+    function test1(n1,n2) {
+        return n1+n2;
+    }
+
+    function test2(n1,n2) {
+        return n1-n2;
+    }
+
+    function test3(n1,n2) {
+        return n1*n2;
+    }
+
+    function test4(n1,n2) {
+        return n1/n2;
+    }
+</script>
+
+</body>
+</html>

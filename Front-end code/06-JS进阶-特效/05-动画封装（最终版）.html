@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-动画封装（最终版）</title>
+    <style>
+        .box1{
+            margin: 0;
+            padding: 0;
+            height: 200px;
+            background-color: #d0d0d0;
+            position: relative;
+        }
+        button{
+            margin: 5px;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: burlywood;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">
+    <button>移动到200px处</button>
+    <button>移动到400px处</button>
+    <div class="box2"></div>
+</div>
+
+    <script>
+    //获取事件源以及相关元素
+    var btn = document.getElementsByTagName("button");
+    var box2 =document.getElementsByClassName("box2")[0];
+
+    //定义定时器
+    var timer = null;
+
+    //绑定事件
+    btn[0].onclick = function(){
+        animate(box2,200);
+    }
+
+
+    btn[1].onclick = function(){
+        animate(box2,400);
+    }
+
+
+
+    //动画实现的函数封装
+    //ps：elm是目标元素，target是移动目标值
+    function animate(elm,target) {
+        clearInterval(elm.timer);
+        var step = target>elm.offsetLeft?10:-10;
+        elm.timer = setInterval(function () {
+            var differ = target - elm.offsetLeft;
+            elm.style.left = elm.offsetLeft + step + "px";
+            if (Math.abs(differ)<=Math.abs(step)){
+                elm.style.left = target + "px";
+                clearInterval(elm.timer);
+            }
+        },30)
+    }
+
+
+</script>
+</body>
+</html>

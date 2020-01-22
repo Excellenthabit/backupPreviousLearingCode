@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 可以同时使用多个过滤器 -->
+        <p>{{ msg | msgFormat('我')|sayHi }}</p>
+        <br>
+        <p>{{ msg | msgFormat('我')}}</p>
+        <br>
+        <!-- 这里过滤器sayHello不起作用，说明在app实例内不能访问到app1实例内定义的局部过滤器-->
+        <p>{{ msg | sayHello}}</p>
+    </div>
+
+    <div id="app2">
+            <!-- 过滤器调用的时候采用的是就近原则如果私有过滤器和全局过滤器的名称一样，这时候优先调用私有过滤器 -->
+            <h2>{{ msg|msgFormat('我') }}</h2>
+    </div>
+</body>
+</html>
+<script src="./lib/vue.min.js"></script>
+<script>
+
+    // 定义一个Vue的全局过滤器，名字叫做 msgFormat
+    // 可以定义不止一个参数，视情况而定，参数多了容易出错
+    Vue.filter('msgFormat',function(str,arg){
+        // 字符串的replace()方法，第一个参数除了可以写一个字符串之外还可以写一个正则表达式
+        return str.replace(/少年/g,arg); //全局替换 “少年”
+    })
+
+     // 定义一个Vue的全局过滤器，名字叫做 sayHi
+    Vue.filter('sayHi',function(str,arg){
+        return str + "你好！守得云开见月明，加油！";
+    })
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            msg:'单纯的少年，懵懂的少年，不再迷茫的少年，蜕变的少年。'
+        }
+    })
+
+    //如何定义一个私有的过滤器（局部过滤器）
+    var app2 = new Vue({
+        el:'#app2',
+        data:{
+            msg:'单纯的少年，懵懂的少年，不再迷茫的少年，蜕变的少年。'
+        },
+        methods: {
+        },
+        filters:{//定义私有过滤器  过滤器有两个条件(过滤器名称，处理函数)
+            // 过滤器调用的时候采用的是就近原则如果私有过滤器和全局过滤器的名称一样，这时候有限调用私有过滤器
+            msgFormat:function(str,arg){
+                // 字符串的replace()方法，第一个参数除了可以写一个字符串之外还可以写一个正则表达式
+                return str.replace(/少年/g,arg+"helloworld"); //全局替换 “少年”
+            },
+            sayHello:function(str,arg){
+                return str+'hello vue';
+            }
+        }
+    })
+</script>

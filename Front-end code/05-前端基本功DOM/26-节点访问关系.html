@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>26-节点访问关系</title>
+    <style>
+        li {
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li class="box1"></li>
+    <li class="box2"></li>
+    <li id="box3"></li>
+    <li class="box4"></li>
+    <li class="box5"></li>
+</ul>
+
+<script>
+
+    //parentNode父盒子
+    var box3 = document.getElementById("box3");
+    box3.parentNode.style.backgroundColor = "gray";
+
+    //兄弟节点（前一个和后一个：previousSibling和nextSibling）
+    //previousElementSibling和nextElementSibling在IE678中不支持。IE678不能获取文本节点。
+    //    box3.previousElementSibling.style.backgroundColor = "red";
+    //    box3.nextElementSibling.style.backgroundColor = "yellow";
+    //    box3.previousSibling.style.backgroundColor = "red";
+    //    box3.nextSibling.style.backgroundColor = "yellow";
+    // 使用nextSibling属性返回指定节点之后的下一个兄弟节点，（即：相同节点树层中的下一个节点）。
+    //nextSibling属性与nextElementSibling属性的差别：
+    //nextSibling属性返回元素节点之后的兄弟节点（包括文本节点、注释节点即回车、换行、空格、文本等等）；
+    //nextElementSibling属性只返回元素节点之后的兄弟元素节点（不包括文本节点、注释节点）；
+    //注意: 空格、回车也会看作文本，以文本节点对待。
+    var pre = box3.previousElementSibling || box3.previousSibling;
+    var net = box3.nextElementSibling || box3.nextSibling;
+    pre.style.backgroundColor = "red";
+    net.style.backgroundColor = "yellow";
+
+    //单个子元素（firstChild和lastChild）
+    //    box3.parentNode.firstElementChild.style.backgroundColor = "orange";
+    //    box3.parentNode.lastElementChild.style.backgroundColor = "green";
+    var first = box3.parentNode.firstElementChild || box3.parentNode.firstChild;
+    var last = box3.parentNode.lastElementChild || box3.parentNode.lastChild;
+    first.style.backgroundColor = "orange";
+    last.style.backgroundColor = "green";
+
+
+    //所有子元素
+    var arr = box3.parentNode.children;
+    for(var i=0;i<arr.length;i++){
+        arr[i].style.backgroundColor = "black";
+    }
+
+    console.log(box3.parentNode.childNodes);
+    var arr2 = box3.parentNode.childNodes;
+    for(var i=0;i<arr2.length;i++){
+        if(arr2[i].nodeType === 1){
+            console.log(arr2[i]);
+        }
+    }
+
+    //随意获取指定兄弟节点
+    var index = 0;
+    var node = box3.parentNode.children[index];
+
+
+    //获取所有的兄弟节点
+    function siblings(elm) {
+        var a = [];
+        var p = elm.parentNode.children;
+        for(var i =0;i<p.length;i++) {
+            if(p[i] !== elm) {
+                a.push(p[i]);
+            }
+        }
+        return a;
+    }
+
+</script>
+</body>
+</html>

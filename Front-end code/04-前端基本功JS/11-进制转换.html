@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-进制转换</title>
+</head>
+<body>
+
+<script>
+    //parseInt(),一个参数取整（向下取整，例如parseInt(6.8)=6 ），两个参数进制转化
+    //任意进制转化为十进制，parseInt(数值，进制)
+  var shishu =parseInt(111,2);  //将二进制的111转换为十进制数，输出为7
+  console.log(shishu);
+
+    //toString(),无参数的话转换为字符串，有参数的话将进行进制转化
+    // 十进制数转换为任意进制
+    var bb= 7;
+    var cc=bb.toString(2); //将bb，即7转换为二进制数，输出111
+    console.log(cc);
+
+</script>
+
+</body>
+</html>

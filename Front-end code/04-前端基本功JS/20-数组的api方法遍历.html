@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20-数组的api方法遍历</title>
+</head>
+<body>
+<script>
+    // // every()
+    var arr = ["hello world","c","c#","java","javascrit","html","css","ajax","angular.js","node.js"];
+    // //every()的返回值是一个boolean类型值。而参数是一个回调函数。
+    // //对数组中每一项运行以下函数，如果都返回true，every返回true，如果有一项返回false，
+    // // 则停止遍历 every返回false；不写默认返回false
+    // array.every(function(item,index,arr) {
+    // })
+    //
+    // var bool = arr.every(function (element,index,array) {
+    //     //array[index]="RUOK"; //在原数组内修改
+    //     console.log(element);
+    //     console.log(index);
+    //     console.log(array);
+    //     return true;
+    // });
+    // console.log(bool);
+
+
+    // // filter()
+    // //filter()对数组中每一项运行以下函数，该函数返回结果是true的项组成的新数组
+    // //var arr = array.filter(function(item,index,arr) {
+    // //});
+    // //console.log(arr);
+    //
+    // var arr1 = arr.filter(function (element,index,array) {
+    //    if (element.length>4){
+    //        return true;
+    //    }
+    //    return false;
+    // });
+    // console.log(arr1); //  ["hello world", "javascrit", "angular.js", "node.js"]
+
+
+    // //forEach()   遍历数组(无返回值，纯操作数组中的元素)
+    // var str = "";
+    // arr.forEach(function (element,index,array) {
+    //     str += element;
+    // });
+    // alert(str);
+
+    // //map()
+    // //对数组中每一项运行以下函数，返回该函数的结果组成的新数组
+    // //var arr = array.map(function(item,index,arr) {
+    // //    return "\"" + item + "\"";
+    // //});
+    // var arr2 = arr.map(function (element,index,array) {
+    //     return element+"&";
+    // });
+    // console.log(arr2);  //["hello world&", "c&", "c#&", "java&", "javascrit&", "html&", "css&", "ajax&", "angular.js&", "node.js&"]
+
+
+    //some()    some有返回值，函数结果有一个是true，本方法结果也是true。
+    ////对数组中每一项运行以下函数，如果该函数对某一项返回true，则some返回true
+    //var b =  array.some(function(item,index,arr) {
+    //    if (item == "ww") {
+    //        return true;
+    //    }
+    //    return false;
+    //});
+    var flag = arr.some(function (element,index,array) {
+        if (element.length>6){
+            return true;
+        }
+        return false;
+    });
+    alert(flag);
+    
+
+
+</script>
+</body>
+</html>

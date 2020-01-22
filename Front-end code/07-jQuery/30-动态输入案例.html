@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>30-动态输入案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1
+            }
+            50% {
+                opacity: 0
+            }
+        }
+
+        @-webkit-keyframes blink {
+            0%,
+            100% {
+                opacity: 1
+            }
+            50% {
+                opacity: 0
+            }
+        }
+
+        @-moz-keyframes blink {
+            0%,
+            100% {
+                opacity: 1
+            }
+            50% {
+                opacity: 0
+            }
+        }
+
+        .wrap {
+            width: 1000px;
+            text-align: center;
+            margin: 100px auto 0;
+        }
+
+        .wrap h1 {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 300;
+        }
+
+        .word {
+            font-weight: 700;
+        }
+
+        .typed-cursor {
+            opacity: 1;
+            -webkit-animation: blink .7s infinite;
+            -moz-animation: blink .7s infinite;
+            animation: blink .7s infinite;
+            display: none;
+        }
+
+        .saySection {
+            margin-top: 50px;
+        }
+
+        .saySection input {
+            font-size: 30px;
+        }
+
+        .saySection .txtSay {
+            padding-left: 10px;
+        }
+
+        .saySection .btnSay {
+            display: inline-block;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+        </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+
+        $(function () {
+            //需求1：页面加载的时候每隔固定时间，.word中添加一个字符。
+            //需求2：点击say按钮，上面的input中的内容，每隔固定时间，.word中添加一个字符，插入的就是input中的内容。
+
+
+            //需求1：页面加载的时候每隔固定时间，.word中添加一个字符。
+            // 定义字符串(把字符串转换成数组)
+            var str = "菩提本无树，明镜亦非台。本来无一物，何处惹尘埃?";
+            // 把字符串转换成数组
+            var arr = str.split("");
+            // 显示插入条光标
+            $(".typed-cursor").show();
+            //2.定时器。
+            var i = 0;
+            var timer = null;
+            //定义一个字符串来接收每次数组传过来的元素
+            var str1 = "";
+            timer = setInterval(function () {
+                //判断，如果文字的个数和数组的长度一样了，就清除定时器
+                if(arr[i]===undefined){
+                    clearInterval(timer);
+                    //隐藏光标
+                    $(".typed-cursor").hide();
+                }else{
+                    str1 += arr[i];
+                    $(".word").html(str1);
+                    //索引值自增
+                    i++;
+                }
+            },200);
+
+
+            //需求2：点击say按钮，上面的input中的内容，每隔固定时间，.word中添加一个字符，插入的就是input中的内容。
+            $("#btnSay").click(function () {
+                var str = $("#inValue").val(); //获取文本输入框的内容
+                $("#inValue").val(""); //获取文本输入框的内容之后把它清空
+                var arr = str.split("");
+                //定义一个字符串来接收每次数组传过来的元素
+                str1 = "";
+                i = 0;
+                timer = setInterval(function () {
+                    if(arr[i]===undefined){
+                        clearInterval(timer);
+                        $(".typed-cursor").hide();
+                    }else{
+                        str1 += arr[i];
+                        $(".word").html(str1);
+                        i++;
+                    }
+                },200);
+
+            });
+
+
+        })
+
+    </script>
+</head>
+<body>
+
+    <div class="wrap">
+        <h1>
+            说些什么吧 ： <span class="word"></span><span class="typed-cursor">|</span>
+        </h1>
+
+        <div class="saySection">
+            <input type="text" id="inValue" class="txtSay"/>
+            <input type="button" value="Say something" id="btnSay" class="btnSay"/>
+        </div>
+    </div>
+
+</body>
+</html>
